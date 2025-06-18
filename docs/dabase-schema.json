@@ -12,5 +12,9 @@
             "userName":"name",
             "Bid":24
         }
-    ] 
+    ],
+    "images_links":[
+        "link1", 
+        "link2"    
+    ]
 }
