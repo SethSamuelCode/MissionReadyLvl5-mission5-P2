@@ -3,6 +3,9 @@
 	"Description": "Description",
 	"Reserve_price": 10,
 	"Current_Bid_price": 10, 
+    "owner":"",
+    "opening_date":"",
+    "closing_date":"",
     "Bid_history": [
         {
             "userName":"name",
@@ -16,5 +19,15 @@
     "images_links":[
         "link1", 
         "link2"    
-    ]
+    ],
+    "Condition":"",
+    "dimensions":"",
+    "weight":"",
+    "Color":"",
+    "Material":"",
+    "Manufacturer":"",
+    "Shipping_type":"",
+    "payment_options":"",
+    "pickup_location":""
+
 }
