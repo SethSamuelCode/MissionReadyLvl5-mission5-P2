@@ -2,7 +2,7 @@ import styles from "./ProductPage.module.css";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 
-function ProductDescription({description}) {
+function ProductDescription({ description }) {
   return (
     <>
       <h3>Product Details</h3>
@@ -11,8 +11,41 @@ function ProductDescription({description}) {
   );
 }
 
-function ProductDetails(){
+function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription) {
+  setShowDetailsOrDescription(detailsOrDescription);
+}
 
+function ProductDetails({ condition, dimensions, weight, color, material, manufacturer }) {
+  return (
+    <>
+      <div className={styles.detailsContainer}>
+        <div className={styles.detailItem}>
+          <p className={styles.detailLabel}>Condition:</p>
+          <p className={styles.detailValue}>{condition}</p>
+        </div>
+        <div className={styles.detailItem}>
+          <p className={styles.detailLabel}>Dimensions:</p>
+          <p className={styles.detailValue}>{dimensions}</p>
+        </div>
+        <div className={styles.detailItem}>
+          <p className={styles.detailLabel}>Weight:</p>
+          <p className={styles.detailValue}>{weight}</p>
+        </div>
+        <div className={styles.detailItem}>
+          <p className={styles.detailLabel}>Color:</p>
+          <p className={styles.detailValue}>{color}</p>
+        </div>
+        <div className={styles.detailItem}>
+          <p className={styles.detailLabel}>Material:</p>
+          <p className={styles.detailValue}>{material}</p>
+        </div>
+        <div className={styles.detailItem}>
+          <p className={styles.detailLabel}>Manufacturer:</p>
+          <p className={styles.detailValue}>{manufacturer}</p>
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default function ProductPage() {
@@ -36,6 +69,11 @@ export default function ProductPage() {
   const [showDetailsOrDescription, setShowDetailsOrDescription] = useState(detailsOrDescription.DETAILS);
   const [itemDescription, setItemDescription] = useState("");
   const [condition, setCondition] = useState("");
+  const [dimensions, setDimensions] = useState("");
+  const [weight, setWeight] = useState("");
+  const [color, setColor] = useState("");
+  const [material, setMaterial] = useState("");
+  const [manufacturer, setManufacturer] = useState("");
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -52,6 +90,12 @@ export default function ProductPage() {
       setShippingOptions(tempFromDB.Shipping_type);
       setPaymentOptions(tempFromDB.payment_options);
       setItemDescription(tempFromDB.Description);
+      setCondition(tempFromDB.Condition);
+      setDimensions(tempFromDB.Dimensions);
+      setWeight(tempFromDB.weight);
+      setColor(tempFromDB.Color);
+      setMaterial(tempFromDB.Material);
+      setManufacturer(tempFromDB.Manufacturer);
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
       // console.log(tempFromDB)
@@ -149,12 +193,24 @@ export default function ProductPage() {
         </div>
       </div>
       <div className={styles.productDetailsAndDescription}>
-        <div className={styles.detalAndDescriptionTabs}>
-          <div>Product Details</div>
-          <div> Product Description</div>
+        <div className={styles.detailAndDescriptionTabs}>
+          <div onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DETAILS)}>Product Details</div>
+          <div onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DESCRIPTION)}>Product Description</div>
         </div>
 
-        {showDetailsOrDescription === detailsOrDescription.DETAILS ? <ProductDescription description={itemDescription} /> : null}
+        {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
+          <ProductDescription description={itemDescription} />
+        ) : null}
+        {showDetailsOrDescription === detailsOrDescription.DESCRIPTION ? (
+          <ProductDetails
+            condition={condition}
+            dimensions={dimensions}
+            weight={weight}
+            color={color}
+            material={material}
+            manufacturer={manufacturer}
+          />
+        ) : null}
       </div>
       <div className={styles.sellerContainer}>
         <div className={styles.sellerInfo}>
