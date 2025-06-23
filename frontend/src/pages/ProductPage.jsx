@@ -1,14 +1,26 @@
 import styles from "./ProductPage.module.css";
 import { useParams } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProductPage() {
   const { itemID } = useParams();
-  const [stateItemID, setStateItemID] = useState(itemID)
+  const [item, setItem] = useState();
+
+  const BACKEND_URL = "http://localhost:4000/api";
+
+  useEffect(() => {
+    async function setItemFromDB() {
+      const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
+      const tempFromDB =await resp.json()
+      setItem(tempFromDB);
+      console.log(tempFromDB)
+    }
+
+    setItemFromDB();
+  }, []);
 
   return (
     <div className={styles.container}>
-      <p>{stateItemID}</p>
       <div className={styles.locationBar}></div>
       <div className={styles.images}>
         <img
@@ -20,6 +32,7 @@ export default function ProductPage() {
             objectFit: "cover",
           }}
         />
+        <p>{JSON.stringify(item)}</p>
       </div>
       <div className={styles.sidebar}>
         <div className={styles.title}>Vintage Collection Camera - Limited Edition (2025)</div>

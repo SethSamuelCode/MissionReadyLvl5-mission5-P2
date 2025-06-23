@@ -1,4 +1,4 @@
-// npm i dotenv morgan nodemon express cors 
+// npm i dotenv morgan nodemon express cors
 
 // ------------------ SETUP AND INSTALL ----------------- //
 
@@ -14,7 +14,7 @@ const { MongoClient, ObjectId } = require("mongodb"); // MongoDB client
 
 const morgan = require("morgan"); // HTTP request logger
 app.use(morgan("dev")); // Log requests to console
-app.use(express.json({ limit: "10MB" })); // Parse JSON bodies up to 10MB. 
+app.use(express.json({ limit: "10MB" })); // Parse JSON bodies up to 10MB.
 
 // Configure CORS to allow only specific origins
 const corsConfigs = {
@@ -50,7 +50,7 @@ async function setupDB(dbObject) {
     dbObject.db = dbObject.client.db(DATABASE_NAME);
     dbObject.collection = dbObject.db.collection(COLLECTION_NAME);
   } catch (error) {
-    console.error('Failed to connect to MongoDB:', error);
+    console.error("Failed to connect to MongoDB:", error);
     throw error;
   }
 }
@@ -68,17 +68,21 @@ setupDB(dbObject);
 
 // ------------------------ SETH ------------------------ //
 
-app.get("/api/item/:itemId",async(req,resp)=>{
-  // console.log(req.params)
+app.get("/api/item/:itemId", async (req, resp) => {
   const itemID = req.params.itemId;
+  if (!ObjectId.isValid(itemID)) {
+    console.log(itemID);
+    return resp.status(400).json({ status: "error", message: "Invalid item ID format" });
+  }
+
+  // console.log(req.params)
   // console.log(itemID)
-  const itemFromDB = await dbObject.collection.findOne({_id: new ObjectId(itemID)})
-  // console.log(itemFromDB)
-  resp.status(200).json(itemFromDB)
-})
+  const itemFromDB = await dbObject.collection.findOne({ _id: new ObjectId(itemID) });
+  console.log(itemFromDB)
+  resp.status(200).json(itemFromDB);
+});
 
 // ---------------------- VALENTINE --------------------- //
-
 
 // ----------------------- ROUTES ----------------------- //
 
