@@ -8,6 +8,7 @@ const app = express();
 const cors = require("cors"); // CORS middleware
 const PORT = process.env.SERVER_LISTEN_PORT; // Port from environment
 const assert = require("node:assert/strict"); // Assertion utility for debugging
+const { MongoClient, ObjectId } = require("mongodb"); // MongoDB client
 
 // --------------------- MIDDLEWARES -------------------- //
 
@@ -30,6 +31,35 @@ const corsConfigs = {
 };
 app.use(cors(corsConfigs)); // Apply CORS policy
 
+// ----------------------- MONGODB ---------------------- //
+
+const CONNECTION_STRING = process.env.CONNECTION_STRING;
+const DATABASE_NAME = process.env.DATABASE_NAME;
+const COLLECTION_NAME = process.env.COLLECTION_NAME;
+
+const dbObject = {};
+
+async function setupDB(dbObject) {
+  try {
+    // Create new MongoDB client instance
+    const client = new MongoClient(CONNECTION_STRING);
+    dbObject.client = client;
+    // Establish connection to MongoDB
+    await dbObject.client.connect();
+    // Get database and collection references
+    dbObject.db = dbObject.client.db(DATABASE_NAME);
+    dbObject.collection = dbObject.db.collection(COLLECTION_NAME);
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
+    throw error;
+  }
+}
+
+// Initialize database connection
+setupDB(dbObject);
+
+// use database as dbObject.collection.METHOD()
+
 // ---------------------- FUNCTIONS --------------------- //
 
 // ------------------------ CESS ------------------------ //
@@ -37,6 +67,15 @@ app.use(cors(corsConfigs)); // Apply CORS policy
 // ------------------------ KERRY ----------------------- //
 
 // ------------------------ SETH ------------------------ //
+
+app.get("/api/item/:itemId",(req,resp)=>{
+  console.log(req.params)
+  const itemID = req.params.itemId;
+  console.log(itemID)
+  const itemFromDB = dbObject.collection.find(new ObjectId(itemID))
+  console.log(itemFromDB)
+  resp.send(itemFromDB)
+})
 
 // ---------------------- VALENTINE --------------------- //
 

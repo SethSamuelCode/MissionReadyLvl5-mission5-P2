@@ -1,15 +1,15 @@
 import styles from "./ProductPage.module.css";
+import { useParams } from "react-router";
+import { useState } from "react";
 
 export default function ProductPage() {
-
-
-  
+  const { itemID } = useParams();
+  const [stateItemID, setStateItemID] = useState(itemID)
 
   return (
     <div className={styles.container}>
-      <div className={styles.locationBar}>
-
-      </div>
+      <p>{stateItemID}</p>
+      <div className={styles.locationBar}></div>
       <div className={styles.images}>
         <img
           src="https://picsum.photos/400/400"
@@ -22,9 +22,7 @@ export default function ProductPage() {
         />
       </div>
       <div className={styles.sidebar}>
-        <div className={styles.title}>
-          Vintage Collection Camera - Limited Edition (2025)
-        </div>
+        <div className={styles.title}>Vintage Collection Camera - Limited Edition (2025)</div>
         <div className={styles.watchListAndCompareButton}>
           <button>❤️ Add to Watchlist</button>
           <button>🔄 Compare</button>
@@ -32,13 +30,15 @@ export default function ProductPage() {
         <div className={styles.bidBox}>
           <h3>Current Bid: $1,299.99</h3>
           <p>Time Left: 2d 15h 30m</p>
-          <input type="number" placeholder="Enter bid amount" />
+          <input
+            type="number"
+            placeholder="Enter bid amount"
+          />
           <button
             style={{
               marginTop: "10px",
               display: "block",
-            }}
-          >
+            }}>
             Place Bid
           </button>
         </div>
@@ -48,8 +48,7 @@ export default function ProductPage() {
             style={{
               listStyle: "none",
               padding: 0,
-            }}
-          >
+            }}>
             <li>User123 - $1,299.99</li>
             <li>Collector55 - $1,250.00</li>
             <li>VintageLP - $1,200.00</li>
@@ -72,10 +71,7 @@ export default function ProductPage() {
       </div>
       <div className={styles.productDetailsAndDescription}>
         <h3>Product Details</h3>
-        <p>
-          This vintage camera is a remarkable piece from our 2025 collection.
-          Features include:
-        </p>
+        <p>This vintage camera is a remarkable piece from our 2025 collection. Features include:</p>
         <ul>
           <li>Professional-grade lens system</li>
           <li>Original leather case included</li>
@@ -109,18 +105,12 @@ export default function ProductPage() {
           <p>
             <strong>Q: Is the original box included?</strong>
           </p>
-          <p>
-            A: Yes, the camera comes with its original packaging and
-            documentation.
-          </p>
+          <p>A: Yes, the camera comes with its original packaging and documentation.</p>
           <hr />
           <p>
             <strong>Q: What's the shutter count?</strong>
           </p>
-          <p>
-            A: The camera has been used for approximately 1,000 shots since
-            restoration.
-          </p>
+          <p>A: The camera has been used for approximately 1,000 shots since restoration.</p>
         </div>
       </div>
       <div className={styles.similarItems}>
@@ -130,10 +120,11 @@ export default function ProductPage() {
             display: "flex",
             gap: "1rem",
             marginTop: "1rem",
-          }}
-        >
+          }}>
           {[1, 2, 3].map((i) => (
-            <div key={i} style={{ flex: 1 }}>
+            <div
+              key={i}
+              style={{ flex: 1 }}>
               <img
                 src={`https://picsum.photos/200/200?random=${i}`}
                 alt={`Similar item ${i}`}
