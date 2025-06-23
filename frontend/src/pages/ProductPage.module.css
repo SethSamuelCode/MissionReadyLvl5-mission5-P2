@@ -121,6 +121,12 @@
   border-radius: 8px;
 }
 
+.bidHistory {
+  li {
+    list-style-type: none;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {

@@ -10,6 +10,7 @@ export default function ProductPage() {
   const [currentBid, setCurrentBid] = useState();
   const [auctionClosingTime, setActionClosingTime] = useState(new Date("January 01, 2000"));
   const [timeLeftInAuction, setTimeLeftInAuction] = useState();
+  const [bidHistory,setBidHistory] = useState([]);
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -22,6 +23,7 @@ export default function ProductPage() {
       setItem(tempFromDB);
       setCurrentBid(tempFromDB.Current_Bid_price);
       setActionClosingTime(new Date(tempFromDB.closing_date));
+      setBidHistory(tempFromDB.Bid_history)
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
       // console.log(tempFromDB)
@@ -68,7 +70,7 @@ useEffect(() => {
           style={{
             width: "100%",
             height: "400px",
-            objectFit: "cover",
+            // objectFit: "cover",
           }}
         />
         {/* <p>{JSON.stringify(item)}</p> */}
@@ -96,14 +98,11 @@ useEffect(() => {
         </div>
         <div className={styles.bidHistory}>
           <h4>Recent Bids</h4>
-          <ul
-            style={{
-              listStyle: "none",
-              padding: 0,
-            }}>
-            <li>User123 - $1,299.99</li>
-            <li>Collector55 - $1,250.00</li>
-            <li>VintageLP - $1,200.00</li>
+          <ul>
+            {/* {console.log(bidHistory)} */}
+            {bidHistory.map((bid)=>{
+             return <li> {bid.userName}: ${bid.Bid} </li>
+            })}
           </ul>
         </div>
       </div>
