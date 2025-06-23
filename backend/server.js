@@ -68,13 +68,13 @@ setupDB(dbObject);
 
 // ------------------------ SETH ------------------------ //
 
-app.get("/api/item/:itemId",(req,resp)=>{
-  console.log(req.params)
+app.get("/api/item/:itemId",async(req,resp)=>{
+  // console.log(req.params)
   const itemID = req.params.itemId;
-  console.log(itemID)
-  const itemFromDB = dbObject.collection.find(new ObjectId(itemID))
-  console.log(itemFromDB)
-  resp.send(itemFromDB)
+  // console.log(itemID)
+  const itemFromDB = await dbObject.collection.findOne({_id: new ObjectId(itemID)})
+  // console.log(itemFromDB)
+  resp.status(200).json(itemFromDB)
 })
 
 // ---------------------- VALENTINE --------------------- //
