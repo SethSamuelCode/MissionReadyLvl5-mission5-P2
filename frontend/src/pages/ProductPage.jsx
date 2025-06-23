@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export default function ProductPage() {
   const { itemID } = useParams();
   const [item, setItem] = useState();
+  const [imageUrl, setImageUrl] = useState()
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -12,6 +13,7 @@ export default function ProductPage() {
     async function setItemFromDB() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
       const tempFromDB =await resp.json()
+      setImageUrl(tempFromDB.images_links[0])
       setItem(tempFromDB);
       console.log(tempFromDB)
     }
@@ -24,7 +26,7 @@ export default function ProductPage() {
       <div className={styles.locationBar}></div>
       <div className={styles.images}>
         <img
-          src="https://picsum.photos/400/400"
+          src={imageUrl}
           alt="Random product"
           style={{
             width: "100%",
@@ -32,7 +34,7 @@ export default function ProductPage() {
             objectFit: "cover",
           }}
         />
-        <p>{JSON.stringify(item)}</p>
+        {/* <p>{JSON.stringify(item)}</p> */}
       </div>
       <div className={styles.sidebar}>
         <div className={styles.title}>Vintage Collection Camera - Limited Edition (2025)</div>
