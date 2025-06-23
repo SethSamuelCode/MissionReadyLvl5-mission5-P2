@@ -1,0 +1,922 @@
+[
+  {
+    "userName": "AuctionPro92",
+    "email": "auctionpro92@example.com",
+    "password": "SecurePass123!",
+    "PhoneNumber": "027-555-6789",
+    "memberSince": "2023-03-15",
+    "location": "Auckland",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "BiddingQueen",
+    "email": "biddingqueen@example.com",
+    "password": "Auction2024#",
+    "PhoneNumber": "021-555-4321",
+    "memberSince": "2022-11-03",
+    "location": "Wellington",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "CollectorJohn",
+    "email": "john.collector@example.com",
+    "password": "Collect!987",
+    "PhoneNumber": "022-555-1234",
+    "memberSince": "2023-07-22",
+    "location": "Christchurch",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "DealFinderNZ",
+    "email": "dealfinder@example.com",
+    "password": "FindDeals456!",
+    "PhoneNumber": "029-555-8765",
+    "memberSince": "2024-01-05",
+    "location": "Hamilton",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "EagerBidder55",
+    "email": "eagerbidder55@example.com",
+    "password": "Eager$Bid789",
+    "PhoneNumber": "020-555-3456",
+    "memberSince": "2023-05-18",
+    "location": "Dunedin",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "FirstEditionFan",
+    "email": "firstedition@example.com",
+    "password": "Editions@2024",
+    "PhoneNumber": "027-555-9012",
+    "memberSince": "2022-09-10",
+    "location": "Tauranga",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "GadgetLover",
+    "email": "gadgetlover@example.com",
+    "password": "Gadgets!23",
+    "PhoneNumber": "021-555-2345",
+    "memberSince": "2023-12-07",
+    "location": "Napier",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "HighBidderNZ",
+    "email": "highbidder@example.com",
+    "password": "TopBid$456",
+    "PhoneNumber": "022-555-6789",
+    "memberSince": "2024-02-14",
+    "location": "Palmerston North",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "ItemHunter123",
+    "email": "itemhunter@example.com",
+    "password": "Hunt4Items!",
+    "PhoneNumber": "029-555-1234",
+    "memberSince": "2023-08-30",
+    "location": "Rotorua",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "JewelryCollector",
+    "email": "jewelrycollector@example.com",
+    "password": "Jewels&Gems1",
+    "PhoneNumber": "020-555-7890",
+    "memberSince": "2023-01-25",
+    "location": "Whangarei",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "KiwiAuctioneer",
+    "email": "kiwiauctioneer@example.com",
+    "password": "KiwiAuct!0n",
+    "PhoneNumber": "027-555-2468",
+    "memberSince": "2023-06-11",
+    "location": "New Plymouth",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "LuxuryBidder",
+    "email": "luxurybidder@example.com",
+    "password": "Luxury$789",
+    "PhoneNumber": "021-555-1357",
+    "memberSince": "2022-10-19",
+    "location": "Queenstown",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "MemorabiliaFan",
+    "email": "memorabiliafan@example.com",
+    "password": "Mem0rab!lia",
+    "PhoneNumber": "022-555-8024",
+    "memberSince": "2023-09-05",
+    "location": "Nelson",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "NoviceBidder",
+    "email": "novicebidder@example.com",
+    "password": "FirstBid123!",
+    "PhoneNumber": "029-555-9753",
+    "memberSince": "2024-03-22",
+    "location": "Invercargill",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "OverseasBuyer",
+    "email": "overseasbuyer@example.com",
+    "password": "Int3rnat!onal",
+    "PhoneNumber": "020-555-1593",
+    "memberSince": "2023-04-13",
+    "location": "Whanganui",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "PremiumCollector",
+    "email": "premiumcollector@example.com",
+    "password": "Pr3mium$",
+    "PhoneNumber": "027-555-8642",
+    "memberSince": "2023-11-27",
+    "location": "Gisborne",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "QuickBidder",
+    "email": "quickbidder@example.com",
+    "password": "Fast&Furious1",
+    "PhoneNumber": "021-555-7531",
+    "memberSince": "2023-02-08",
+    "location": "Blenheim",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "RareFindSeeker",
+    "email": "rarefinder@example.com",
+    "password": "Rare$Finds22",
+    "PhoneNumber": "022-555-3579",
+    "memberSince": "2023-10-14",
+    "location": "Timaru",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "SeriousBuyer",
+    "email": "seriousbuyer@example.com",
+    "password": "S3rious!Buy",
+    "PhoneNumber": "029-555-2468",
+    "memberSince": "2022-12-20",
+    "location": "Whakatane",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "TopDollarBidder",
+    "email": "topdollar@example.com",
+    "password": "Big$pender1",
+    "PhoneNumber": "020-555-9876",
+    "memberSince": "2023-07-03",
+    "location": "Cambridge",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "UniqueItemsOnly",
+    "email": "uniqueitems@example.com",
+    "password": "Un!queF!nd5",
+    "PhoneNumber": "027-555-4321",
+    "memberSince": "2024-01-29",
+    "location": "Oamaru",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "VintageLover",
+    "email": "vintagelover@example.com",
+    "password": "V!ntage1950",
+    "PhoneNumber": "021-555-8765",
+    "memberSince": "2023-05-16",
+    "location": "Te Awamutu",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "WinningBidderNZ",
+    "email": "winningbidder@example.com",
+    "password": "AlwaysW!n1",
+    "PhoneNumber": "022-555-5678",
+    "memberSince": "2023-08-08",
+    "location": "Taupo",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "XperiencedCollector",
+    "email": "xperiencedcollector@example.com",
+    "password": "Xp3rt!Coll",
+    "PhoneNumber": "029-555-6543",
+    "memberSince": "2022-11-11",
+    "location": "Masterton",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "YesteryearBuyer",
+    "email": "yesteryear@example.com",
+    "password": "0ldTr3asures",
+    "PhoneNumber": "020-555-4567",
+    "memberSince": "2023-03-27",
+    "location": "Levin",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "ZealousBidder",
+    "email": "zealousbidder@example.com",
+    "password": "Z3alous!Bid",
+    "PhoneNumber": "027-555-7890",
+    "memberSince": "2023-12-15",
+    "location": "Greymouth",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "AntiqueFanatic",
+    "email": "antiquefanatic@example.com",
+    "password": "Ant!ques123",
+    "PhoneNumber": "021-555-3456",
+    "memberSince": "2023-06-29",
+    "location": "Kaikoura",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "BargainHunterNZ",
+    "email": "bargainhunter@example.com",
+    "password": "BargainPr0!",
+    "PhoneNumber": "022-555-9012",
+    "memberSince": "2023-09-22",
+    "location": "Westport",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "CoinCollector",
+    "email": "coincollector@example.com",
+    "password": "Ra3Coins$",
+    "PhoneNumber": "029-555-3456",
+    "memberSince": "2022-10-05",
+    "location": "Alexandra",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "DesignerItemsFan",
+    "email": "designeritems@example.com",
+    "password": "Des!gner789",
+    "PhoneNumber": "020-555-2345",
+    "memberSince": "2023-04-01",
+    "location": "Wanaka",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "EarlyBidderNZ",
+    "email": "earlybidder@example.com",
+    "password": "E@rlyB!rd1",
+    "PhoneNumber": "027-555-1234",
+    "memberSince": "2024-02-18",
+    "location": "Kerikeri",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "FashionAuctioneer",
+    "email": "fashionauctioneer@example.com",
+    "password": "Fash!on456",
+    "PhoneNumber": "021-555-6789",
+    "memberSince": "2023-07-14",
+    "location": "Pukekohe",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "GemCollector",
+    "email": "gemcollector@example.com",
+    "password": "Sparkl!ng1",
+    "PhoneNumber": "022-555-4321",
+    "memberSince": "2023-11-09",
+    "location": "Ashburton",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "HistoryBuff",
+    "email": "historybuff@example.com",
+    "password": "H!story123",
+    "PhoneNumber": "029-555-8765",
+    "memberSince": "2023-01-19",
+    "location": "Rangiora",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "InvestorBidder",
+    "email": "investorbidder@example.com",
+    "password": "Inv3st$mart",
+    "PhoneNumber": "020-555-3456",
+    "memberSince": "2023-10-26",
+    "location": "Gore",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "JadeCollector",
+    "email": "jadecollector@example.com",
+    "password": "Greenst0ne!",
+    "PhoneNumber": "027-555-9012",
+    "memberSince": "2023-02-28",
+    "location": "Hokitika",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "KoruCollector",
+    "email": "korucollector@example.com",
+    "password": "Koru#NZ123",
+    "PhoneNumber": "021-555-2345",
+    "memberSince": "2023-08-17",
+    "location": "Thames",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "LocalArtBuyer",
+    "email": "localartbuyer@example.com",
+    "password": "Art!st!c1",
+    "PhoneNumber": "022-555-6789",
+    "memberSince": "2022-12-03",
+    "location": "Raglan",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "MaoriBidder",
+    "email": "maoribidder@example.com",
+    "password": "Taonga$123",
+    "PhoneNumber": "029-555-1234",
+    "memberSince": "2023-05-21",
+    "location": "Whakatane",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "NZArtistBidder",
+    "email": "nzartistbidder@example.com",
+    "password": "NZArt!st1",
+    "PhoneNumber": "020-555-7890",
+    "memberSince": "2024-01-08",
+    "location": "Russell",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "OldSchoolBidder",
+    "email": "oldschoolbidder@example.com",
+    "password": "Cl@ss!c789",
+    "PhoneNumber": "027-555-2468",
+    "memberSince": "2023-06-24",
+    "location": "Kaitaia",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "PacificArtBuyer",
+    "email": "pacificartbuyer@example.com",
+    "password": "Pac!fic#Art",
+    "PhoneNumber": "021-555-1357",
+    "memberSince": "2023-09-13",
+    "location": "Motueka",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "QualityFirstBuyer",
+    "email": "qualityfirst@example.com",
+    "password": "Qual!ty#1",
+    "PhoneNumber": "022-555-8024",
+    "memberSince": "2023-03-05",
+    "location": "Picton",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "RetroGamerNZ",
+    "email": "retrogamer@example.com",
+    "password": "R3tr0Gam3!",
+    "PhoneNumber": "029-555-9753",
+    "memberSince": "2023-11-22",
+    "location": "Waiuku",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "SportsMemorabiliaFan",
+    "email": "sportsmemorabilia@example.com",
+    "password": "Sp0rts#Fan1",
+    "PhoneNumber": "020-555-1593",
+    "memberSince": "2023-04-19",
+    "location": "Whangamata",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "TreasureHunterNZ",
+    "email": "treasurehunter@example.com",
+    "password": "Tr3asure$NZ",
+    "PhoneNumber": "027-555-8642",
+    "memberSince": "2023-07-30",
+    "location": "Paihia",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "UpscaleBidder",
+    "email": "upscalebidder@example.com",
+    "password": "Luxury$789",
+    "PhoneNumber": "021-555-7531",
+    "memberSince": "2022-11-15",
+    "location": "Hanmer Springs",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "VintageCarFan",
+    "email": "vintagecarfan@example.com",
+    "password": "V!ntageAuto1",
+    "PhoneNumber": "022-555-3579",
+    "memberSince": "2023-02-01",
+    "location": "Arrowtown",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "WineCollectorNZ",
+    "email": "winecollector@example.com",
+    "password": "F!neW!nes1",
+    "PhoneNumber": "029-555-2468",
+    "memberSince": "2023-10-08",
+    "location": "Martinborough",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "XtremeCollector",
+    "email": "xtremecollector@example.com",
+    "password": "Xtr3me#Coll",
+    "PhoneNumber": "020-555-9876",
+    "memberSince": "2023-05-03",
+    "location": "Akaroa",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "YachtingEnthusiast",
+    "email": "yachtingenthusiast@example.com",
+    "password": "Sa!l!ng123",
+    "PhoneNumber": "027-555-4321",
+    "memberSince": "2023-12-27",
+    "location": "Opua",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "ZealandCollector",
+    "email": "zealandcollector@example.com",
+    "password": "K!w!Coll3ct",
+    "PhoneNumber": "021-555-8765",
+    "memberSince": "2023-08-13",
+    "location": "Te Anau",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "ArtDeco789",
+    "email": "artdeco789@example.com",
+    "password": "Dec0Art!st",
+    "PhoneNumber": "022-555-5678",
+    "memberSince": "2023-01-31",
+    "location": "Napier",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "BookCollectorNZ",
+    "email": "bookcollector@example.com",
+    "password": "Rare#Books1",
+    "PhoneNumber": "029-555-6543",
+    "memberSince": "2024-03-04",
+    "location": "Devonport",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "ClassicCarBidder",
+    "email": "classiccar@example.com",
+    "password": "V!ntage#Cars",
+    "PhoneNumber": "020-555-4567",
+    "memberSince": "2023-06-17",
+    "location": "Cromwell",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "DiamondHunter",
+    "email": "diamondhunter@example.com",
+    "password": "Sparkle$123",
+    "PhoneNumber": "027-555-7890",
+    "memberSince": "2023-09-29",
+    "location": "Havelock North",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "EcoFriendlyBidder",
+    "email": "ecofriendly@example.com",
+    "password": "Green#Planet1",
+    "PhoneNumber": "021-555-3456",
+    "memberSince": "2022-12-12",
+    "location": "Raglan",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "FineArtDealer",
+    "email": "fineartdealer@example.com",
+    "password": "F!neArt$NZ",
+    "PhoneNumber": "022-555-9012",
+    "memberSince": "2023-04-25",
+    "location": "Parnell",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "GreenStoneHunter",
+    "email": "greenstonehunter@example.com",
+    "password": "Pouna^&Mu!",
+    "PhoneNumber": "029-555-3456",
+    "memberSince": "2023-07-11",
+    "location": "Hokitika",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "HistoricItemsBidder",
+    "email": "historicitems@example.com",
+    "password": "H!story#NZ",
+    "PhoneNumber": "020-555-2345",
+    "memberSince": "2023-11-04",
+    "location": "Russell",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "IslandArtCollector",
+    "email": "islandart@example.com",
+    "password": "Pac!ficArt1",
+    "PhoneNumber": "027-555-1234",
+    "memberSince": "2023-02-23",
+    "location": "Waiheke Island",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "JazzRecordCollector",
+    "email": "jazzrecords@example.com",
+    "password": "V!nylJazz1",
+    "PhoneNumber": "021-555-6789",
+    "memberSince": "2023-10-16",
+    "location": "Wellington",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "KiwiTreasureSeeker",
+    "email": "kiwitreasure@example.com",
+    "password": "NZTreasure$1",
+    "PhoneNumber": "022-555-4321",
+    "memberSince": "2023-05-30",
+    "location": "Whitianga",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "LuxuryWatchBidder",
+    "email": "luxurywatch@example.com",
+    "password": "T!mePiece$",
+    "PhoneNumber": "029-555-8765",
+    "memberSince": "2022-09-21",
+    "location": "Queenstown",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "ModernArtEnthusiast",
+    "email": "modernart@example.com",
+    "password": "Mod3rnArt!",
+    "PhoneNumber": "020-555-3456",
+    "memberSince": "2023-03-18",
+    "location": "New Plymouth",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "NZCraftsCollector",
+    "email": "nzcrafts@example.com",
+    "password": "HandCraft$1",
+    "PhoneNumber": "027-555-9012",
+    "memberSince": "2023-12-05",
+    "location": "Coromandel",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "OutdoorGearBidder",
+    "email": "outdoorgear@example.com",
+    "password": "Adv3nture#",
+    "PhoneNumber": "021-555-2345",
+    "memberSince": "2023-08-02",
+    "location": "Wanaka",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "PhotoCollectorNZ",
+    "email": "photocollector@example.com",
+    "password": "V!ntageSnap",
+    "PhoneNumber": "022-555-6789",
+    "memberSince": "2023-01-12",
+    "location": "Kaikoura",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "QualityCrafter",
+    "email": "qualitycrafter@example.com",
+    "password": "Craft$work1",
+    "PhoneNumber": "029-555-1234",
+    "memberSince": "2024-02-28",
+    "location": "Takaka",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "RareBookFinder",
+    "email": "rarebookfinder@example.com",
+    "password": "B00kW0rm!",
+    "PhoneNumber": "020-555-7890",
+    "memberSince": "2023-06-09",
+    "location": "Dunedin",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "SilverCollectorNZ",
+    "email": "silvercollector@example.com",
+    "password": "S!lverP!eces",
+    "PhoneNumber": "027-555-2468",
+    "memberSince": "2023-09-20",
+    "location": "Timaru",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "TikiCollector",
+    "email": "tikicollector@example.com",
+    "password": "T!kiTreasure",
+    "PhoneNumber": "021-555-1357",
+    "memberSince": "2023-04-07",
+    "location": "Rotorua",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "UniquePottery",
+    "email": "uniquepottery@example.com",
+    "password": "ClayArt!st1",
+    "PhoneNumber": "022-555-8024",
+    "memberSince": "2023-11-18",
+    "location": "Nelson",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "VinylRecordFan",
+    "email": "vinylrecordfan@example.com",
+    "password": "Vinyl#Groove",
+    "PhoneNumber": "029-555-9753",
+    "memberSince": "2023-03-31",
+    "location": "Auckland",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "WoodcraftBidder",
+    "email": "woodcraftbidder@example.com",
+    "password": "W00dCraft!",
+    "PhoneNumber": "020-555-1593",
+    "memberSince": "2023-07-25",
+    "location": "Warkworth",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "XenosCollector",
+    "email": "xenoscollector@example.com",
+    "password": "Ex0t!cItems",
+    "PhoneNumber": "027-555-8642",
+    "memberSince": "2022-10-30",
+    "location": "Christchurch",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "YesterdaysTreasures",
+    "email": "yesterdaystreasures@example.com",
+    "password": "0ldTr3asure!",
+    "PhoneNumber": "021-555-7531",
+    "memberSince": "2023-02-14",
+    "location": "Oamaru",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "ZenBidder",
+    "email": "zenbidder@example.com",
+    "password": "ZenM!ndful1",
+    "PhoneNumber": "022-555-3579",
+    "memberSince": "2023-10-03",
+    "location": "Taupo",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "AlohaCollector",
+    "email": "alohacollector@example.com",
+    "password": "Pac!fic$NZ",
+    "PhoneNumber": "029-555-2468",
+    "memberSince": "2023-05-15",
+    "location": "Paihia",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "BeachcombingBidder",
+    "email": "beachcombingbidder@example.com",
+    "password": "Beachc0mb!",
+    "PhoneNumber": "020-555-9876",
+    "memberSince": "2023-12-19",
+    "location": "Mount Maunganui",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "CeramicsLover",
+    "email": "ceramicslover@example.com",
+    "password": "P0ttery&Clay",
+    "PhoneNumber": "027-555-4321",
+    "memberSince": "2023-08-26",
+    "location": "Raglan",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "DownUnderBidder",
+    "email": "downunderbidder@example.com",
+    "password": "Kiwi#Bid123",
+    "PhoneNumber": "021-555-8765",
+    "memberSince": "2023-01-07",
+    "location": "Hamilton",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "EcoTreasureHunter",
+    "email": "ecotreasure@example.com",
+    "password": "Susta!nable1",
+    "PhoneNumber": "022-555-5678",
+    "memberSince": "2023-06-04",
+    "location": "Golden Bay",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "FernCollector",
+    "email": "ferncollector@example.com",
+    "password": "S!lverFern1",
+    "PhoneNumber": "029-555-6543",
+    "memberSince": "2024-02-10",
+    "location": "Tauranga",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "GlassArtFan",
+    "email": "glassartfan@example.com",
+    "password": "Glass$Art1",
+    "PhoneNumber": "020-555-4567",
+    "memberSince": "2023-09-06",
+    "location": "Napier",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "HeritageBidder",
+    "email": "heritagebidder@example.com",
+    "password": "H3r!tage$NZ",
+    "PhoneNumber": "027-555-7890",
+    "memberSince": "2022-11-23",
+    "location": "Wellington",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "IslandHopper",
+    "email": "islandhopper@example.com",
+    "password": "Island#Hop1",
+    "PhoneNumber": "021-555-3456",
+    "memberSince": "2023-04-13",
+    "location": "Bay of Islands",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "JewelryDesigner",
+    "email": "jewelrydesigner@example.com",
+    "password": "Des!gn$Gem",
+    "PhoneNumber": "022-555-9012",
+    "memberSince": "2023-07-20",
+    "location": "Auckland",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "KoruArtistNZ",
+    "email": "koruartist@example.com",
+    "password": "Sp!ral$Art",
+    "PhoneNumber": "029-555-3456",
+    "memberSince": "2023-11-12",
+    "location": "Rotorua",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "LandscapePhotographer",
+    "email": "landscapephoto@example.com",
+    "password": "NZV!sta$123",
+    "PhoneNumber": "020-555-2345",
+    "memberSince": "2023-03-09",
+    "location": "Queenstown",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "MaritimeCollector",
+    "email": "maritimecollector@example.com",
+    "password": "Sea$hore123",
+    "PhoneNumber": "027-555-1234",
+    "memberSince": "2023-10-22",
+    "location": "Picton",
+    "currentBids": [],
+    "watchlist": []
+  },
+  {
+    "userName": "NativeArtBuyer",
+    "email": "nativeartbuyer@example.com",
+    "password": "Nat!veArt$",
+    "PhoneNumber": "021-555-6789",
+    "memberSince": "2023-05-08",
+    "location": "Gisborne",
+    "currentBids": [],
+    "watchlist": []
+  }
+]

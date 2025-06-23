@@ -3,6 +3,8 @@
     "email":"",
     "password":"",
     "PhoneNumber":"",
+    "memberSince":"",
+    "location":"",
     "currentBids": [],
     "watchlist ": []
 }
