@@ -35,7 +35,18 @@
     "Shipping_type": "Insured Premium Shipping Only",
     "payment_options": "Bank Transfer, Escrow",
     "pickup_location": "Auckland, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Is the original case included?",
+        "answer": "Yes, it comes with the original Fender hardshell case from 1965."
+      },
+      {
+        "question": "Has the guitar been professionally setup recently?",
+        "answer": "Yes, it was setup by a certified Fender technician last month."
+      }
+    ]
   },
   {
     "Title": "2023 MacBook Pro M2 Max",
@@ -69,7 +80,18 @@
     "Shipping_type": "Insured Courier",
     "payment_options": "Credit Card, Bank Transfer",
     "pickup_location": "Wellington, NZ",
-    "clearance": false
+    "clearance": false,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "How many battery cycles does it have?",
+        "answer": "It has only 45 battery cycles, still in excellent condition."
+      },
+      {
+        "question": "Is AppleCare+ included?",
+        "answer": "Yes, it has AppleCare+ coverage until December 2025."
+      }
+    ]
   },
   {
     "Title": "Antique Victorian Mahogany Dining Table",
@@ -107,7 +129,18 @@
     "Shipping_type": "Specialist Furniture Delivery Only",
     "payment_options": "Bank Transfer",
     "pickup_location": "Christchurch, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "What is the condition of the extending mechanism?",
+        "answer": "The extension mechanism works perfectly after restoration. It extends smoothly with no issues."
+      },
+      {
+        "question": "How many extension leaves does it have?",
+        "answer": "It has two extension leaves, each 50cm wide."
+      }
+    ]
   },
   {
     "Title": "2024 Tesla Model S Plaid",
@@ -145,7 +178,18 @@
     "Shipping_type": "Pickup Only",
     "payment_options": "Bank Transfer, Finance Available",
     "pickup_location": "Auckland, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Has the vehicle been in any accidents?",
+        "answer": "No, it has a clean history with no accidents or damage."
+      },
+      {
+        "question": "Is the Full Self-Driving subscription transferable?",
+        "answer": "Yes, the FSD package is tied to the vehicle and transfers with ownership."
+      }
+    ]
   },
   {
     "Title": "Rolex Daytona Cosmograph 116500LN",
@@ -183,7 +227,18 @@
     "Shipping_type": "Insured Premium Shipping Only",
     "payment_options": "Bank Transfer, Escrow",
     "pickup_location": "Wellington, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Does it come with all the original documentation?",
+        "answer": "Yes, it includes the warranty card, instruction manual, and all original documentation."
+      },
+      {
+        "question": "Has the watch been authenticated?",
+        "answer": "Yes, it comes with authentication from an authorized Rolex dealer."
+      }
+    ]
   },
   {
     "Title": "Original Banksy Print - Girl with Balloon",
@@ -221,7 +276,18 @@
     "Shipping_type": "Specialized Art Courier Only",
     "payment_options": "Bank Transfer, Escrow",
     "pickup_location": "Auckland, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "What is the edition number?",
+        "answer": "This is number 82 of 600 from the signed edition."
+      },
+      {
+        "question": "Has it been kept in UV-protected glass?",
+        "answer": "Yes, it's framed with museum-grade UV-protected glass to prevent fading."
+      }
+    ]
   },
   {
     "Title": "First Edition Harry Potter and the Philosopher's Stone",
@@ -259,7 +325,18 @@
     "Shipping_type": "Insured Premium Shipping Only",
     "payment_options": "Bank Transfer, Escrow",
     "pickup_location": "Wellington, NZ",
-    "clearance": false
+    "clearance": false,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Has the book been authenticated by an expert?",
+        "answer": "Yes, it has been authenticated by a leading Harry Potter book expert with documentation."
+      },
+      {
+        "question": "How has the book been stored?",
+        "answer": "It has been kept in a climate-controlled environment away from direct light in an archival box."
+      }
+    ]
   },
   {
     "Title": "Commercial DJI Matrice 300 RTK Drone Package",
@@ -297,7 +374,18 @@
     "Shipping_type": "Insured Courier",
     "payment_options": "Bank Transfer, Business Credit Card",
     "pickup_location": "Auckland, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Are all the batteries in good condition?",
+        "answer": "Yes, all six TB60 batteries have less than 30 cycles each and hold full charge."
+      },
+      {
+        "question": "Does it come with any software licenses?",
+        "answer": "Yes, it includes a 1-year license for DJI Terra Advanced mapping software."
+      }
+    ]
   },
   {
     "Title": "Signed All Blacks 2023 Rugby World Cup Jersey",
@@ -335,7 +423,18 @@
     "Shipping_type": "Insured Courier",
     "payment_options": "Credit Card, Bank Transfer",
     "pickup_location": "Auckland, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Are the signatures authenticated?",
+        "answer": "Yes, each signature is authenticated with a hologram and certificate from NZ Rugby."
+      },
+      {
+        "question": "Is this a match-worn jersey?",
+        "answer": "No, this is an official replica jersey, not match-worn."
+      }
+    ]
   },
   {
     "Title": "Diamond Engagement Ring - 2.5ct Solitaire",
@@ -373,7 +472,18 @@
     "Shipping_type": "Insured Premium Shipping Only",
     "payment_options": "Bank Transfer, Escrow",
     "pickup_location": "Wellington, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Is the GIA certificate included?",
+        "answer": "Yes, the original GIA certificate is included with the ring."
+      },
+      {
+        "question": "What is the recent appraisal value?",
+        "answer": "The ring was appraised in April 2025 for $42,000 NZD."
+      }
+    ]
   },
   {
     "Title": "Rare 1952 Mickey Mantle Baseball Card",
@@ -411,7 +521,18 @@
     "Shipping_type": "Insured Premium Shipping Only",
     "payment_options": "Bank Transfer, Escrow",
     "pickup_location": "Auckland, NZ",
-    "clearance": false
+    "clearance": false,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "When was the card last authenticated?",
+        "answer": "The card was authenticated and graded by PSA in January 2025."
+      },
+      {
+        "question": "Has the card ever been restored or altered?",
+        "answer": "No, the card is completely original with no restoration or alterations."
+      }
+    ]
   },
   {
     "Title": "Industrial Wood Planer Machine",
@@ -449,7 +570,18 @@
     "Shipping_type": "Freight Only",
     "payment_options": "Bank Transfer, Business Credit Card",
     "pickup_location": "Christchurch, NZ",
-    "clearance": "Industrial"
+    "clearance": "Industrial",
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Does it come with extra cutterhead inserts?",
+        "answer": "Yes, it comes with a full set of replacement carbide inserts."
+      },
+      {
+        "question": "Has the machine been serviced recently?",
+        "answer": "Yes, it was fully serviced by a Powermatic technician last month."
+      }
+    ]
   },
   {
     "Title": "Limited Edition PlayStation 5 Console",
@@ -487,7 +619,18 @@
     "Shipping_type": "Insured Courier",
     "payment_options": "Credit Card, Bank Transfer",
     "pickup_location": "Wellington, NZ",
-    "clearance": false
+    "clearance": false,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Are all the games factory sealed?",
+        "answer": "Yes, all 5 games are factory sealed and in mint condition."
+      },
+      {
+        "question": "Does it include the limited edition packaging?",
+        "answer": "Yes, it includes all the original limited edition packaging and artwork."
+      }
+    ]
   },
   {
     "Title": "Canon EOS R5 Professional Camera Kit",
@@ -525,7 +668,18 @@
     "Shipping_type": "Insured Courier",
     "payment_options": "Credit Card, Bank Transfer",
     "pickup_location": "Auckland, NZ",
-    "clearance": false
+    "clearance": false,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "What is the shutter count?",
+        "answer": "The camera has approximately 3,500 actuations."
+      },
+      {
+        "question": "Is the lens the latest version?",
+        "answer": "Yes, this is the latest RF 24-70mm f/2.8L IS USM lens, not the older EF version."
+      }
+    ]
   },
   {
     "Title": "Vintage 1930s Art Deco Sideboard",
@@ -563,7 +717,18 @@
     "Shipping_type": "Specialist Furniture Delivery",
     "payment_options": "Bank Transfer",
     "pickup_location": "Wellington, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "What restoration work has been done?",
+        "answer": "The finish has been professionally restored and the interior shelving reinforced. All original hardware was preserved."
+      },
+      {
+        "question": "Are there any structural issues?",
+        "answer": "No, the sideboard is structurally sound with no wobbling or damage."
+      }
+    ]
   },
   {
     "Title": "2024 Giant Trance X Advanced Pro 29 Mountain Bike",
@@ -601,7 +766,18 @@
     "Shipping_type": "Specialist Bike Courier",
     "payment_options": "Credit Card, Bank Transfer",
     "pickup_location": "Christchurch, NZ",
-    "clearance": false
+    "clearance": false,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "What size is the frame?",
+        "answer": "This is a size Large frame, suitable for riders 5'10\" to 6'2\"."
+      },
+      {
+        "question": "Has the suspension been serviced?",
+        "answer": "The suspension is brand new and hasn't needed servicing yet, with only two rides on it."
+      }
+    ]
   },
   {
     "Title": "1978 Vintage Port Wine Collection",
@@ -639,7 +815,18 @@
     "Shipping_type": "Temperature Controlled Delivery",
     "payment_options": "Bank Transfer",
     "pickup_location": "Auckland, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "How many bottles are in the collection?",
+        "answer": "The collection includes 12 bottles total, 3 from each of the 4 major houses."
+      },
+      {
+        "question": "Has the wine been recorked?",
+        "answer": "No, all bottles retain their original corks and have been stored properly on their sides."
+      }
+    ]
   },
   {
     "Title": "Yamaha C7X Grand Piano",
@@ -677,6 +864,17 @@
     "Shipping_type": "Specialist Piano Movers Only",
     "payment_options": "Bank Transfer, Finance Available",
     "pickup_location": "Wellington, NZ",
-    "clearance": true
+    "clearance": true,
+    "auction_status": "active",
+    "questionsAndAnswers": [
+      {
+        "question": "Has the piano been tuned recently?",
+        "answer": "Yes, it was professionally tuned and regulated last week."
+      },
+      {
+        "question": "Is this the full concert grand size?",
+        "answer": "Yes, the C7X is Yamaha's 7'6\" semi-concert grand piano, suitable for large venues."
+      }
+    ]
   }
 ]
