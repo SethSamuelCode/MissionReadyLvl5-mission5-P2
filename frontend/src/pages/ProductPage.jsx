@@ -6,6 +6,7 @@ export default function ProductPage() {
   const { itemID } = useParams();
   const [item, setItem] = useState();
   const [imageUrl, setImageUrl] = useState()
+  const [title, setTitle] = useState()
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -14,6 +15,7 @@ export default function ProductPage() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
       const tempFromDB =await resp.json()
       setImageUrl(tempFromDB.images_links[0])
+      setTitle(tempFromDB.title)
       setItem(tempFromDB);
       console.log(tempFromDB)
     }

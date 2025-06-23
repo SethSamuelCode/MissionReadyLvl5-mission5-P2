@@ -75,8 +75,6 @@ app.get("/api/item/:itemId", async (req, resp) => {
     return resp.status(400).json({ status: "error", message: "Invalid item ID format" });
   }
 
-  // console.log(req.params)
-  // console.log(itemID)
   const itemFromDB = await dbObject.collection.findOne({ _id: new ObjectId(itemID) });
   console.log(itemFromDB)
   resp.status(200).json(itemFromDB);
