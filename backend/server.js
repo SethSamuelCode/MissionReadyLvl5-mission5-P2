@@ -35,7 +35,8 @@ app.use(cors(corsConfigs)); // Apply CORS policy
 
 const CONNECTION_STRING = process.env.CONNECTION_STRING;
 const DATABASE_NAME = process.env.DATABASE_NAME;
-const COLLECTION_NAME = process.env.COLLECTION_NAME;
+const ITEM_COLLECTION_NAME = process.env.ITEM_COLLECTION_NAME;
+const USER_COLLECTION_NAME = process.env.USER_COLLECTION_NAME;
 
 const dbObject = {};
 
@@ -48,7 +49,8 @@ async function setupDB(dbObject) {
     await dbObject.client.connect();
     // Get database and collection references
     dbObject.db = dbObject.client.db(DATABASE_NAME);
-    dbObject.collection = dbObject.db.collection(COLLECTION_NAME);
+    dbObject.itemCollection = dbObject.db.collection(ITEM_COLLECTION_NAME);
+    dbObject.userCOllection= dbObject.db.collection(USER_COLLECTION_NAME)
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
     throw error;
@@ -58,7 +60,8 @@ async function setupDB(dbObject) {
 // Initialize database connection
 setupDB(dbObject);
 
-// use database as dbObject.collection.METHOD()
+// use database as dbObject.itemCollection.METHOD()
+// use database as dbObject.userCollection.METHOD()
 
 // ---------------------- FUNCTIONS --------------------- //
 
