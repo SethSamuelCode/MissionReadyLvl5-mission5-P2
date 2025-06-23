@@ -30,11 +30,33 @@ export default function ProductPage() {
     setItemFromDB();
   }, []);
 
-  setTimeout(() => {
-   const msLeft =  auctionClosingTime - new Date();
-    const hoursLeft = msLeft / (1000 * 60 * 60)
-    setTimeLeftInAuction(hoursLeft)
+useEffect(() => {
+  const timer = setInterval(() => {
+    const msLeft = auctionClosingTime - new Date();
+    if (msLeft <= 0) {
+      setTimeLeftInAuction("Auction ended");
+      clearInterval(timer);
+      return;
+    }
+    
+    // Calculate days, hours, minutes, seconds
+    const days = Math.floor(msLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((msLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((msLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((msLeft % (1000 * 60)) / 1000);
+    
+    // Format with leading zeros
+    const formattedDays = String(days).padStart(2, '0');
+    const formattedHours = String(hours).padStart(2, '0');
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
+    
+    setTimeLeftInAuction(`${formattedDays}d ${formattedHours}:${formattedMinutes}:${formattedSeconds}`);
   }, 1000);
+  
+  // Cleanup timer on component unmount
+  return () => clearInterval(timer);
+}, [auctionClosingTime]);
 
   return (
     <div className={styles.container}>
