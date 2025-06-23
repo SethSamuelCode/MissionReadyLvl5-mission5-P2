@@ -30,6 +30,13 @@
     "Shipping_type":"",
     "payment_options":"",
     "pickup_location":"",
-    "clearance":""
+    "clearance":"",
+    "auction_status":"",
+    "questionsAndAnswers": [
+        {
+            "question": "",
+            "answer": ""
+        }
+    ]
 
 }
