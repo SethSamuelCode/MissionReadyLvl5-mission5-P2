@@ -5,23 +5,36 @@ import { useEffect, useState } from "react";
 export default function ProductPage() {
   const { itemID } = useParams();
   const [item, setItem] = useState();
-  const [imageUrl, setImageUrl] = useState()
-  const [title, setTitle] = useState()
+  const [imageUrl, setImageUrl] = useState();
+  const [title, setTitle] = useState();
+  const [currentBid, setCurrentBid] = useState();
+  const [auctionClosingTime, setActionClosingTime] = useState(new Date("January 01, 2000"));
+  const [timeLeftInAuction, setTimeLeftInAuction] = useState();
 
   const BACKEND_URL = "http://localhost:4000/api";
 
   useEffect(() => {
     async function setItemFromDB() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
-      const tempFromDB =await resp.json()
-      setImageUrl(tempFromDB.images_links[0])
-      setTitle(tempFromDB.title)
+      const tempFromDB = await resp.json();
+      setImageUrl(tempFromDB.images_links[0]);
+      setTitle(tempFromDB.title);
       setItem(tempFromDB);
-      console.log(tempFromDB)
+      setCurrentBid(tempFromDB.Current_Bid_price);
+      setActionClosingTime(new Date(tempFromDB.closing_date));
+      // console.log(new Date(tempFromDB.closing_date))
+      // console.log(auctionClosingTime)
+      // console.log(tempFromDB)
     }
 
     setItemFromDB();
   }, []);
+
+  setTimeout(() => {
+   const msLeft =  auctionClosingTime - new Date();
+    const hoursLeft = msLeft / (1000 * 60 * 60)
+    setTimeLeftInAuction(hoursLeft)
+  }, 1000);
 
   return (
     <div className={styles.container}>
@@ -39,14 +52,14 @@ export default function ProductPage() {
         {/* <p>{JSON.stringify(item)}</p> */}
       </div>
       <div className={styles.sidebar}>
-        <div className={styles.title}>Vintage Collection Camera - Limited Edition (2025)</div>
+        <div className={styles.title}>{title}</div>
         <div className={styles.watchListAndCompareButton}>
           <button>❤️ Add to Watchlist</button>
           <button>🔄 Compare</button>
         </div>
         <div className={styles.bidBox}>
-          <h3>Current Bid: $1,299.99</h3>
-          <p>Time Left: 2d 15h 30m</p>
+          <h3>Current Bid: ${currentBid}</h3>
+          <p>Time Left: {timeLeftInAuction}</p>
           <input
             type="number"
             placeholder="Enter bid amount"
