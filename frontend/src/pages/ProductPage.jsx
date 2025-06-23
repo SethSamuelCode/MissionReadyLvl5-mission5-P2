@@ -1,8 +1,15 @@
 import styles from "./ProductPage.module.css";
 
 export default function ProductPage() {
+
+
+  
+
   return (
     <div className={styles.container}>
+      <div className={styles.locationBar}>
+
+      </div>
       <div className={styles.images}>
         <img
           src="https://picsum.photos/400/400"
