@@ -10,7 +10,9 @@ export default function ProductPage() {
   const [currentBid, setCurrentBid] = useState();
   const [auctionClosingTime, setActionClosingTime] = useState(new Date("January 01, 2000"));
   const [timeLeftInAuction, setTimeLeftInAuction] = useState();
-  const [bidHistory,setBidHistory] = useState([]);
+  const [bidHistory, setBidHistory] = useState([]);
+  const [shippingOptions, setShippingOptions] = useState();
+  const [paymentOptions, setPaymentOptions] = useState();
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -23,7 +25,9 @@ export default function ProductPage() {
       setItem(tempFromDB);
       setCurrentBid(tempFromDB.Current_Bid_price);
       setActionClosingTime(new Date(tempFromDB.closing_date));
-      setBidHistory(tempFromDB.Bid_history)
+      setBidHistory(tempFromDB.Bid_history);
+      setShippingOptions(tempFromDB.Shipping_type);
+      setPaymentOptions(tempFromDB.payment_options);
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
       // console.log(tempFromDB)
@@ -32,33 +36,33 @@ export default function ProductPage() {
     setItemFromDB();
   }, []);
 
-useEffect(() => {
-  const timer = setInterval(() => {
-    const msLeft = auctionClosingTime - new Date();
-    if (msLeft <= 0) {
-      setTimeLeftInAuction("Auction ended");
-      clearInterval(timer);
-      return;
-    }
-    
-    // Calculate days, hours, minutes, seconds
-    const days = Math.floor(msLeft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((msLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((msLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((msLeft % (1000 * 60)) / 1000);
-    
-    // Format with leading zeros
-    const formattedDays = String(days).padStart(2, '0');
-    const formattedHours = String(hours).padStart(2, '0');
-    const formattedMinutes = String(minutes).padStart(2, '0');
-    const formattedSeconds = String(seconds).padStart(2, '0');
-    
-    setTimeLeftInAuction(`${formattedDays}d ${formattedHours}:${formattedMinutes}:${formattedSeconds}`);
-  }, 1000);
-  
-  // Cleanup timer on component unmount
-  return () => clearInterval(timer);
-}, [auctionClosingTime]);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      const msLeft = auctionClosingTime - new Date();
+      if (msLeft <= 0) {
+        setTimeLeftInAuction("Auction ended");
+        clearInterval(timer);
+        return;
+      }
+
+      // Calculate days, hours, minutes, seconds
+      const days = Math.floor(msLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((msLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((msLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((msLeft % (1000 * 60)) / 1000);
+
+      // Format with leading zeros
+      const formattedDays = String(days).padStart(2, "0");
+      const formattedHours = String(hours).padStart(2, "0");
+      const formattedMinutes = String(minutes).padStart(2, "0");
+      const formattedSeconds = String(seconds).padStart(2, "0");
+
+      setTimeLeftInAuction(`${formattedDays}d ${formattedHours}:${formattedMinutes}:${formattedSeconds}`);
+    }, 1000);
+
+    // Cleanup timer on component unmount
+    return () => clearInterval(timer);
+  }, [auctionClosingTime]);
 
   return (
     <div className={styles.container}>
@@ -100,8 +104,12 @@ useEffect(() => {
           <h4>Recent Bids</h4>
           <ul>
             {/* {console.log(bidHistory)} */}
-            {bidHistory.map((bid)=>{
-             return <li> {bid.userName}: ${bid.Bid} </li>
+            {bidHistory.map((bid) => {
+              return (
+                <li key={bid.userName + bid.Bid}>
+                  {bid.userName}: ${bid.Bid}
+                </li>
+              );
             })}
           </ul>
         </div>
@@ -109,15 +117,11 @@ useEffect(() => {
       <div className={styles.shippingAndPaymentOptions}>
         <div className={styles.shippingAndPickup}>
           <h4>Shipping Options</h4>
-          <p>📦 Standard Shipping: $15.99</p>
-          <p>🚚 Express Delivery: $25.99</p>
-          <p>🏪 Local Pickup Available</p>
+          <p>{shippingOptions}</p>
         </div>
         <div className={styles.paymentOptions}>
           <h4>Payment Methods</h4>
-          <p>💳 Credit Card</p>
-          <p>🏦 Bank Transfer</p>
-          <p>📱 Digital Wallet</p>
+          <p>{paymentOptions}</p>
         </div>
       </div>
       <div className={styles.productDetailsAndDescription}>
