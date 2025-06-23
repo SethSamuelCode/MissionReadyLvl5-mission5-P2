@@ -1,0 +1,682 @@
+[
+  {
+    "Title": "Vintage 1960s Fender Stratocaster Guitar",
+    "Description": "Original 1965 Fender Stratocaster in Sunburst finish. Well-maintained with original hardware. Some playing wear but excellent overall condition. Includes original hardshell case.",
+    "Reserve_price": 8500,
+    "Current_Bid_price": 9200,
+    "owner": "VintageGuitarCollector",
+    "opening_date": "2025-06-20T10:00:00Z",
+    "closing_date": "2025-07-20T10:00:00Z",
+    "category": "Musical Instruments",
+    "Bid_history": [
+      {
+        "userName": "GuitarFanatic442",
+        "Bid": 8600
+      },
+      {
+        "userName": "MusicLover89",
+        "Bid": 9000
+      },
+      {
+        "userName": "VintageHunter",
+        "Bid": 9200
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=1",
+      "https://picsum.photos/800/600?random=2"
+    ],
+    "Condition": "Good - Vintage",
+    "dimensions": "38.5\" x 12.75\" x 1.75\"",
+    "weight": "3.4 kg",
+    "Color": "Sunburst",
+    "Material": "Alder body, Maple neck",
+    "Manufacturer": "Fender",
+    "Shipping_type": "Insured Premium Shipping Only",
+    "payment_options": "Bank Transfer, Escrow",
+    "pickup_location": "Auckland, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "2023 MacBook Pro M2 Max",
+    "Description": "16-inch MacBook Pro with M2 Max chip, 32GB RAM, 1TB SSD. Perfect condition, only used for 3 months. Includes original box and accessories.",
+    "Reserve_price": 2800,
+    "Current_Bid_price": 3000,
+    "owner": "TechTrader",
+    "opening_date": "2025-06-22T08:00:00Z",
+    "closing_date": "2025-06-29T08:00:00Z",
+    "category": "Electronics",
+    "Bid_history": [
+      {
+        "userName": "AppleFan23",
+        "Bid": 2900
+      },
+      {
+        "userName": "ProUser",
+        "Bid": 3000
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=3",
+      "https://picsum.photos/800/600?random=4"
+    ],
+    "Condition": "Like New",
+    "dimensions": "14.01\" x 9.77\" x 0.66\"",
+    "weight": "2.2 kg",
+    "Color": "Space Gray",
+    "Material": "Aluminum",
+    "Manufacturer": "Apple",
+    "Shipping_type": "Insured Courier",
+    "payment_options": "Credit Card, Bank Transfer",
+    "pickup_location": "Wellington, NZ",
+    "clearance": false
+  },
+  {
+    "Title": "Antique Victorian Mahogany Dining Table",
+    "Description": "Stunning 1880s Victorian extending dining table. Beautiful mahogany with intricate carved details. Seats 8-12 people. Recently professionally restored.",
+    "Reserve_price": 4500,
+    "Current_Bid_price": 5200,
+    "owner": "AntiqueDealer",
+    "opening_date": "2025-06-15T09:00:00Z",
+    "closing_date": "2025-07-15T09:00:00Z",
+    "category": "Antique Furniture",
+    "Bid_history": [
+      {
+        "userName": "VintageHome",
+        "Bid": 4600
+      },
+      {
+        "userName": "AntiqueLover",
+        "Bid": 4800
+      },
+      {
+        "userName": "PeriodPieces",
+        "Bid": 5200
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=5",
+      "https://picsum.photos/800/600?random=6"
+    ],
+    "Condition": "Excellent - Restored",
+    "dimensions": "240cm x 110cm x 75cm (extended)",
+    "weight": "85 kg",
+    "Color": "Rich Brown",
+    "Material": "Mahogany",
+    "Manufacturer": "Unknown Victorian Era",
+    "Shipping_type": "Specialist Furniture Delivery Only",
+    "payment_options": "Bank Transfer",
+    "pickup_location": "Christchurch, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "2024 Tesla Model S Plaid",
+    "Description": "Pristine condition Tesla Model S Plaid. Only 15,000km. Full self-driving capability, white interior, 21\" Arachnid wheels. Extended warranty until 2027.",
+    "Reserve_price": 120000,
+    "Current_Bid_price": 125000,
+    "owner": "LuxuryCarTrader",
+    "opening_date": "2025-06-21T00:00:00Z",
+    "closing_date": "2025-07-05T00:00:00Z",
+    "category": "Vehicles",
+    "Bid_history": [
+      {
+        "userName": "EVEnthusiast",
+        "Bid": 122000
+      },
+      {
+        "userName": "GreenDriver",
+        "Bid": 124000
+      },
+      {
+        "userName": "TechCar",
+        "Bid": 125000
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=7",
+      "https://picsum.photos/800/600?random=8"
+    ],
+    "Condition": "Excellent",
+    "dimensions": "497cm x 196cm x 145cm",
+    "weight": "2162 kg",
+    "Color": "Midnight Silver Metallic",
+    "Material": "Aluminum, Steel, Carbon Fiber",
+    "Manufacturer": "Tesla",
+    "Shipping_type": "Pickup Only",
+    "payment_options": "Bank Transfer, Finance Available",
+    "pickup_location": "Auckland, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "Rolex Daytona Cosmograph 116500LN",
+    "Description": "2023 Rolex Daytona with white dial. Full set with box and papers. Unworn condition with protective stickers intact. Reference 116500LN.",
+    "Reserve_price": 45000,
+    "Current_Bid_price": 48000,
+    "owner": "LuxuryWatchDealer",
+    "opening_date": "2025-06-22T12:00:00Z",
+    "closing_date": "2025-06-29T12:00:00Z",
+    "category": "Watches",
+    "Bid_history": [
+      {
+        "userName": "WatchCollector",
+        "Bid": 46000
+      },
+      {
+        "userName": "TimePiece",
+        "Bid": 47000
+      },
+      {
+        "userName": "RolexFan",
+        "Bid": 48000
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=9",
+      "https://picsum.photos/800/600?random=10"
+    ],
+    "Condition": "New",
+    "dimensions": "40mm diameter",
+    "weight": "156g",
+    "Color": "White/Steel",
+    "Material": "904L Steel",
+    "Manufacturer": "Rolex",
+    "Shipping_type": "Insured Premium Shipping Only",
+    "payment_options": "Bank Transfer, Escrow",
+    "pickup_location": "Wellington, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "Original Banksy Print - Girl with Balloon",
+    "Description": "Authenticated Banksy print from original 2004 series. Numbered and signed. Includes certificate of authenticity from Pest Control. Museum-grade framing.",
+    "Reserve_price": 180000,
+    "Current_Bid_price": 195000,
+    "owner": "ArtInvestor",
+    "opening_date": "2025-06-20T14:00:00Z",
+    "closing_date": "2025-07-20T14:00:00Z",
+    "category": "Fine Art",
+    "Bid_history": [
+      {
+        "userName": "ArtCollector",
+        "Bid": 185000
+      },
+      {
+        "userName": "GalleryOwner",
+        "Bid": 190000
+      },
+      {
+        "userName": "ModernArt",
+        "Bid": 195000
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=11",
+      "https://picsum.photos/800/600?random=12"
+    ],
+    "Condition": "Excellent",
+    "dimensions": "101cm x 78cm (framed)",
+    "weight": "8.5 kg",
+    "Color": "Multi-color",
+    "Material": "Screenprint on paper",
+    "Manufacturer": "Pictures on Walls",
+    "Shipping_type": "Specialized Art Courier Only",
+    "payment_options": "Bank Transfer, Escrow",
+    "pickup_location": "Auckland, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "First Edition Harry Potter and the Philosopher's Stone",
+    "Description": "Ultra-rare first edition, first printing of Harry Potter and the Philosopher's Stone (1997). One of only 500 hardback copies. Contains the '1 wand' error on page 53.",
+    "Reserve_price": 85000,
+    "Current_Bid_price": 92000,
+    "owner": "RareBookDealer",
+    "opening_date": "2025-06-23T09:00:00Z",
+    "closing_date": "2025-07-23T09:00:00Z",
+    "category": "Books",
+    "Bid_history": [
+      {
+        "userName": "BookCollector",
+        "Bid": 87000
+      },
+      {
+        "userName": "PotterFan",
+        "Bid": 90000
+      },
+      {
+        "userName": "LibraryArchive",
+        "Bid": 92000
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=13",
+      "https://picsum.photos/800/600?random=14"
+    ],
+    "Condition": "Very Good",
+    "dimensions": "20.8cm x 13.8cm",
+    "weight": "0.55 kg",
+    "Color": "Red cloth binding",
+    "Material": "Hardcover, acid-free paper",
+    "Manufacturer": "Bloomsbury",
+    "Shipping_type": "Insured Premium Shipping Only",
+    "payment_options": "Bank Transfer, Escrow",
+    "pickup_location": "Wellington, NZ",
+    "clearance": false
+  },
+  {
+    "Title": "Commercial DJI Matrice 300 RTK Drone Package",
+    "Description": "Professional drone package including DJI Matrice 300 RTK, Multiple batteries, Zenmuse H20T camera, RTK base station, and hard case. Only 50 flight hours.",
+    "Reserve_price": 15000,
+    "Current_Bid_price": 16500,
+    "owner": "DroneProNZ",
+    "opening_date": "2025-06-22T10:00:00Z",
+    "closing_date": "2025-06-29T10:00:00Z",
+    "category": "Professional Equipment",
+    "Bid_history": [
+      {
+        "userName": "AerialPro",
+        "Bid": 15500
+      },
+      {
+        "userName": "SurveyTech",
+        "Bid": 16000
+      },
+      {
+        "userName": "DroneOperator",
+        "Bid": 16500
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=15",
+      "https://picsum.photos/800/600?random=16"
+    ],
+    "Condition": "Excellent",
+    "dimensions": "810mm x 670mm x 430mm",
+    "weight": "6.3 kg",
+    "Color": "Grey/Black",
+    "Material": "Carbon Fiber, Aluminum",
+    "Manufacturer": "DJI",
+    "Shipping_type": "Insured Courier",
+    "payment_options": "Bank Transfer, Business Credit Card",
+    "pickup_location": "Auckland, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "Signed All Blacks 2023 Rugby World Cup Jersey",
+    "Description": "Official All Blacks jersey signed by the entire 2023 World Cup squad. Includes certificate of authenticity from NZ Rugby and display case.",
+    "Reserve_price": 2500,
+    "Current_Bid_price": 3200,
+    "owner": "SportsMemorabilia",
+    "opening_date": "2025-06-23T11:00:00Z",
+    "closing_date": "2025-06-30T11:00:00Z",
+    "category": "Sports Memorabilia",
+    "Bid_history": [
+      {
+        "userName": "RugbyFanatic",
+        "Bid": 2800
+      },
+      {
+        "userName": "AllBlacksFan",
+        "Bid": 3000
+      },
+      {
+        "userName": "CollectorNZ",
+        "Bid": 3200
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=17",
+      "https://picsum.photos/800/600?random=18"
+    ],
+    "Condition": "New",
+    "dimensions": "80cm x 60cm (framed)",
+    "weight": "4 kg",
+    "Color": "Black",
+    "Material": "Polyester, Glass Case",
+    "Manufacturer": "Adidas",
+    "Shipping_type": "Insured Courier",
+    "payment_options": "Credit Card, Bank Transfer",
+    "pickup_location": "Auckland, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "Diamond Engagement Ring - 2.5ct Solitaire",
+    "Description": "GIA certified 2.5ct round brilliant diamond, F color, VS1 clarity. Platinum setting with micro pavé band. Recently appraised. Includes original documentation.",
+    "Reserve_price": 35000,
+    "Current_Bid_price": 38500,
+    "owner": "LuxuryJeweller",
+    "opening_date": "2025-06-22T15:00:00Z",
+    "closing_date": "2025-07-06T15:00:00Z",
+    "category": "Jewelry",
+    "Bid_history": [
+      {
+        "userName": "DiamondLover",
+        "Bid": 36000
+      },
+      {
+        "userName": "JewelryCollector",
+        "Bid": 37500
+      },
+      {
+        "userName": "GemExpert",
+        "Bid": 38500
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=19",
+      "https://picsum.photos/800/600?random=20"
+    ],
+    "Condition": "New",
+    "dimensions": "Ring Size 6 (resizable)",
+    "weight": "5.2g",
+    "Color": "Platinum/Diamond",
+    "Material": "Platinum 950, Diamond",
+    "Manufacturer": "Custom Made",
+    "Shipping_type": "Insured Premium Shipping Only",
+    "payment_options": "Bank Transfer, Escrow",
+    "pickup_location": "Wellington, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "Rare 1952 Mickey Mantle Baseball Card",
+    "Description": "1952 Topps #311 Mickey Mantle rookie card. PSA graded 7 (Near Mint). One of the most sought-after baseball cards. In protective case.",
+    "Reserve_price": 220000,
+    "Current_Bid_price": 235000,
+    "owner": "VintageCardCollector",
+    "opening_date": "2025-06-21T16:00:00Z",
+    "closing_date": "2025-07-21T16:00:00Z",
+    "category": "Sports Cards",
+    "Bid_history": [
+      {
+        "userName": "CardKing",
+        "Bid": 225000
+      },
+      {
+        "userName": "VintageCards",
+        "Bid": 230000
+      },
+      {
+        "userName": "SportsInvestor",
+        "Bid": 235000
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=21",
+      "https://picsum.photos/800/600?random=22"
+    ],
+    "Condition": "PSA 7 (Near Mint)",
+    "dimensions": "2.5\" x 3.5\"",
+    "weight": "30g with case",
+    "Color": "Multi-color",
+    "Material": "Cardboard",
+    "Manufacturer": "Topps",
+    "Shipping_type": "Insured Premium Shipping Only",
+    "payment_options": "Bank Transfer, Escrow",
+    "pickup_location": "Auckland, NZ",
+    "clearance": false
+  },
+  {
+    "Title": "Industrial Wood Planer Machine",
+    "Description": "Heavy-duty industrial wood planer. 20-inch capacity, 5HP motor. Spiral cutterhead with carbide inserts. Used for only 200 hours. Perfect for professional woodworking.",
+    "Reserve_price": 8500,
+    "Current_Bid_price": 9200,
+    "owner": "WoodworkingPro",
+    "opening_date": "2025-06-23T08:00:00Z",
+    "closing_date": "2025-06-30T08:00:00Z",
+    "category": "Industrial Equipment",
+    "Bid_history": [
+      {
+        "userName": "WoodShop",
+        "Bid": 8700
+      },
+      {
+        "userName": "CarpenterPro",
+        "Bid": 9000
+      },
+      {
+        "userName": "WorkshopOwner",
+        "Bid": 9200
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=23",
+      "https://picsum.photos/800/600?random=24"
+    ],
+    "Condition": "Excellent",
+    "dimensions": "115cm x 85cm x 125cm",
+    "weight": "350 kg",
+    "Color": "Industrial Green",
+    "Material": "Cast Iron, Steel",
+    "Manufacturer": "Powermatic",
+    "Shipping_type": "Freight Only",
+    "payment_options": "Bank Transfer, Business Credit Card",
+    "pickup_location": "Christchurch, NZ",
+    "clearance": "Industrial"
+  },
+  {
+    "Title": "Limited Edition PlayStation 5 Console",
+    "Description": "Spider-Man 2 Limited Edition PS5 Console. Unopened, collector's item. Includes extra controller and 5 launch titles. Number 142 of 1000 made.",
+    "Reserve_price": 1500,
+    "Current_Bid_price": 1800,
+    "owner": "GamingCollector",
+    "opening_date": "2025-06-22T13:00:00Z",
+    "closing_date": "2025-06-29T13:00:00Z",
+    "category": "Gaming",
+    "Bid_history": [
+      {
+        "userName": "GameFanatic",
+        "Bid": 1600
+      },
+      {
+        "userName": "PS5Collector",
+        "Bid": 1700
+      },
+      {
+        "userName": "SpiderFan",
+        "Bid": 1800
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=25",
+      "https://picsum.photos/800/600?random=26"
+    ],
+    "Condition": "New - Sealed",
+    "dimensions": "39cm x 26cm x 10.4cm",
+    "weight": "4.5 kg",
+    "Color": "Custom Spider-Man Design",
+    "Material": "Plastic, Metal",
+    "Manufacturer": "Sony",
+    "Shipping_type": "Insured Courier",
+    "payment_options": "Credit Card, Bank Transfer",
+    "pickup_location": "Wellington, NZ",
+    "clearance": false
+  },
+  {
+    "Title": "Canon EOS R5 Professional Camera Kit",
+    "Description": "Canon EOS R5 Mirrorless Camera with RF 24-70mm f/2.8L lens. Includes extra battery, 128GB CFexpress card, and professional camera bag.",
+    "Reserve_price": 5500,
+    "Current_Bid_price": 6000,
+    "owner": "ProPhotographer",
+    "opening_date": "2025-06-23T14:00:00Z",
+    "closing_date": "2025-06-30T14:00:00Z",
+    "category": "Photography",
+    "Bid_history": [
+      {
+        "userName": "PhotoPro",
+        "Bid": 5700
+      },
+      {
+        "userName": "StudioOwner",
+        "Bid": 5900
+      },
+      {
+        "userName": "CanonUser",
+        "Bid": 6000
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=27",
+      "https://picsum.photos/800/600?random=28"
+    ],
+    "Condition": "Like New",
+    "dimensions": "30cm x 20cm x 15cm",
+    "weight": "2.1 kg",
+    "Color": "Black",
+    "Material": "Magnesium Alloy",
+    "Manufacturer": "Canon",
+    "Shipping_type": "Insured Courier",
+    "payment_options": "Credit Card, Bank Transfer",
+    "pickup_location": "Auckland, NZ",
+    "clearance": false
+  },
+  {
+    "Title": "Vintage 1930s Art Deco Sideboard",
+    "Description": "Stunning walnut Art Deco sideboard, circa 1935. Original hardware, recently restored. Three drawers and two cabinets. Exceptional craftsmanship.",
+    "Reserve_price": 6800,
+    "Current_Bid_price": 7500,
+    "owner": "ArtDecoDealer",
+    "opening_date": "2025-06-23T15:00:00Z",
+    "closing_date": "2025-07-07T15:00:00Z",
+    "category": "Antique Furniture",
+    "Bid_history": [
+      {
+        "userName": "VintageCollector",
+        "Bid": 7000
+      },
+      {
+        "userName": "ArtDecoBuyer",
+        "Bid": 7200
+      },
+      {
+        "userName": "InteriorDesigner",
+        "Bid": 7500
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=29",
+      "https://picsum.photos/800/600?random=30"
+    ],
+    "Condition": "Restored",
+    "dimensions": "180cm x 45cm x 90cm",
+    "weight": "65 kg",
+    "Color": "Walnut Brown",
+    "Material": "Walnut, Brass",
+    "Manufacturer": "Unknown French",
+    "Shipping_type": "Specialist Furniture Delivery",
+    "payment_options": "Bank Transfer",
+    "pickup_location": "Wellington, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "2024 Giant Trance X Advanced Pro 29 Mountain Bike",
+    "Description": "Top-spec carbon mountain bike. Fox Factory suspension, SRAM XX1 Eagle AXS, carbon wheels. Only ridden twice, perfect condition.",
+    "Reserve_price": 7500,
+    "Current_Bid_price": 8200,
+    "owner": "BikeEnthusiast",
+    "opening_date": "2025-06-23T16:00:00Z",
+    "closing_date": "2025-06-30T16:00:00Z",
+    "category": "Sporting Goods",
+    "Bid_history": [
+      {
+        "userName": "TrailRider",
+        "Bid": 7800
+      },
+      {
+        "userName": "MountainBiker",
+        "Bid": 8000
+      },
+      {
+        "userName": "BikeCollector",
+        "Bid": 8200
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=31",
+      "https://picsum.photos/800/600?random=32"
+    ],
+    "Condition": "Like New",
+    "dimensions": "180cm x 65cm x 110cm",
+    "weight": "12.8 kg",
+    "Color": "Carbon/Red",
+    "Material": "Carbon Fiber",
+    "Manufacturer": "Giant",
+    "Shipping_type": "Specialist Bike Courier",
+    "payment_options": "Credit Card, Bank Transfer",
+    "pickup_location": "Christchurch, NZ",
+    "clearance": false
+  },
+  {
+    "Title": "1978 Vintage Port Wine Collection",
+    "Description": "Complete collection of 1978 Vintage Ports from major houses. Includes Taylor's, Graham's, Fonseca, and Dow's. Perfect provenance, stored in temperature-controlled cellar.",
+    "Reserve_price": 12000,
+    "Current_Bid_price": 13500,
+    "owner": "WineCollector",
+    "opening_date": "2025-06-23T17:00:00Z",
+    "closing_date": "2025-07-07T17:00:00Z",
+    "category": "Wine & Spirits",
+    "Bid_history": [
+      {
+        "userName": "WineInvestor",
+        "Bid": 12500
+      },
+      {
+        "userName": "VintageWine",
+        "Bid": 13000
+      },
+      {
+        "userName": "PortCollector",
+        "Bid": 13500
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=33",
+      "https://picsum.photos/800/600?random=34"
+    ],
+    "Condition": "Excellent",
+    "dimensions": "40cm x 30cm x 40cm (per case)",
+    "weight": "15 kg",
+    "Color": "Various",
+    "Material": "Glass, Wood",
+    "Manufacturer": "Various",
+    "Shipping_type": "Temperature Controlled Delivery",
+    "payment_options": "Bank Transfer",
+    "pickup_location": "Auckland, NZ",
+    "clearance": true
+  },
+  {
+    "Title": "Yamaha C7X Grand Piano",
+    "Description": "2023 Yamaha C7X Concert Grand Piano in Polished Ebony. Perfect condition, professionally maintained. Includes adjustable artist bench and cover.",
+    "Reserve_price": 95000,
+    "Current_Bid_price": 98000,
+    "owner": "PianoDealer",
+    "opening_date": "2025-06-23T18:00:00Z",
+    "closing_date": "2025-07-23T18:00:00Z",
+    "category": "Musical Instruments",
+    "Bid_history": [
+      {
+        "userName": "ConcertHall",
+        "Bid": 96000
+      },
+      {
+        "userName": "MusicSchool",
+        "Bid": 97000
+      },
+      {
+        "userName": "PianoConcert",
+        "Bid": 98000
+      }
+    ],
+    "images_links": [
+      "https://picsum.photos/800/600?random=35",
+      "https://picsum.photos/800/600?random=36"
+    ],
+    "Condition": "Like New",
+    "dimensions": "227cm x 155cm x 102cm",
+    "weight": "450 kg",
+    "Color": "Polished Ebony",
+    "Material": "Spruce, Maple",
+    "Manufacturer": "Yamaha",
+    "Shipping_type": "Specialist Piano Movers Only",
+    "payment_options": "Bank Transfer, Finance Available",
+    "pickup_location": "Wellington, NZ",
+    "clearance": true
+  }
+]

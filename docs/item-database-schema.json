@@ -6,6 +6,7 @@
     "owner":"",
     "opening_date":"",
     "closing_date":"",
+    "category":"",
     "Bid_history": [
         {
             "userName":"name",
@@ -28,6 +29,7 @@
     "Manufacturer":"",
     "Shipping_type":"",
     "payment_options":"",
-    "pickup_location":""
+    "pickup_location":"",
+    "clearance":""
 
 }
