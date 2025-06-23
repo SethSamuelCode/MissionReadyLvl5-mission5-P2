@@ -50,7 +50,7 @@ async function setupDB(dbObject) {
     // Get database and collection references
     dbObject.db = dbObject.client.db(DATABASE_NAME);
     dbObject.itemCollection = dbObject.db.collection(ITEM_COLLECTION_NAME);
-    dbObject.userCOllection= dbObject.db.collection(USER_COLLECTION_NAME)
+    dbObject.userCollection= dbObject.db.collection(USER_COLLECTION_NAME);
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);
     throw error;
@@ -78,9 +78,21 @@ app.get("/api/item/:itemId", async (req, resp) => {
     return resp.status(400).json({ status: "error", message: "Invalid item ID format" });
   }
 
-  const itemFromDB = await dbObject.collection.findOne({ _id: new ObjectId(itemID) });
+  const itemFromDB = await dbObject.itemCollection.findOne({ _id: new ObjectId(itemID) });
   console.log(itemFromDB)
   resp.status(200).json(itemFromDB);
+});
+
+app.get("/api/user/:userName", async (req, resp) => {
+  const userName = req.params.userName;
+  console.log(dbObject)
+
+  const userFromDB = await dbObject.userCollection.findOne({ userName: userName });
+  if (!userFromDB) {
+    return resp.status(404).json({ status: "error", message: "User not found" });
+  }
+
+  resp.status(200).json(userFromDB);
 });
 
 // ---------------------- VALENTINE --------------------- //
