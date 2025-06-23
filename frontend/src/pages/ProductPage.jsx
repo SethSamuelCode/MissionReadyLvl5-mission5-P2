@@ -2,7 +2,27 @@ import styles from "./ProductPage.module.css";
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 
+function ProductDescription({description}) {
+  return (
+    <>
+      <h3>Product Details</h3>
+      <p>{description}</p>
+    </>
+  );
+}
+
+function ProductDetails(){
+
+}
+
 export default function ProductPage() {
+  const detailsOrDescription = {
+    DETAILS: "details",
+    DESCRIPTION: "description",
+  };
+
+  Object.freeze(detailsOrDescription);
+
   const { itemID } = useParams();
   const [item, setItem] = useState();
   const [imageUrl, setImageUrl] = useState();
@@ -13,6 +33,9 @@ export default function ProductPage() {
   const [bidHistory, setBidHistory] = useState([]);
   const [shippingOptions, setShippingOptions] = useState();
   const [paymentOptions, setPaymentOptions] = useState();
+  const [showDetailsOrDescription, setShowDetailsOrDescription] = useState(detailsOrDescription.DETAILS);
+  const [itemDescription, setItemDescription] = useState("");
+  const [condition, setCondition] = useState("");
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -28,6 +51,7 @@ export default function ProductPage() {
       setBidHistory(tempFromDB.Bid_history);
       setShippingOptions(tempFromDB.Shipping_type);
       setPaymentOptions(tempFromDB.payment_options);
+      setItemDescription(tempFromDB.Description);
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
       // console.log(tempFromDB)
@@ -125,14 +149,12 @@ export default function ProductPage() {
         </div>
       </div>
       <div className={styles.productDetailsAndDescription}>
-        <h3>Product Details</h3>
-        <p>This vintage camera is a remarkable piece from our 2025 collection. Features include:</p>
-        <ul>
-          <li>Professional-grade lens system</li>
-          <li>Original leather case included</li>
-          <li>Fully restored mechanism</li>
-          <li>Limited edition number: 47/100</li>
-        </ul>
+        <div className={styles.detalAndDescriptionTabs}>
+          <div>Product Details</div>
+          <div> Product Description</div>
+        </div>
+
+        {showDetailsOrDescription === detailsOrDescription.DETAILS ? <ProductDescription description={itemDescription} /> : null}
       </div>
       <div className={styles.sellerContainer}>
         <div className={styles.sellerInfo}>
