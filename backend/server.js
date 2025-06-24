@@ -66,7 +66,27 @@ setupDB(dbObject);
 // ---------------------- FUNCTIONS --------------------- //
 
 // ------------------------ CESS ------------------------ //
+//compare items by multiple IDs
+app.post("/api/items/compare", async (req, resp) => {
+   const { ids} = req.body;
 
+   if (!Array.isArray(ids) || ids.length === 0) {
+      return resp.status(400).json({ status: "error", message: "Must provide an array of item IDs" });  
+   }
+
+   const objectIds = ids
+   .filter(id => ObjectId.isValid(id))
+   .map(id => new ObjectId(id));
+
+   try{
+const items = await dbObject.itemCollection.find({ _id: { $in: objectIds } }).toArray();  
+resp.status(200).json(items);
+   }
+   catch(error){
+    console.error("Error fetching compared items:", error);
+    resp.status(500).json({ status: "error", message: "Failed to fetch items for comparison" });
+   }  
+})
 // ------------------------ KERRY ----------------------- //
 
 // ------------------------ SETH ------------------------ //
