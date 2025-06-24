@@ -1,6 +1,5 @@
 // ----------------------- IMPORTS ---------------------- //
 
-
 import styles from "./ProductPage.module.css";
 import { useParams } from "react-router";
 import { use, useEffect, useState } from "react";
@@ -48,6 +47,23 @@ function ProductDetails({ condition, dimensions, weight, color, material, manufa
   );
 }
 
+function Carousel({ images }) {
+  return (
+    <div className={styles.carousel}>
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className={styles.carouselItem}>
+          <img
+            src={image}
+            alt={`Product Image ${index + 1}`}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 // ---------------------- FUNCTIONS --------------------- //
 
 function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription) {
@@ -57,7 +73,6 @@ function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDe
 // ---------------------- COMPONENT --------------------- //
 // This is the main component for the Product Page
 export default function ProductPage() {
-
   // This object is used to switch between product details and product description
   // It is used in the ProductPage component to toggle between the two views
   const detailsOrDescription = {
@@ -67,11 +82,12 @@ export default function ProductPage() {
   // Freeze the object to prevent accidental modification
   Object.freeze(detailsOrDescription);
 
-// ----------------------- DEFINES ---------------------- //
+  // ----------------------- DEFINES ---------------------- //
 
   const { itemID } = useParams();
   // const [item, setItem] = useState();
   const [imageUrl, setImageUrl] = useState();
+  const [itemImages, setItemImages] = useState([]);
   const [title, setTitle] = useState();
   const [currentBid, setCurrentBid] = useState();
   const [auctionClosingTime, setActionClosingTime] = useState(new Date("January 01, 2000"));
@@ -102,6 +118,7 @@ export default function ProductPage() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
       const tempFromDB = await resp.json();
       setImageUrl(tempFromDB.images_links[0]);
+      setItemImages(tempFromDB.images_links);
       setTitle(tempFromDB.Title);
       setCurrentBid(tempFromDB.Current_Bid_price);
       setActionClosingTime(new Date(tempFromDB.closing_date));
@@ -117,8 +134,7 @@ export default function ProductPage() {
       setManufacturer(tempFromDB.Manufacturer);
       setSellerUsername(tempFromDB.owner);
       setQuestionsAndAnswers(tempFromDB.questionsAndAnswers || []); // Set questions and answers if available
-      
-      
+
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
       // console.log(tempFromDB)
@@ -174,8 +190,8 @@ export default function ProductPage() {
     return () => clearInterval(timer);
   }, [auctionClosingTime]);
 
-// ------------ START OF THE RETURN STATEMENT ----------- //
-  if (!loaded ) {
+  // ------------ START OF THE RETURN STATEMENT ----------- //
+  if (!loaded) {
     return <div className={styles.loading}>Loading...</div>; // Show loading state while data is being fetched
   }
   return (
@@ -187,7 +203,13 @@ export default function ProductPage() {
             src={imageUrl}
             alt="Random product"
           />
-          {/* <p>{JSON.stringify(item)}</p> */}
+          <div className={styles.carouselContainer}>
+            {itemImages.map((image, index) => (
+              <div key={index} className={styles.carouselItem}>
+                <img src={image} alt={`Product image ${index + 1}`} onClick={() => setImageUrl(image)} />
+              </div>
+            ))}
+          </div>
         </div>
         <div className={styles.sidebar}>
           <div className={styles.title}>{title}</div>
@@ -289,7 +311,9 @@ export default function ProductPage() {
                 </p>
                 <p>A: {qa.answer}</p>
                 <p>
-                  <em>Asked by {qa.username} on {new Date(qa.date).toLocaleDateString()}</em>
+                  <em>
+                    Asked by {qa.username} on {new Date(qa.date).toLocaleDateString()}
+                  </em>
                 </p>
               </div>
             ))
