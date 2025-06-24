@@ -7,10 +7,16 @@
   font-size: 10rem;
 }
 
+.locationBar{
+  padding-left: 20px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  max-width: 1440px;
+  margin: 0 auto;
   background-color: #f0e6ff;
 }
 
