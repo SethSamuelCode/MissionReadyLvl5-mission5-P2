@@ -344,7 +344,7 @@ export default function ProductPage() {
         <h3>Similar Items You May Like</h3>
         <div className={styles.similarItemsList}>
           {similarItems.map((item) => (
-            <div key={item.id} className={styles.similarItem}>
+            <div key={item.id} className={styles.similarItem} onClick={() => window.location.href = `/item/${item._id}`}>
               <img src={item.images_links[0]} alt={item.Title} />
               <h4>{item.Title}</h4>
               <p>Price: ${item.Current_Bid_price}</p>
