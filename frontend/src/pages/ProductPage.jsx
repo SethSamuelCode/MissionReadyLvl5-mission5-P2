@@ -1,7 +1,7 @@
 // ----------------------- IMPORTS ---------------------- //
 
 import styles from "./ProductPage.module.css";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { use, useEffect, useState } from "react";
 
 // ------------------ HELPER COMPONENTS ------------------ //
@@ -53,6 +53,12 @@ function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDe
   setShowDetailsOrDescription(detailsOrDescription);
 }
 
+function handleClickSimilarItem(itemID, setItemID, navigate) {
+  // Navigate to the product page of the clicked similar item
+  navigate(`/item/${itemID}`);
+  setItemID(itemID);
+}
+
 // ---------------------- COMPONENT --------------------- //
 // This is the main component for the Product Page
 export default function ProductPage() {
@@ -67,8 +73,8 @@ export default function ProductPage() {
 
   // ----------------------- DEFINES ---------------------- //
 
-  const { itemID } = useParams();
-  // const [item, setItem] = useState();
+  const { ParamItemID } = useParams();
+  const [itemID, setItemID] = useState(ParamItemID); // Get the item ID from the URL parameters
   const [imageUrl, setImageUrl] = useState();
   const [itemImages, setItemImages] = useState([]);
   const [title, setTitle] = useState();
@@ -96,10 +102,12 @@ export default function ProductPage() {
   const [similarItems, setSimilarItems] = useState([]);
 
   const BACKEND_URL = "http://localhost:4000/api";
+  const navigate = useNavigate();
 
   // ----------------------- USE EFFECTS ---------------------- //
   useEffect(() => {
     async function setItemFromDB() {
+
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
       const tempFromDB = await resp.json();
       setImageUrl(tempFromDB.images_links[0]);
@@ -127,7 +135,7 @@ export default function ProductPage() {
       setLoaded(true);
     }
     setItemFromDB();
-  }, []);
+  }, [itemID]);
 
   // Fetch seller information from the database using the sellerUsername
   // This effect runs whenever sellerUsername changes
@@ -344,7 +352,7 @@ export default function ProductPage() {
         <h3>Similar Items You May Like</h3>
         <div className={styles.similarItemsList}>
           {similarItems.map((item) => (
-            <div key={item.id} className={styles.similarItem} onClick={() => window.location.href = `/item/${item._id}`}>
+            <div key={item._id} className={styles.similarItem} onClick={() => handleClickSimilarItem(item._id.toString(), setItemID, navigate)}>
               <img src={item.images_links[0]} alt={item.Title} />
               <h4>{item.Title}</h4>
               <p>Price: ${item.Current_Bid_price}</p>
