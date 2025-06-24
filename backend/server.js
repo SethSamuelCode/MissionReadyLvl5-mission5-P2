@@ -74,18 +74,18 @@ setupDB(dbObject);
 app.get("/api/item/:itemId", async (req, resp) => {
   const itemID = req.params.itemId;
   if (!ObjectId.isValid(itemID)) {
-    console.log(itemID);
+    // console.log(itemID);
     return resp.status(400).json({ status: "error", message: "Invalid item ID format" });
   }
 
   const itemFromDB = await dbObject.itemCollection.findOne({ _id: new ObjectId(itemID) });
-  console.log(itemFromDB);
+  // console.log(itemFromDB);
   resp.status(200).json(itemFromDB);
 });
 
 app.get("/api/user/:userName", async (req, resp) => {
   const userName = req.params.userName;
-  console.log(dbObject);
+  // console.log(dbObject);
 
   const userFromDB = await dbObject.userCollection.findOne({ userName: userName });
   if (!userFromDB) {
@@ -158,7 +158,7 @@ app.get("/test", (req, resp) => {
 
 // Test POST endpoint to echo received data
 app.post("/postTest", (req, resp) => {
-  console.log(req.body);
+  // console.log(req.body);
   resp.status(200).json({ status: "success", data: req.body });
 });
 

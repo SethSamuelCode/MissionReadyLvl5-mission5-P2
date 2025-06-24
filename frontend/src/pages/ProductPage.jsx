@@ -93,6 +93,7 @@ export default function ProductPage() {
   const [loaded, setLoaded] = useState(false);
   const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
   const [itemCategory, setItemCategory] = useState("");
+  const [similarItems, setSimilarItems] = useState([]);
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -177,7 +178,29 @@ export default function ProductPage() {
     return () => clearInterval(timer);
   }, [auctionClosingTime]);
 
+  useEffect(() => {
+    // Fetch similar items based on the category of the current item
 
+    if (itemCategory.length === 0) {
+      return;
+    }
+    async function setSimilarItemsVar() {
+      try {
+        const response = await fetch(`${BACKEND_URL}/randomByField/category/${itemCategory}/10`);
+        const data = await response.json();
+        setSimilarItems(data);
+      } catch (error) {}
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/random/10`);
+        const data = await response.json();
+        setSimilarItems(data);
+      } catch (error) {
+        console.error("Error fetching similar items:", error);
+      }
+    }
+    setSimilarItemsVar();
+  }, [itemCategory]);
 
   // ------------ START OF THE RETURN STATEMENT ----------- //
   if (!loaded) {
@@ -194,8 +217,14 @@ export default function ProductPage() {
           />
           <div className={styles.carouselContainer}>
             {itemImages.map((image, index) => (
-              <div key={index} className={styles.carouselItem}>
-                <img src={image} alt={`Product image ${index + 1}`} onClick={() => setImageUrl(image)} />
+              <div
+                key={index}
+                className={styles.carouselItem}>
+                <img
+                  src={image}
+                  alt={`Product image ${index + 1}`}
+                  onClick={() => setImageUrl(image)}
+                />
               </div>
             ))}
           </div>
@@ -313,10 +342,16 @@ export default function ProductPage() {
       </div>
       <div className={styles.similarItems}>
         <h3>Similar Items You May Like</h3>
-  
-       
-       
+        <div className={styles.similarItemsList}>
+          {similarItems.map((item) => (
+            <div key={item.id} className={styles.similarItem}>
+              <img src={item.images_links[0]} alt={item.Title} />
+              <h4>{item.Title}</h4>
+              <p>Price: ${item.Current_Bid_price}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>  
-  );    
+    </div>    
+  );
 }
