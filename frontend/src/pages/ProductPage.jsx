@@ -1,8 +1,10 @@
 // ----------------------- IMPORTS ---------------------- //
 
 import styles from "./ProductPage.module.css";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import { use, useEffect, useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 // ------------------ HELPER COMPONENTS ------------------ //
 
@@ -212,11 +214,22 @@ export default function ProductPage() {
 
   // ------------ START OF THE RETURN STATEMENT ----------- //
   if (!loaded) {
-    return <div className={styles.loading}>Loading...</div>; // Show loading state while data is being fetched
+    return <div>
+      <Header/>
+    <div className={styles.loading}>Loading...</div>; // Show loading state while data is being fetched
+      <Footer/>
+    </div>
   }
   return (
     <div className={styles.container}>
-      <div className={styles.locationBar}></div>
+      <Header />
+      <div className={styles.locationBar}>
+        <Link to="/" className={styles.homeLink}>
+          Home 
+        </Link>
+        <span> / </span>
+        <Link to={`/${itemCategory}`}>{itemCategory}</Link>
+      </div>
       <div className={styles.section1}>
         <div className={styles.images}>
           <img
@@ -360,6 +373,7 @@ export default function ProductPage() {
           ))}
         </div>
       </div>
+      <Footer />
     </div>    
   );
 }
