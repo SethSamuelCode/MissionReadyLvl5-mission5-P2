@@ -25,11 +25,11 @@
 .images {
   display: flex;
   flex-direction: column;
-  min-height: 400px;
+  min-height: 50vh;
   background-color: #ffcdd2;
   border-radius: 8px;
   flex-grow: 2;
-  max-height: 5vh;
+  max-height: 70vh;
   max-width: auto;
   
   img{
@@ -46,11 +46,10 @@
   gap: 1rem;
   padding: 1rem;
   background-color: #e8f5e9;
-  max-height: 100px;
 
   img{
-    width: 100px;
-    height: 100px;
+    height: 100%;
+    max-height: 10vh;
     object-fit: contain;
     border-radius: 8px;
     cursor: pointer;
