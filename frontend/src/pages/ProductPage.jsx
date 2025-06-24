@@ -92,6 +92,7 @@ export default function ProductPage() {
   const [sellerLocation, setSellerLocation] = useState("");
   const [sellerMemberSince, setSellerMemberSince] = useState("");
   const [loaded, setLoaded] = useState(false);
+  const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -115,12 +116,13 @@ export default function ProductPage() {
       setMaterial(tempFromDB.Material);
       setManufacturer(tempFromDB.Manufacturer);
       setSellerUsername(tempFromDB.owner);
-      setLoaded(true);
-
-
+      setQuestionsAndAnswers(tempFromDB.questionsAndAnswers || []); // Set questions and answers if available
+      
+      
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
       // console.log(tempFromDB)
+      setLoaded(true);
     }
     setItemFromDB();
   }, []);
@@ -278,16 +280,22 @@ export default function ProductPage() {
       </div>
       <div className={styles.questionsAndAnswers}>
         <h3>Questions & Answers</h3>
-        <div style={{ marginTop: "1rem" }}>
-          <p>
-            <strong>Q: Is the original box included?</strong>
-          </p>
-          <p>A: Yes, the camera comes with its original packaging and documentation.</p>
-          <hr />
-          <p>
-            <strong>Q: What's the shutter count?</strong>
-          </p>
-          <p>A: The camera has been used for approximately 1,000 shots since restoration.</p>
+        <div className={styles.questionsList}>
+          {questionsAndAnswers.length !== 0 ? (
+            questionsAndAnswers.map((qa, index) => (
+              <div key={index}>
+                <p>
+                  <strong>Q: {qa.question}</strong>
+                </p>
+                <p>A: {qa.answer}</p>
+                <p>
+                  <em>Asked by {qa.username} on {new Date(qa.date).toLocaleDateString()}</em>
+                </p>
+              </div>
+            ))
+          ) : (
+            <p>No questions have been asked yet.</p>
+          )}
         </div>
       </div>
       <div className={styles.similarItems}>
