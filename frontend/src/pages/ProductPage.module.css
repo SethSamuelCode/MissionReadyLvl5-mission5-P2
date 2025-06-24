@@ -1,3 +1,12 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  font-size: 10rem;
+}
+
 .container {
   display: flex;
   flex-direction: column;

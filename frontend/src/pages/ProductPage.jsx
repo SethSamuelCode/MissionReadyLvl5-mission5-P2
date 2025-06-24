@@ -1,6 +1,11 @@
+// ----------------------- IMPORTS ---------------------- //
+
+
 import styles from "./ProductPage.module.css";
 import { useParams } from "react-router";
 import { use, useEffect, useState } from "react";
+
+// ------------------ HELPER COMPONENTS ------------------ //
 
 function ProductDescription({ description }) {
   return (
@@ -10,11 +15,6 @@ function ProductDescription({ description }) {
     </>
   );
 }
-
-function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription) {
-  setShowDetailsOrDescription(detailsOrDescription);
-}
-
 function ProductDetails({ condition, dimensions, weight, color, material, manufacturer }) {
   return (
     <>
@@ -48,13 +48,26 @@ function ProductDetails({ condition, dimensions, weight, color, material, manufa
   );
 }
 
+// ---------------------- FUNCTIONS --------------------- //
+
+function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription) {
+  setShowDetailsOrDescription(detailsOrDescription);
+}
+
+// ---------------------- COMPONENT --------------------- //
+// This is the main component for the Product Page
 export default function ProductPage() {
+
+  // This object is used to switch between product details and product description
+  // It is used in the ProductPage component to toggle between the two views
   const detailsOrDescription = {
     DETAILS: "details",
     DESCRIPTION: "description",
   };
-
+  // Freeze the object to prevent accidental modification
   Object.freeze(detailsOrDescription);
+
+// ----------------------- DEFINES ---------------------- //
 
   const { itemID } = useParams();
   // const [item, setItem] = useState();
@@ -78,9 +91,11 @@ export default function ProductPage() {
   const [sellerRating, setSellerRating] = useState("");
   const [sellerLocation, setSellerLocation] = useState("");
   const [sellerMemberSince, setSellerMemberSince] = useState("");
+  const [loaded, setLoaded] = useState(false);
 
   const BACKEND_URL = "http://localhost:4000/api";
 
+  // ----------------------- USE EFFECTS ---------------------- //
   useEffect(() => {
     async function setItemFromDB() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
@@ -100,6 +115,8 @@ export default function ProductPage() {
       setMaterial(tempFromDB.Material);
       setManufacturer(tempFromDB.Manufacturer);
       setSellerUsername(tempFromDB.owner);
+      setLoaded(true);
+
 
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
@@ -155,6 +172,10 @@ export default function ProductPage() {
     return () => clearInterval(timer);
   }, [auctionClosingTime]);
 
+// ------------ START OF THE RETURN STATEMENT ----------- //
+  if (!loaded ) {
+    return <div className={styles.loading}>Loading...</div>; // Show loading state while data is being fetched
+  }
   return (
     <div className={styles.container}>
       <div className={styles.locationBar}></div>
