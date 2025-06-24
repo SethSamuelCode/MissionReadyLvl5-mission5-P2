@@ -20,6 +20,14 @@
   background-color: #f0e6ff;
 }
 
+.title{
+  font-family: Arial;
+font-size: 28px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
 .section1{
   display:flex;
   gap: 2rem;

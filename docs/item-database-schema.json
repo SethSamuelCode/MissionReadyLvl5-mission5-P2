@@ -32,6 +32,7 @@
     "pickup_location":"",
     "clearance":"",
     "auction_status":"",
+    "buy_now_price":0,
     "questionsAndAnswers": [
         {
             "question": "",

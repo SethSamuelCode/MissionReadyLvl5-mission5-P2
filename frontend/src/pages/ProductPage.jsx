@@ -252,13 +252,13 @@ export default function ProductPage() {
         </div>
         <div className={styles.sidebar}>
           <div className={styles.title}>{title}</div>
+            <p>Time Left: {timeLeftInAuction}</p>
           <div className={styles.watchListAndCompareButton}>
             <button>❤️ Add to Watchlist</button>
             <button>🔄 Compare</button>
           </div>
           <div className={styles.bidBox}>
             <h3>Current Bid: ${currentBid}</h3>
-            <p>Time Left: {timeLeftInAuction}</p>
             <input
               type="number"
               placeholder="Enter bid amount"
