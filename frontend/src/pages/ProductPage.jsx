@@ -1,6 +1,6 @@
 import styles from "./ProductPage.module.css";
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 function ProductDescription({ description }) {
   return (
@@ -57,7 +57,7 @@ export default function ProductPage() {
   Object.freeze(detailsOrDescription);
 
   const { itemID } = useParams();
-  const [item, setItem] = useState();
+  // const [item, setItem] = useState();
   const [imageUrl, setImageUrl] = useState();
   const [title, setTitle] = useState();
   const [currentBid, setCurrentBid] = useState();
@@ -74,6 +74,10 @@ export default function ProductPage() {
   const [color, setColor] = useState("");
   const [material, setMaterial] = useState("");
   const [manufacturer, setManufacturer] = useState("");
+  const [sellerUsername, setSellerUsername] = useState("");
+  const [sellerRating, setSellerRating] = useState("");
+  const [sellerLocation, setSellerLocation] = useState("");
+  const [sellerMemberSince, setSellerMemberSince] = useState("");
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -82,8 +86,7 @@ export default function ProductPage() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
       const tempFromDB = await resp.json();
       setImageUrl(tempFromDB.images_links[0]);
-      setTitle(tempFromDB.title);
-      setItem(tempFromDB);
+      setTitle(tempFromDB.Title);
       setCurrentBid(tempFromDB.Current_Bid_price);
       setActionClosingTime(new Date(tempFromDB.closing_date));
       setBidHistory(tempFromDB.Bid_history);
@@ -96,13 +99,33 @@ export default function ProductPage() {
       setColor(tempFromDB.Color);
       setMaterial(tempFromDB.Material);
       setManufacturer(tempFromDB.Manufacturer);
+      setSellerUsername(tempFromDB.owner);
+
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
       // console.log(tempFromDB)
     }
-
     setItemFromDB();
   }, []);
+
+  useEffect(() => {
+    async function setSellerInfoFromDB() {
+      if (!sellerUsername) {
+        return; // If sellerUsername is not set, skip fetching
+      }
+      const resp = await fetch(`${BACKEND_URL}/user/${sellerUsername}`);
+      try {
+        const tempFromDB = await resp.json();
+        setSellerRating(tempFromDB.starRating);
+        setSellerLocation(tempFromDB.location);
+        setSellerMemberSince(tempFromDB.memberSince);
+      } catch (error) {
+        console.error("Error fetching seller info:", error);
+      }
+    }
+
+    setSellerInfoFromDB();
+  }, [sellerUsername]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -135,51 +158,48 @@ export default function ProductPage() {
   return (
     <div className={styles.container}>
       <div className={styles.locationBar}></div>
-      <div className={styles.images}>
-        <img
-          src={imageUrl}
-          alt="Random product"
-          style={{
-            width: "100%",
-            height: "400px",
-            // objectFit: "cover",
-          }}
-        />
-        {/* <p>{JSON.stringify(item)}</p> */}
-      </div>
-      <div className={styles.sidebar}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.watchListAndCompareButton}>
-          <button>❤️ Add to Watchlist</button>
-          <button>🔄 Compare</button>
-        </div>
-        <div className={styles.bidBox}>
-          <h3>Current Bid: ${currentBid}</h3>
-          <p>Time Left: {timeLeftInAuction}</p>
-          <input
-            type="number"
-            placeholder="Enter bid amount"
+      <div className={styles.section1}>
+        <div className={styles.images}>
+          <img
+            src={imageUrl}
+            alt="Random product"
           />
-          <button
-            style={{
-              marginTop: "10px",
-              display: "block",
-            }}>
-            Place Bid
-          </button>
+          {/* <p>{JSON.stringify(item)}</p> */}
         </div>
-        <div className={styles.bidHistory}>
-          <h4>Recent Bids</h4>
-          <ul>
-            {/* {console.log(bidHistory)} */}
-            {bidHistory.map((bid) => {
-              return (
-                <li key={bid.userName + bid.Bid}>
-                  {bid.userName}: ${bid.Bid}
-                </li>
-              );
-            })}
-          </ul>
+        <div className={styles.sidebar}>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.watchListAndCompareButton}>
+            <button>❤️ Add to Watchlist</button>
+            <button>🔄 Compare</button>
+          </div>
+          <div className={styles.bidBox}>
+            <h3>Current Bid: ${currentBid}</h3>
+            <p>Time Left: {timeLeftInAuction}</p>
+            <input
+              type="number"
+              placeholder="Enter bid amount"
+            />
+            <button
+              style={{
+                marginTop: "10px",
+                display: "block",
+              }}>
+              Place Bid
+            </button>
+          </div>
+          <div className={styles.bidHistory}>
+            <h4>Recent Bids</h4>
+            <ul>
+              {/* {console.log(bidHistory)} */}
+              {bidHistory.map((bid) => {
+                return (
+                  <li key={bid.userName + bid.Bid}>
+                    {bid.userName}: ${bid.Bid}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
       <div className={styles.shippingAndPaymentOptions}>
@@ -194,8 +214,16 @@ export default function ProductPage() {
       </div>
       <div className={styles.productDetailsAndDescription}>
         <div className={styles.detailAndDescriptionTabs}>
-          <div onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DETAILS)}>Product Details</div>
-          <div onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DESCRIPTION)}>Product Description</div>
+          <div
+            onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DETAILS)}>
+            Product Details
+          </div>
+          <div
+            onClick={() =>
+              changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DESCRIPTION)
+            }>
+            Product Description
+          </div>
         </div>
 
         {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
@@ -214,22 +242,13 @@ export default function ProductPage() {
       </div>
       <div className={styles.sellerContainer}>
         <div className={styles.sellerInfo}>
-          <h3>VintageCollector Pro</h3>
-          <p>⭐⭐⭐⭐⭐ (485 reviews)</p>
-          <p>Member since 2020</p>
-          <p>📍 Located in New York, USA</p>
+          <h3>{sellerUsername}</h3>
+          <p>Rating: ⭐⭐⭐⭐⭐ ({sellerRating} )</p>
+          <p>Member since {sellerMemberSince}</p>
+          <p>Located in {sellerLocation}</p>
         </div>
         <div className={styles.sellerLogo}>
-          <img
-            src="https://picsum.photos/120/120"
-            alt="Seller logo"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              borderRadius: "8px",
-            }}
-          />
+          <p>M</p>
         </div>
       </div>
       <div className={styles.questionsAndAnswers}>
