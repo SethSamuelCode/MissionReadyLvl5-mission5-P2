@@ -111,6 +111,37 @@ app.post('/api/watchlist', async (req, res) => {
     res.status(500).json({ error: 'Server error' })
   }
 })
+// WatchList: GET - retrieve all items for a user
+app.get('api/watchlist', async (req, res) => {
+  const userId = req.query.userId
+  if (!userId) {
+    return res.status(400).json({ error: 'userId is required' })
+  }
+
+  try {
+    const items = await dbObject.db
+      .collection('watchlist')
+      // Use aggregation to join with auctionItems
+      .aggregate([
+        { $match: { userId } },
+        {
+          $lookup: {
+            from: 'auctionItems',
+            localField: 'itemId',
+            foreignField: '_id',
+            as: 'itemDetails',
+          },
+        },
+        { $unwind: '$itemDetails' },
+      ])
+      .toArray()
+
+    res.join(items)
+  } catch (error) {
+    console.error('Error fetching watchlist:', error)
+    res.status(500).json({ error: 'Server error' })
+  }
+})
 
 // ----------------------- ROUTES ----------------------- //
 
