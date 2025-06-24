@@ -216,13 +216,13 @@ export default function ProductPage() {
         <div className={styles.detailAndDescriptionTabs}>
           <div
             onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DETAILS)}>
-            Product Details
+            <p>Product Details</p>
           </div>
           <div
             onClick={() =>
               changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DESCRIPTION)
             }>
-            Product Description
+            <p>Product Description</p>
           </div>
         </div>
 
@@ -248,7 +248,11 @@ export default function ProductPage() {
           <p>Located in {sellerLocation}</p>
         </div>
         <div className={styles.sellerLogo}>
-          <p>M</p>
+          <div className={styles.sellerCircle}>
+            <p>{sellerUsername.toString()[0]}</p>
+          </div>
+          <p>{sellerUsername}</p>
+          <p>sellerRating: {sellerRating}</p>
         </div>
       </div>
       <div className={styles.questionsAndAnswers}>
