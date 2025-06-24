@@ -47,23 +47,6 @@ function ProductDetails({ condition, dimensions, weight, color, material, manufa
   );
 }
 
-function Carousel({ images }) {
-  return (
-    <div className={styles.carousel}>
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={styles.carouselItem}>
-          <img
-            src={image}
-            alt={`Product Image ${index + 1}`}
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
-
 // ---------------------- FUNCTIONS --------------------- //
 
 function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription) {
@@ -109,6 +92,7 @@ export default function ProductPage() {
   const [sellerMemberSince, setSellerMemberSince] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
+  const [itemCategory, setItemCategory] = useState("");
 
   const BACKEND_URL = "http://localhost:4000/api";
 
@@ -134,6 +118,7 @@ export default function ProductPage() {
       setManufacturer(tempFromDB.Manufacturer);
       setSellerUsername(tempFromDB.owner);
       setQuestionsAndAnswers(tempFromDB.questionsAndAnswers || []); // Set questions and answers if available
+      setItemCategory(tempFromDB.category); // Set item category if available
 
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
@@ -143,6 +128,8 @@ export default function ProductPage() {
     setItemFromDB();
   }, []);
 
+  // Fetch seller information from the database using the sellerUsername
+  // This effect runs whenever sellerUsername changes
   useEffect(() => {
     async function setSellerInfoFromDB() {
       if (!sellerUsername) {
@@ -189,6 +176,8 @@ export default function ProductPage() {
     // Cleanup timer on component unmount
     return () => clearInterval(timer);
   }, [auctionClosingTime]);
+
+
 
   // ------------ START OF THE RETURN STATEMENT ----------- //
   if (!loaded) {
@@ -324,32 +313,10 @@ export default function ProductPage() {
       </div>
       <div className={styles.similarItems}>
         <h3>Similar Items You May Like</h3>
-        <div
-          style={{
-            display: "flex",
-            gap: "1rem",
-            marginTop: "1rem",
-          }}>
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              style={{ flex: 1 }}>
-              <img
-                src={`https://picsum.photos/200/200?random=${i}`}
-                alt={`Similar item ${i}`}
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                }}
-              />
-              <p>Vintage Camera Model {i}</p>
-              <p>$999.99</p>
-            </div>
-          ))}
-        </div>
+  
+       
+       
       </div>
-    </div>
-  );
+    </div>  
+  );    
 }
