@@ -1,0 +1,104 @@
+.fullHeader {
+    display: flex;
+    flex-direction: column;
+    background-color: #F7F7F7;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.topHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.logo {
+    width: 300px;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 999px;
+  padding: 10px 16px;
+  border: 1px solid #e2e0de;
+  width: 100%;
+  height: 50px;
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+
+.input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 15px;
+  width: 100%;
+  color: #4b4b4b;
+}
+
+
+.userNavigationList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 50px;
+    padding: 20px;
+    font-size: 20px;
+    width: 100%;
+}
+.userNavigationList > li {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.listIconContainer,
+.starIconContainer,
+.watchlistContainer,
+.favouritesContainer,
+.compareContainer,
+.userContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.catergory,
+.watchlist,
+.favourites,
+.compare,
+.user {
+    width: 32px;
+    height: 32px;
+}
+
+
+
+.bottomHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: solid #D2D1D1 1px;
+    font-weight: 500;
+    font-size: 26px;
+    
+}
+
+.navigationList {
+    display: flex;
+    list-style: none;
+    
+    padding: 20px;
+    gap: 50px;
+}
+
+.listItem {
+    display: flex;
+    padding: 20px;
+}
