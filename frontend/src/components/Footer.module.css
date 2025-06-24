@@ -1,0 +1,75 @@
+.footerContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f7f7f7;
+  border-top: 1px solid lightgray;
+  
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+}
+
+.topFooter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f7f7f7;
+}
+
+.logo {
+  width: 250px;
+}
+
+.userNavigationList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+
+.linkListContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7f7f7;
+  border-top: solid lightgray 1px;
+  padding: 50px;
+}
+.linkListContainer li {
+  list-style: none;
+}
+
+.bottomFooter1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    padding: 30px;
+    background-color: white;
+    border-bottom: solid #D2D1D1 1px;
+}
+.bottomFooter2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    padding: 30px;
+    background-color: white;
+    border-bottom: solid #D2D1D1 1px;
+}
+
+.bottomFooter2List {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    gap: 20px;
+
+
+}
