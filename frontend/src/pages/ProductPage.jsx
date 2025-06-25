@@ -393,58 +393,62 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
-      <div className={styles.shippingAndPaymentOptions}>
-        <div className={styles.shippingAndPickup}>
-          <h4>Shipping Options</h4>
-          <p>{shippingOptions}</p>
-        </div>
-        <div className={styles.paymentOptions}>
-          <h4>Payment Methods</h4>
-          <p>{paymentOptions}</p>
-        </div>
-      </div>
-      <div className={styles.productDetailsAndDescription}>
-        <div className={styles.detailAndDescriptionTabs}>
-          <div
-            className={styles.clickTab}
-            onClick={() =>
-              changeShowDetailsOrDescription(
-                setShowDetailsOrDescription,
-                detailsOrDescription.DETAILS,
-                setProductTabClass,
-                setDescriptionTabClass
-              )
-            }>
-            <p className={productTabClass}>Product Details</p>
+      <div className={styles.section2}>
+        <div className={styles.productDetailsAndDescription}>
+          <div className={styles.detailAndDescriptionTabs}>
+            <div
+              className={styles.clickTab}
+              onClick={() =>
+                changeShowDetailsOrDescription(
+                  setShowDetailsOrDescription,
+                  detailsOrDescription.DETAILS,
+                  setProductTabClass,
+                  setDescriptionTabClass
+                )
+              }>
+              <p className={productTabClass}>Product Details</p>
+            </div>
+            <div className={styles.middleTab}></div>
+            <div
+              className={styles.clickTab}
+              onClick={() =>
+                changeShowDetailsOrDescription(
+                  setShowDetailsOrDescription,
+                  detailsOrDescription.DESCRIPTION,
+                  setProductTabClass,
+                  setDescriptionTabClass
+                )
+              }>
+              <p className={descriptionTabClass}>Product Description</p>
+            </div>
           </div>
-          <div className={styles.middleTab}></div>
-          <div
-            className={styles.clickTab}
-            onClick={() =>
-              changeShowDetailsOrDescription(
-                setShowDetailsOrDescription,
-                detailsOrDescription.DESCRIPTION,
-                setProductTabClass,
-                setDescriptionTabClass
-              )
-            }>
-            <p className={descriptionTabClass}>Product Description</p>
+          <div className={styles.productDetailsContainer}>
+            {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
+              <ProductDetails
+                condition={condition}
+                dimensions={dimensions}
+                weight={weight}
+                color={color}
+                material={material}
+                manufacturer={manufacturer}
+              />
+            ) : null}
+            {showDetailsOrDescription === detailsOrDescription.DESCRIPTION ? (
+              <ProductDescription description={itemDescription} />
+            ) : null}
           </div>
         </div>
-        <div className={styles.productDetailsContainer}>
-          {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
-            <ProductDetails
-              condition={condition}
-              dimensions={dimensions}
-              weight={weight}
-              color={color}
-              material={material}
-              manufacturer={manufacturer}
-            />
-          ) : null}
-          {showDetailsOrDescription === detailsOrDescription.DESCRIPTION ? (
-            <ProductDescription description={itemDescription} />
-          ) : null}
+        <div className={styles.sidebar2}>
+          <div className={styles.shippingAndPaymentOptions}>
+            <div className={styles.shippingAndPickup}>
+              <h4>Shipping Options</h4>
+              <p>{shippingOptions}</p>
+            </div>
+            <div className={styles.paymentOptions}>
+              <h4>Payment Methods</h4>
+              <p>{paymentOptions}</p>
+            </div>
+          </div>
         </div>
       </div>
       <div className={styles.sellerContainer}>
