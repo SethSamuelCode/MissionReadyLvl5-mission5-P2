@@ -1,4 +1,5 @@
 {
+
     "userName":"",
     "email":"",
     "password":"",
@@ -19,3 +20,4 @@
     "favoriteSellers": []
 
 }
+

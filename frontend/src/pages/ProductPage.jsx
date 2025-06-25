@@ -1,3 +1,4 @@
+
 // ----------------------- IMPORTS ---------------------- //
 
 import styles from "./ProductPage.module.css";
@@ -10,12 +11,13 @@ import compareIcon from "../assets/images/compareIcon.svg";
 
 // ------------------ HELPER COMPONENTS ------------------ //
 
+
 function ProductDescription({ description }) {
   return (
     <>
       <p className={styles.productDescription}>{description}</p>
     </>
-  );
+  )
 }
 
 function randomColorForLogo(username, joinDate) {
@@ -70,7 +72,7 @@ function ProductDetails({ condition, dimensions, weight, color, material, manufa
         </div>
       </div>
     </>
-  );
+  )
 }
 
 // ---------------------- FUNCTIONS --------------------- //
@@ -146,6 +148,7 @@ export default function ProductPage() {
   const BACKEND_URL = "http://localhost:4000/api";
   const navigate = useNavigate();
 
+
   // ----------------------- USE EFFECTS ---------------------- //
   useEffect(() => {
     async function setItemFromDB() {
@@ -200,33 +203,38 @@ export default function ProductPage() {
     setSellerInfoFromDB();
   }, [sellerUsername]);
 
+
   useEffect(() => {
     const timer = setInterval(() => {
-      const msLeft = auctionClosingTime - new Date();
+      const msLeft = auctionClosingTime - new Date()
       if (msLeft <= 0) {
-        setTimeLeftInAuction("Auction ended");
-        clearInterval(timer);
-        return;
+        setTimeLeftInAuction('Auction ended')
+        clearInterval(timer)
+        return
       }
 
       // Calculate days, hours, minutes, seconds
-      const days = Math.floor(msLeft / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((msLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((msLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((msLeft % (1000 * 60)) / 1000);
+      const days = Math.floor(msLeft / (1000 * 60 * 60 * 24))
+      const hours = Math.floor(
+        (msLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      )
+      const minutes = Math.floor((msLeft % (1000 * 60 * 60)) / (1000 * 60))
+      const seconds = Math.floor((msLeft % (1000 * 60)) / 1000)
 
       // Format with leading zeros
-      const formattedDays = String(days).padStart(2, "0");
-      const formattedHours = String(hours).padStart(2, "0");
-      const formattedMinutes = String(minutes).padStart(2, "0");
-      const formattedSeconds = String(seconds).padStart(2, "0");
+      const formattedDays = String(days).padStart(2, '0')
+      const formattedHours = String(hours).padStart(2, '0')
+      const formattedMinutes = String(minutes).padStart(2, '0')
+      const formattedSeconds = String(seconds).padStart(2, '0')
 
-      setTimeLeftInAuction(`${formattedDays}d ${formattedHours}:${formattedMinutes}:${formattedSeconds}`);
-    }, 1000);
+      setTimeLeftInAuction(
+        `${formattedDays}d ${formattedHours}:${formattedMinutes}:${formattedSeconds}`
+      )
+    }, 1000)
 
     // Cleanup timer on component unmount
-    return () => clearInterval(timer);
-  }, [auctionClosingTime]);
+    return () => clearInterval(timer)
+  }, [auctionClosingTime])
 
   useEffect(() => {
     // Fetch similar items based on the category of the current item
@@ -541,5 +549,5 @@ export default function ProductPage() {
       </div>
       <Footer />
     </div>
-  );
+  )
 }

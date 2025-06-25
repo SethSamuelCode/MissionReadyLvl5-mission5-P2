@@ -29,7 +29,8 @@
 }
 
 .section1 {
-    display: grid;
+  display: grid;
+
   grid-template-columns: 6fr 3fr;
   gap: 2rem;
 }
@@ -114,7 +115,6 @@
     line-height: normal;
   }
 }
-
 .watchListAndCompareButtons {
   display: flex;
   gap: 1rem;
@@ -188,14 +188,14 @@
   }
 }
 
-.bidHistory{
+.bidHistory {
+
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .bidHistory ul {
-
   display: flex;
   flex-direction: column;
   padding: 1rem auto;
@@ -211,10 +211,9 @@
   align-items: center;
   gap: 2rem;
 
-  .bidPrefix{
+  .bidPrefix {
     min-width: 2em;
   }
-  
 }
 
 .biderLogo {
@@ -242,7 +241,9 @@
   border: 1px solid #e0e0e0;
   border-radius: 8px;
 
-    p {
+
+  p {
+
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -266,7 +267,17 @@
 }
 
 .productDetailsAndDescription {
-   /* border: 1px solid #e0e0e0; */
+
+  /* border: 1px solid #e0e0e0; */
+  border-radius: 8px;
+
+  flex-grow: 2;
+}
+
+.productDetailsContainer {
+  background-color: #b3e5fc;
+  border: 1px solid #e0e0e0;
+
   border-radius: 8px;
 
   flex-grow: 2;
@@ -348,6 +359,40 @@ color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.productDescription {
+  padding: 1.5rem;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+
+  .detailItem {
+    min-width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    .detailLabel {
+      min-width: 6em;
+    }
+  }
+}
+
+.section2 {
+  display: grid;
+  grid-template-columns: 6fr 3fr;
+  gap: 1.5rem;
+}
+
+.shippingAndPaymentOptions {
+
 }
 
 .productDescription {
@@ -448,4 +493,11 @@ color: #fff;
     grid-column: 1;
     grid-row: auto;
   }
+
+}
+
+  .sellerLogo {
+    margin: 0 auto;
+  }
+
 }
