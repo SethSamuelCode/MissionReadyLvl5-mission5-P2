@@ -5,6 +5,17 @@
     "PhoneNumber":"",
     "memberSince":"",
     "location":"",
+    "starRating": 0,
+    "userReviewsReceived":[
+        {
+            "userName": "",
+            "review": "",
+            "rating": 0,
+            "date": ""
+        }
+    ],
     "currentBids": [],
-    "watchlist ": []
+    "watchlist": [],
+    "favoriteSellers": []
+
 }

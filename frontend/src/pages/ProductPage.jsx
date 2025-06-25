@@ -1,6 +1,14 @@
+// ----------------------- IMPORTS ---------------------- //
+
 import styles from "./ProductPage.module.css";
-import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router";
+import { use, useEffect, useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import watchListIcon from "../assets/images/watchlistIcon.svg";
+import compareIcon from "../assets/images/compareIcon.svg";
+
+// ------------------ HELPER COMPONENTS ------------------ //
 
 function ProductDescription({ description }) {
   return (
@@ -10,11 +18,6 @@ function ProductDescription({ description }) {
     </>
   );
 }
-
-function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription) {
-  setShowDetailsOrDescription(detailsOrDescription);
-}
-
 function ProductDetails({ condition, dimensions, weight, color, material, manufacturer }) {
   return (
     <>
@@ -48,17 +51,36 @@ function ProductDetails({ condition, dimensions, weight, color, material, manufa
   );
 }
 
+// ---------------------- FUNCTIONS --------------------- //
+
+function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription) {
+  setShowDetailsOrDescription(detailsOrDescription);
+}
+
+function handleClickSimilarItem(itemID, setItemID, navigate) {
+  // Navigate to the product page of the clicked similar item
+  navigate(`/item/${itemID}`);
+  setItemID(itemID);
+}
+
+// ---------------------- COMPONENT --------------------- //
+// This is the main component for the Product Page
 export default function ProductPage() {
+  // This object is used to switch between product details and product description
+  // It is used in the ProductPage component to toggle between the two views
   const detailsOrDescription = {
     DETAILS: "details",
     DESCRIPTION: "description",
   };
-
+  // Freeze the object to prevent accidental modification
   Object.freeze(detailsOrDescription);
 
-  const { itemID } = useParams();
-  const [item, setItem] = useState();
+  // ----------------------- DEFINES ---------------------- //
+
+  const { ParamItemID } = useParams();
+  const [itemID, setItemID] = useState(ParamItemID); // Get the item ID from the URL parameters
   const [imageUrl, setImageUrl] = useState();
+  const [itemImages, setItemImages] = useState([]);
   const [title, setTitle] = useState();
   const [currentBid, setCurrentBid] = useState();
   const [auctionClosingTime, setActionClosingTime] = useState(new Date("January 01, 2000"));
@@ -74,16 +96,27 @@ export default function ProductPage() {
   const [color, setColor] = useState("");
   const [material, setMaterial] = useState("");
   const [manufacturer, setManufacturer] = useState("");
+  const [sellerUsername, setSellerUsername] = useState("");
+  const [sellerRating, setSellerRating] = useState("");
+  const [sellerLocation, setSellerLocation] = useState("");
+  const [sellerMemberSince, setSellerMemberSince] = useState("");
+  const [loaded, setLoaded] = useState(false);
+  const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
+  const [itemCategory, setItemCategory] = useState("");
+  const [similarItems, setSimilarItems] = useState([]);
+  const [buyNowPrice, setBuyNowPrice] = useState(0);
 
   const BACKEND_URL = "http://localhost:4000/api";
+  const navigate = useNavigate();
 
+  // ----------------------- USE EFFECTS ---------------------- //
   useEffect(() => {
     async function setItemFromDB() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
       const tempFromDB = await resp.json();
       setImageUrl(tempFromDB.images_links[0]);
-      setTitle(tempFromDB.title);
-      setItem(tempFromDB);
+      setItemImages(tempFromDB.images_links);
+      setTitle(tempFromDB.Title);
       setCurrentBid(tempFromDB.Current_Bid_price);
       setActionClosingTime(new Date(tempFromDB.closing_date));
       setBidHistory(tempFromDB.Bid_history);
@@ -96,13 +129,39 @@ export default function ProductPage() {
       setColor(tempFromDB.Color);
       setMaterial(tempFromDB.Material);
       setManufacturer(tempFromDB.Manufacturer);
+      setSellerUsername(tempFromDB.owner);
+      setQuestionsAndAnswers(tempFromDB.questionsAndAnswers || []); // Set questions and answers if available
+      setItemCategory(tempFromDB.category); // Set item category if available
+      setBuyNowPrice(tempFromDB.buy_now_price || 0); // Set buy now price if available
+
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
       // console.log(tempFromDB)
+      setLoaded(true);
+    }
+    setItemFromDB();
+  }, [itemID]);
+
+  // Fetch seller information from the database using the sellerUsername
+  // This effect runs whenever sellerUsername changes
+  useEffect(() => {
+    async function setSellerInfoFromDB() {
+      if (!sellerUsername) {
+        return; // If sellerUsername is not set, skip fetching
+      }
+      const resp = await fetch(`${BACKEND_URL}/user/${sellerUsername}`);
+      try {
+        const tempFromDB = await resp.json();
+        setSellerRating(tempFromDB.starRating);
+        setSellerLocation(tempFromDB.location);
+        setSellerMemberSince(tempFromDB.memberSince);
+      } catch (error) {
+        console.error("Error fetching seller info:", error);
+      }
     }
 
-    setItemFromDB();
-  }, []);
+    setSellerInfoFromDB();
+  }, [sellerUsername]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -132,54 +191,152 @@ export default function ProductPage() {
     return () => clearInterval(timer);
   }, [auctionClosingTime]);
 
+  useEffect(() => {
+    // Fetch similar items based on the category of the current item
+
+    if (itemCategory.length === 0) {
+      return;
+    }
+    async function setSimilarItemsVar() {
+      try {
+        const response = await fetch(`${BACKEND_URL}/randomByField/category/${itemCategory}/10`);
+        const data = await response.json();
+        setSimilarItems(data);
+      } catch (error) {}
+
+      try {
+        const response = await fetch(`${BACKEND_URL}/random/10`);
+        const data = await response.json();
+        setSimilarItems(data);
+      } catch (error) {
+        console.error("Error fetching similar items:", error);
+      }
+    }
+    setSimilarItemsVar();
+  }, [itemCategory]);
+
+  // ------------ START OF THE RETURN STATEMENT ----------- //
+  if (!loaded) {
+    return (
+      <div>
+        <Header />
+        <div className={styles.loading}>Loading...</div>; // Show loading state while data is being fetched
+        <Footer />
+      </div>
+    );
+  }
   return (
     <div className={styles.container}>
-      <div className={styles.locationBar}></div>
-      <div className={styles.images}>
-        <img
-          src={imageUrl}
-          alt="Random product"
-          style={{
-            width: "100%",
-            height: "400px",
-            // objectFit: "cover",
-          }}
-        />
-        {/* <p>{JSON.stringify(item)}</p> */}
+      <Header />
+      <div className={styles.locationBar}>
+        <Link
+          to="/"
+          className={styles.homeLink}>
+          Home
+        </Link>
+        <span> / </span>
+        <Link to={`/${itemCategory}`}>{itemCategory}</Link>
       </div>
-      <div className={styles.sidebar}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.watchListAndCompareButton}>
-          <button>❤️ Add to Watchlist</button>
-          <button>🔄 Compare</button>
-        </div>
-        <div className={styles.bidBox}>
-          <h3>Current Bid: ${currentBid}</h3>
-          <p>Time Left: {timeLeftInAuction}</p>
-          <input
-            type="number"
-            placeholder="Enter bid amount"
+      <div className={styles.section1}>
+        <div className={styles.images}>
+          <img
+            src={imageUrl}
+            alt="Random product"
           />
-          <button
-            style={{
-              marginTop: "10px",
-              display: "block",
-            }}>
-            Place Bid
-          </button>
+          <div className={styles.carouselContainer}>
+            {itemImages.map((image, index) => (
+              <div
+                key={index}
+                className={styles.carouselItem}>
+                <img
+                  src={image}
+                  alt={`Product image ${index + 1}`}
+                  onClick={() => setImageUrl(image)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        <div className={styles.bidHistory}>
-          <h4>Recent Bids</h4>
-          <ul>
-            {/* {console.log(bidHistory)} */}
-            {bidHistory.map((bid) => {
-              return (
-                <li key={bid.userName + bid.Bid}>
-                  {bid.userName}: ${bid.Bid}
-                </li>
-              );
-            })}
-          </ul>
+        <div className={styles.sidebar}>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.closingInfo}>
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none">
+                <path
+                  d="M14.375 3.75C17.5244 3.75 20.5449 5.00111 22.7719 7.22811C24.9989 9.4551 26.25 12.4756 26.25 15.625C26.25 18.7744 24.9989 21.7949 22.7719 24.0219C20.5449 26.2489 17.5244 27.5 14.375 27.5C11.2256 27.5 8.2051 26.2489 5.97811 24.0219C3.75111 21.7949 2.5 18.7744 2.5 15.625C2.5 12.4756 3.75111 9.4551 5.97811 7.22811C8.2051 5.00111 11.2256 3.75 14.375 3.75ZM14.375 5C11.5571 5 8.85456 6.11942 6.86199 8.11199C4.86942 10.1046 3.75 12.8071 3.75 15.625C3.75 18.4429 4.86942 21.1454 6.86199 23.138C8.85456 25.1306 11.5571 26.25 14.375 26.25C15.7703 26.25 17.1519 25.9752 18.441 25.4412C19.7301 24.9073 20.9014 24.1246 21.888 23.138C22.8746 22.1514 23.6573 20.9801 24.1912 19.691C24.7252 18.4019 25 17.0203 25 15.625C25 12.8071 23.8806 10.1046 21.888 8.11199C19.8954 6.11942 17.1929 5 14.375 5ZM13.75 8.75H15V15.525L20.875 18.9125L20.25 20L13.75 16.25V8.75Z"
+                  fill="#2F2C28"
+                />
+              </svg>
+              Closes:{" "}
+              {new Date(auctionClosingTime)
+                .toLocaleDateString("en-US", {
+                  weekday: "long",
+                  day: "numeric",
+                  month: "long",
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
+                })
+                .replace(" at", "")}
+            </p>
+            <p>
+              {" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none">
+                <path
+                  d="M14.375 3.75C17.5244 3.75 20.5449 5.00111 22.7719 7.22811C24.9989 9.4551 26.25 12.4756 26.25 15.625C26.25 18.7744 24.9989 21.7949 22.7719 24.0219C20.5449 26.2489 17.5244 27.5 14.375 27.5C11.2256 27.5 8.2051 26.2489 5.97811 24.0219C3.75111 21.7949 2.5 18.7744 2.5 15.625C2.5 12.4756 3.75111 9.4551 5.97811 7.22811C8.2051 5.00111 11.2256 3.75 14.375 3.75ZM14.375 5C11.5571 5 8.85456 6.11942 6.86199 8.11199C4.86942 10.1046 3.75 12.8071 3.75 15.625C3.75 18.4429 4.86942 21.1454 6.86199 23.138C8.85456 25.1306 11.5571 26.25 14.375 26.25C15.7703 26.25 17.1519 25.9752 18.441 25.4412C19.7301 24.9073 20.9014 24.1246 21.888 23.138C22.8746 22.1514 23.6573 20.9801 24.1912 19.691C24.7252 18.4019 25 17.0203 25 15.625C25 12.8071 23.8806 10.1046 21.888 8.11199C19.8954 6.11942 17.1929 5 14.375 5ZM13.75 8.75H15V15.525L20.875 18.9125L20.25 20L13.75 16.25V8.75Z"
+                  fill="#2F2C28"
+                />
+              </svg>
+              Time Left: {timeLeftInAuction}
+            </p>
+          </div>
+          <div className={styles.watchListAndCompareButtons}>
+            <button>
+              <img
+                src={watchListIcon}
+                alt="Watchlist Icon"
+              />{" "}
+              Add to Watchlist
+            </button>
+            <button>
+              <img
+                src={compareIcon}
+                alt="Compare Icon"
+              />{" "}
+              Compare
+            </button>
+          </div>
+          <div className={styles.bidBox}>
+            <p>Buy Now</p>
+            <p>${buyNowPrice}</p>
+            <button>Buy Now</button>
+            <p>Current Bid:</p>
+            <p>${currentBid}</p>
+            <button>Place Bid</button>
+          </div>
+          <div className={styles.bidHistory}>
+            <h4>Recent Bids</h4>
+            <ul>
+              {/* {console.log(bidHistory)} */}
+              {bidHistory.map((bid) => {
+                return (
+                  <li key={bid.userName + bid.Bid}>
+                    {bid.userName}: ${bid.Bid}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
       <div className={styles.shippingAndPaymentOptions}>
@@ -194,8 +351,16 @@ export default function ProductPage() {
       </div>
       <div className={styles.productDetailsAndDescription}>
         <div className={styles.detailAndDescriptionTabs}>
-          <div onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DETAILS)}>Product Details</div>
-          <div onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DESCRIPTION)}>Product Description</div>
+          <div
+            onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DETAILS)}>
+            <p>Product Details</p>
+          </div>
+          <div
+            onClick={() =>
+              changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DESCRIPTION)
+            }>
+            <p>Product Description</p>
+          </div>
         </div>
 
         {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
@@ -214,66 +379,60 @@ export default function ProductPage() {
       </div>
       <div className={styles.sellerContainer}>
         <div className={styles.sellerInfo}>
-          <h3>VintageCollector Pro</h3>
-          <p>⭐⭐⭐⭐⭐ (485 reviews)</p>
-          <p>Member since 2020</p>
-          <p>📍 Located in New York, USA</p>
+          <h3>{sellerUsername}</h3>
+          <p>Rating: ⭐⭐⭐⭐⭐ ({sellerRating} )</p>
+          <p>Member since {sellerMemberSince}</p>
+          <p>Located in {sellerLocation}</p>
         </div>
         <div className={styles.sellerLogo}>
-          <img
-            src="https://picsum.photos/120/120"
-            alt="Seller logo"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              borderRadius: "8px",
-            }}
-          />
+          <div className={styles.sellerCircle}>
+            <p>{sellerUsername.toString()[0]}</p>
+          </div>
+          <p>{sellerUsername}</p>
+          <p>sellerRating: {sellerRating}</p>
         </div>
       </div>
       <div className={styles.questionsAndAnswers}>
         <h3>Questions & Answers</h3>
-        <div style={{ marginTop: "1rem" }}>
-          <p>
-            <strong>Q: Is the original box included?</strong>
-          </p>
-          <p>A: Yes, the camera comes with its original packaging and documentation.</p>
-          <hr />
-          <p>
-            <strong>Q: What's the shutter count?</strong>
-          </p>
-          <p>A: The camera has been used for approximately 1,000 shots since restoration.</p>
+        <div className={styles.questionsList}>
+          {questionsAndAnswers.length !== 0 ? (
+            questionsAndAnswers.map((qa, index) => (
+              <div key={index}>
+                <p>
+                  <strong>Q: {qa.question}</strong>
+                </p>
+                <p>A: {qa.answer}</p>
+                <p>
+                  <em>
+                    Asked by {qa.username} on {new Date(qa.date).toLocaleDateString()}
+                  </em>
+                </p>
+              </div>
+            ))
+          ) : (
+            <p>No questions have been asked yet.</p>
+          )}
         </div>
       </div>
       <div className={styles.similarItems}>
         <h3>Similar Items You May Like</h3>
-        <div
-          style={{
-            display: "flex",
-            gap: "1rem",
-            marginTop: "1rem",
-          }}>
-          {[1, 2, 3].map((i) => (
+        <div className={styles.similarItemsList}>
+          {similarItems.map((item) => (
             <div
-              key={i}
-              style={{ flex: 1 }}>
+              key={item._id}
+              className={styles.similarItem}
+              onClick={() => handleClickSimilarItem(item._id.toString(), setItemID, navigate)}>
               <img
-                src={`https://picsum.photos/200/200?random=${i}`}
-                alt={`Similar item ${i}`}
-                style={{
-                  width: "100%",
-                  height: "200px",
-                  objectFit: "cover",
-                  borderRadius: "8px",
-                }}
+                src={item.images_links[0]}
+                alt={item.Title}
               />
-              <p>Vintage Camera Model {i}</p>
-              <p>$999.99</p>
+              <h4>{item.Title}</h4>
+              <p>Price: ${item.Current_Bid_price}</p>
             </div>
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
