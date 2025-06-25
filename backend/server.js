@@ -101,6 +101,17 @@ app.post("/api/items/compare", async (req, resp) => {
     resp.status(500).json({ status: "error", message: "Something went wrong." });    
    }  
 });
+
+app.get("/api/items", async (req, res) => {
+  try {
+    const allItems = await dbObject.itemCollection.find({}).toArray();
+    res.status(200).json(allItems);
+  } catch (error) {
+    console.error("Error fetching all items:", error);
+    res.status(500).json({ status: "error", message: "Failed to load items" });
+  }
+});
+
 // ------------------------ KERRY ----------------------- //
 
 // ------------------------ SETH ------------------------ //

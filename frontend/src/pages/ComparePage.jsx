@@ -1,19 +1,40 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import styles from './ComparePage.module.css';
 
 const Compare = () => {
-  const [items, setItems] = useState([]);
+  const [allItems, setAllItems] = useState([]);          // full list of items
+  const [selectedIds, setSelectedIds] = useState([]);     // selected item IDs
+  const [comparisonItems, setComparisonItems] = useState([]); // fetched compare data
 
+  // Fetch all items for selection
   useEffect(() => {
-    axios.post("http://localhost:4000/api/items/compare", {
-      ids: ["685b34784fa3cef9f9047707", "685b34784fa3cef9f9047709"]
-    })
-    .then((res) => setItems(res.data))
-    .catch((error) => {
-      console.error("Compare fetch error:", error);
-    })
-  }, []);   
-  
+    axios
+      .get('http://localhost:4000/api/items')
+      .then((res) => setAllItems(res.data))
+      .catch((err) => console.error('Error loading items:', err));
+  }, []);
+
+  // Fetch comparison data when 2 IDs are selected
+  useEffect(() => {
+    if (selectedIds.length === 2) {
+      axios
+        .post('http://localhost:4000/api/items/compare', { ids: selectedIds })
+        .then((res) => setComparisonItems(res.data))
+        .catch((err) => console.error('Compare fetch error:', err));
+    } else {
+      setComparisonItems([]);
+    }
+  }, [selectedIds]);
+
+  const handleCompareToggle = (itemId) => {
+    if (selectedIds.includes(itemId)) {
+      setSelectedIds(selectedIds.filter((id) => id !== itemId));
+    } else if (selectedIds.length < 2) {
+      setSelectedIds([...selectedIds, itemId]);
+    }
+  };
+
   const comparisonFields = [
     { label: 'Title', key: 'title' },
     { label: 'Condition', key: 'condition' },
@@ -25,78 +46,94 @@ const Compare = () => {
   ];
 
   return (
-    <div style={{ padding: "20px", fontFamily: "sans-serif" }}> 
-      <h1 style={{ marginBottom: '2rem' }}>Compare Items</h1>
+    <div className={styles.compareWrapper}>
+      <h1 className={styles.heading}>Comparison Table</h1>
 
-      {items.length === 0 ? (
-        <p>No items to compare yet..</p>
-      ) : (
-        <div style={{ display: 'flex', gap: '2rem' }}>
-          {/* Left column */}
-          <div style={{ flexShrink: 0 }}>
-            {comparisonFields.map(field => (
-              <div
-                key={field.key}
-                style={{
-                  fontWeight: 'bold',
-                  padding: '1rem',
-                  backgroundColor: '#fca311',
-                  marginBottom: '2px',
-                  minWidth: '150px',
-                  minHeight: '60px',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}
-              >
+      {/* Search Bar */}
+      <div className={styles.searchRow}>
+        <input
+          type="text"
+          placeholder="Search product by name, Brand, categories"
+          className={styles.searchInput}
+        />
+        <button className={styles.addButton}>Add</button>
+      </div>
+
+      {/* Selectable Item Cards */}
+      <div className={styles.selectionGrid}>
+        {allItems.map((item) => {
+          const image = item.images_links?.[0];
+          const isChecked = selectedIds.includes(item._id);
+          return (
+            <div key={item._id} className={styles.card}>
+              <img
+                src={image || 'https://via.placeholder.com/200x150?text=No+Image'}
+                alt={item.title}
+              />
+              <p><strong>{item.title || 'No Title'}</strong></p>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={() => handleCompareToggle(item._id)}
+                  disabled={!isChecked && selectedIds.length >= 2}
+                />
+                Compare
+              </label>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Selected Preview (above table) */}
+      <div className={styles.selectedItems}>
+        {comparisonItems.map((item) => (
+          <div key={item._id} className={styles.selectedCard}>
+            <img
+              src={item.images_links?.[0] || 'https://via.placeholder.com/100x70'}
+              alt={item.title}
+            />
+            <div className={styles.itemLocation}>{item.pickupLocation || 'Location N/A'}</div>
+            <div className={styles.itemClose}>
+              Closes {new Date(item.closingDate).toDateString()}
+            </div>
+            <div className={styles.itemTitle}>{item.title}</div>
+            <button
+              className={styles.removeBtn}
+              onClick={() => setSelectedIds(prev => prev.filter(id => id !== item._id))}
+            >
+              ✖
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Comparison Table */}
+      {comparisonItems.length === 2 && (
+        <div className={styles.comparisonGrid}>
+          <div className={styles.leftColumn}>
+            {comparisonFields.map((field) => (
+              <div key={field.key} className={styles.fieldLabel}>
                 {field.label}
               </div>
             ))}
           </div>
 
-          {/* Items column */}
-          {items.map((item) => {
-            const image = item.images_links?.[0];
-            return (
-              <div
-                key={item._id}
-                style={{
-                  border: '1px solid #ddd',
-                  flex: 1,
-                  backgroundColor: '#fff',
-                  minWidth: '200px'
-                }}
-              >
-                {/* Image */}
-                <div style={{ padding: '1rem', textAlign: 'center' }}>
-                  <img
-                    src={image || 'https://via.placeholder.com/200x150?text=No+Image'}
-                    alt={item.title || 'Item image'}
-                    style={{ 
-                      width: '100%', 
-                      maxHeight: '200px', 
-                      objectFit: 'contain' 
-                    }}
-                  />
-                </div>
-
-                {/* Field Values */}
-                {comparisonFields.map((field, index) => (
-                  <div
-                    key={`${item._id}-${field.key}`}
-                    style={{
-                      padding: '1rem',
-                      borderTop: '1px solid #eee',
-                      minHeight: '60px',
-                      display: 'flex',
-                      alignItems: 'center'
-                    }}
-                  >
-                    {item[field.key] || 'N/A'}
-                  </div>
-                ))}
+          {comparisonItems.map((item) => (
+            <div key={item._id} className={styles.itemColumn}>
+              <div className={styles.imageContainer}>
+                <img
+                  src={item.images_links?.[0] || 'https://via.placeholder.com/200x150'}
+                  alt={item.title}
+                />
               </div>
-            );
-          })}
+              {comparisonFields.map((field) => (
+                <div key={field.key} className={styles.fieldValue}>
+                  {item[field.key] || 'N/A'}
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       )}
     </div>
