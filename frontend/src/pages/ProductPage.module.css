@@ -333,6 +333,34 @@ color: #fff;
   justify-content: center;
 }
 
+.productDescription {
+  padding: 1.5rem;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  justify-content: center;
+  align-items: center; 
+  padding: 1.5rem 0;
+
+  .detailItem{
+    min-width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    .detailLabel{
+      min-width: 6em;
+    }
+    
+  }
+}
+
+
+
+
 .questionsAndAnswers {
   grid-column: 1 / -1;
   padding: 1.5rem;

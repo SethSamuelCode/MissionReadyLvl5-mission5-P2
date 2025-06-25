@@ -13,8 +13,7 @@ import compareIcon from "../assets/images/compareIcon.svg";
 function ProductDescription({ description }) {
   return (
     <>
-      <h3>Product Details</h3>
-      <p>{description}</p>
+      <p className={styles.productDescription}>{description}</p>
     </>
   );
 }
@@ -162,7 +161,7 @@ export default function ProductPage() {
       setPaymentOptions(tempFromDB.payment_options);
       setItemDescription(tempFromDB.Description);
       setCondition(tempFromDB.Condition);
-      setDimensions(tempFromDB.Dimensions);
+      setDimensions(tempFromDB.dimensions);
       setWeight(tempFromDB.weight);
       setColor(tempFromDB.Color);
       setMaterial(tempFromDB.Material);
@@ -406,7 +405,7 @@ export default function ProductPage() {
       </div>
       <div className={styles.productDetailsAndDescription}>
         <div className={styles.detailAndDescriptionTabs}>
-          <div 
+          <div
             className={styles.clickTab}
             onClick={() =>
               changeShowDetailsOrDescription(
@@ -434,9 +433,6 @@ export default function ProductPage() {
         </div>
         <div className={styles.productDetailsContainer}>
           {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
-            <ProductDescription description={itemDescription} />
-          ) : null}
-          {showDetailsOrDescription === detailsOrDescription.DESCRIPTION ? (
             <ProductDetails
               condition={condition}
               dimensions={dimensions}
@@ -445,6 +441,9 @@ export default function ProductPage() {
               material={material}
               manufacturer={manufacturer}
             />
+          ) : null}
+          {showDetailsOrDescription === detailsOrDescription.DESCRIPTION ? (
+            <ProductDescription description={itemDescription} />
           ) : null}
         </div>
       </div>
