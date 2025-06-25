@@ -645,7 +645,6 @@
     ],
     "currentBids": ["item678", "item234"],
     "watchlist": ["item456", "item789", "item567"],
-
     "favoriteSellers": ["VintageTreasures", "CollectorsChoice", "TreasureTrader"]
   },
   {
@@ -818,9 +817,7 @@
     ],
     "currentBids": ["item567", "item234"],
     "watchlist": ["item123", "item456", "item678"],
-
     "favoriteSellers": ["CollectorsCorner", "VintageVisionary", "VintageTreasures"]
-
   },
   {
     "userName": "BidWinner",
@@ -890,7 +887,6 @@
     ],
     "currentBids": ["item901", "item678"],
     "watchlist": ["item123", "item456", "item789"],
-
     "favoriteSellers": ["AntiqueTreasurer", "CollectorsCorner", "VintageTreasures"]
   },
   {
