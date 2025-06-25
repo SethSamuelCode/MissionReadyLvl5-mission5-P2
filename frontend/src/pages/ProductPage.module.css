@@ -29,18 +29,19 @@
 }
 
 .section1 {
-  display: flex;
+    display: grid;
+  grid-template-columns: 6fr 3fr;
   gap: 2rem;
 }
 
 .images {
   display: flex;
   flex-direction: column;
-  min-height: 50vh;
+  /* min-height: 50vh; */
   background-color: #ffcdd2;
   border-radius: 8px;
   flex-grow: 2;
-  max-height: 70vh;
+  /* max-height: 70vh; */
   max-width: auto;
 
   img {
@@ -84,6 +85,15 @@
   font-size: 1.5rem;
   font-weight: bold;
   background-color: #fff9c4;
+  color: var(--Grey-07, #44413d);
+  text-align: center;
+
+  /* h1 */
+  font-family: Arial;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .closingInfo {
@@ -92,10 +102,16 @@
   justify-content: center;
   gap: 0.5rem;
 
-  p{
+  p {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: var(--Grey-07, #44413d);
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 }
 
@@ -131,17 +147,86 @@
   flex-direction: column;
   border: 1px solid #e0e0e0;
   background-color: #e1bee7;
+  justify-content: center;
+  align-items: center;
+
+  border-style: none;
+
+  .bidPrice {
+    color: var(--Grey-07, #44413d);
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 100%; /* 48px */
+  }
+
+  .bidLable {
+    color: var(--Grey-07, #44413d);
+    text-align: center;
+
+    /* Body Text 1 */
+    font-family: Arial;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  button {
+    border-radius: 4px;
+    background: var(--Blue-05, #007acd);
+    color: var(--Grey-01, #fff);
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 }
 
-.bidHistory {
-  padding: 1rem;
+.bidHistory{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bidHistory ul {
+
+  display: flex;
+  flex-direction: column;
+  padding: 1rem auto;
+  width: 100%;
   background-color: #b2ebf2;
   border-radius: 8px;
+  gap: 1rem;
+  justify-content: space-evenly;
+}
+
+.bidHistoryLine {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  .bidPrefix{
+    min-width: 2em;
+  }
+  
+}
+
+.biderLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 }
 
 .shippingAndPaymentOptions {
-  grid-column: 2;
-  grid-row: 2;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -149,44 +234,86 @@
 }
 
 .shippingAndPickup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   padding: 1rem;
   background-color: #d7ccc8;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
+
+    p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
 
 .paymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   padding: 1rem;
   background-color: #f8bbd0;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 }
 
 .productDetailsAndDescription {
-  grid-column: 1 / -1;
-  padding: 2rem;
-  background-color: #b3e5fc;
-  border: 1px solid #e0e0e0;
+   /* border: 1px solid #e0e0e0; */
   border-radius: 8px;
+
+  flex-grow: 2;
 }
+
+.productDetailsContainer {
+  background-color: #b3e5fc;
+  border: 10px solid #007ACD
+}
+
 
 .detailAndDescriptionTabs {
   display: flex;
   gap: 1rem;
   align-items: center;
-  justify-content: space-around;
-
+  justify-content: space-between;
+  
+  .middleTab{
+    flex-grow: 1;
+  }
+  .clickTab{
+    flex-grow: 5;
+    text-align: center;
+    border-top: inset solid 3px #D8EFFF;
+    border-left:inset solid 3px #D8EFFF;
+    border-right:inset solid 3px #D8EFFF;
+    border-radius: 10px 10px 0px 0px;
+  }
+  
   p {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
     cursor: pointer;
-    background-color: #e3f2fd;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    /* background-color: #e3f2fd; */
+    /* border-radius: 4px; */
+    /* transition: background-color 0.3s ease; */
 
     &:hover {
       background-color: #bbdefb;
+      border-radius: 10px 10px 0px 0px;
     }
   }
+}
+
+.activeTab {
+border-radius: 10px 10px 0px 0px;
+background: #007ACD;
+color: #fff;
 }
 
 .sellerContainer {
@@ -222,6 +349,43 @@
   align-items: center;
   justify-content: center;
 }
+
+.productDescription {
+  padding: 1.5rem;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  justify-content: center;
+  align-items: center; 
+  padding: 1.5rem 0;
+
+  .detailItem{
+    min-width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    .detailLabel{
+      min-width: 6em;
+    }
+    
+  }
+}
+
+.section2{
+  display: grid;
+  grid-template-columns: 6fr 3fr;
+  gap: 1.5rem;
+
+}
+
+.shippingAndPaymentOptions{
+}
+
+
 
 .questionsAndAnswers {
   grid-column: 1 / -1;

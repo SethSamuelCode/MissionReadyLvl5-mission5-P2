@@ -13,10 +13,32 @@ import compareIcon from "../assets/images/compareIcon.svg";
 function ProductDescription({ description }) {
   return (
     <>
-      <h3>Product Details</h3>
-      <p>{description}</p>
+      <p className={styles.productDescription}>{description}</p>
     </>
   );
+}
+
+function randomColorForLogo(username, joinDate) {
+  const colors = [
+    "#FF5733",
+    "#33FF57",
+    "#3357FF",
+    "#F1C40F",
+    "#8E44AD",
+    "#E67E22",
+    "#2ECC71",
+    "#3498DB",
+    "#9B59B6",
+    "#F39C12",
+  ];
+  const combinedData = JSON.stringify({ username, joinDate });
+  const encoder = new TextEncoder();
+  const byteArray = encoder.encode(combinedData);
+  const index =
+    byteArray.reduce((acc, byte) => {
+      return acc ^ byte; // XOR operation to combine bytes
+    }, 0) % colors.length;
+  return colors[index];
 }
 function ProductDetails({ condition, dimensions, weight, color, material, manufacturer }) {
   return (
@@ -53,8 +75,21 @@ function ProductDetails({ condition, dimensions, weight, color, material, manufa
 
 // ---------------------- FUNCTIONS --------------------- //
 
-function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription) {
+function changeShowDetailsOrDescription(
+  setShowDetailsOrDescription,
+  detailsOrDescription,
+  setProductTabClass,
+  setDescriptionTabClass
+) {
   setShowDetailsOrDescription(detailsOrDescription);
+
+  if (detailsOrDescription === "details") {
+    setProductTabClass(styles.activeTab);
+    setDescriptionTabClass("");
+  } else if (detailsOrDescription === "description") {
+    setProductTabClass("");
+    setDescriptionTabClass(styles.activeTab);
+  }
 }
 
 function handleClickSimilarItem(itemID, setItemID, navigate) {
@@ -105,6 +140,8 @@ export default function ProductPage() {
   const [itemCategory, setItemCategory] = useState("");
   const [similarItems, setSimilarItems] = useState([]);
   const [buyNowPrice, setBuyNowPrice] = useState(0);
+  const [productTabClass, setProductTabClass] = useState(styles.activeTab);
+  const [descriptionTabClass, setDescriptionTabClass] = useState("");
 
   const BACKEND_URL = "http://localhost:4000/api";
   const navigate = useNavigate();
@@ -124,7 +161,7 @@ export default function ProductPage() {
       setPaymentOptions(tempFromDB.payment_options);
       setItemDescription(tempFromDB.Description);
       setCondition(tempFromDB.Condition);
-      setDimensions(tempFromDB.Dimensions);
+      setDimensions(tempFromDB.dimensions);
       setWeight(tempFromDB.weight);
       setColor(tempFromDB.Color);
       setMaterial(tempFromDB.Material);
@@ -317,65 +354,138 @@ export default function ProductPage() {
             </button>
           </div>
           <div className={styles.bidBox}>
-            <p>Buy Now</p>
-            <p>${buyNowPrice}</p>
+            <p className={styles.bidLable}>Buy Now</p>
+            <p className={styles.bidPrice}>${buyNowPrice}</p>
             <button>Buy Now</button>
-            <p>Current Bid:</p>
-            <p>${currentBid}</p>
+            <p className={styles.bidLable}>Current Bid:</p>
+            <p className={styles.bidPrice}>${currentBid}</p>
             <button>Place Bid</button>
           </div>
           <div className={styles.bidHistory}>
-            <h4>Recent Bids</h4>
             <ul>
               {/* {console.log(bidHistory)} */}
-              {bidHistory.map((bid) => {
-                return (
-                  <li key={bid.userName + bid.Bid}>
-                    {bid.userName}: ${bid.Bid}
-                  </li>
-                );
-              })}
+              {bidHistory
+                .sort((a, b) => b.Bid - a.Bid)
+                .map((bid, index) => {
+                  if (index >= 3) {
+                    return null;
+                  } // Limit to the top 3 bids
+                  const prefix = () => {
+                    if (index === 0) return "1st";
+                    if (index === 1) return "2nd";
+                    if (index === 2) return "3rd";
+                  };
+                  return (
+                    <li key={bid.userName + bid.Bid}>
+                      <p className={styles.bidHistoryLine}>
+                        <span className={styles.bidPrefix}>{prefix()} </span>
+                        <div
+                          className={styles.biderLogo}
+                          style={{ backgroundColor: randomColorForLogo(bid.userName, bid.date) }}>
+                          {bid.userName[0]}
+                        </div>{" "}
+                        {bid.userName}: ${bid.Bid}
+                      </p>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
         </div>
       </div>
-      <div className={styles.shippingAndPaymentOptions}>
-        <div className={styles.shippingAndPickup}>
-          <h4>Shipping Options</h4>
-          <p>{shippingOptions}</p>
-        </div>
-        <div className={styles.paymentOptions}>
-          <h4>Payment Methods</h4>
-          <p>{paymentOptions}</p>
-        </div>
-      </div>
-      <div className={styles.productDetailsAndDescription}>
-        <div className={styles.detailAndDescriptionTabs}>
-          <div
-            onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DETAILS)}>
-            <p>Product Details</p>
+      <div className={styles.section2}>
+        <div className={styles.productDetailsAndDescription}>
+          <div className={styles.detailAndDescriptionTabs}>
+            <div
+              className={styles.clickTab}
+              onClick={() =>
+                changeShowDetailsOrDescription(
+                  setShowDetailsOrDescription,
+                  detailsOrDescription.DETAILS,
+                  setProductTabClass,
+                  setDescriptionTabClass
+                )
+              }>
+              <p className={productTabClass}>Product Details</p>
+            </div>
+            <div className={styles.middleTab}></div>
+            <div
+              className={styles.clickTab}
+              onClick={() =>
+                changeShowDetailsOrDescription(
+                  setShowDetailsOrDescription,
+                  detailsOrDescription.DESCRIPTION,
+                  setProductTabClass,
+                  setDescriptionTabClass
+                )
+              }>
+              <p className={descriptionTabClass}>Product Description</p>
+            </div>
           </div>
-          <div
-            onClick={() =>
-              changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DESCRIPTION)
-            }>
-            <p>Product Description</p>
+          <div className={styles.productDetailsContainer}>
+            {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
+              <ProductDetails
+                condition={condition}
+                dimensions={dimensions}
+                weight={weight}
+                color={color}
+                material={material}
+                manufacturer={manufacturer}
+              />
+            ) : null}
+            {showDetailsOrDescription === detailsOrDescription.DESCRIPTION ? (
+              <ProductDescription description={itemDescription} />
+            ) : null}
           </div>
         </div>
-
-        {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
-          <ProductDescription description={itemDescription} />
-        ) : null}
-        {showDetailsOrDescription === detailsOrDescription.DESCRIPTION ? (
-          <ProductDetails
-            condition={condition}
-            dimensions={dimensions}
-            weight={weight}
-            color={color}
-            material={material}
-            manufacturer={manufacturer}
-          />
-        ) : null}
+        <div className={styles.sidebar2}>
+          <div className={styles.shippingAndPaymentOptions}>
+            <div className={styles.shippingAndPickup}>
+              <h4>Shipping Options</h4>
+              <p>
+                {" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none">
+                  <path
+                    d="M0 4.5V6H14.25V17.25H9.633C9.2985 15.9607 8.139 15 6.75 15C5.361 15 4.2015 15.9607 3.867 17.25H3V13.5H1.5V18.75H3.867C4.2015 20.0393 5.361 21 6.75 21C8.139 21 9.2985 20.0393 9.633 18.75H15.867C16.2015 20.0393 17.361 21 18.75 21C20.139 21 21.2985 20.0393 21.633 18.75H24V12.633L23.9528 12.5153L22.4528 8.01525L22.29 7.5H15.75V4.5H0ZM0.75 7.5V9H7.5V7.5H0.75ZM15.75 9H21.2108L22.5 12.8438V17.25H21.633C21.2985 15.9607 20.139 15 18.75 15C17.361 15 16.2015 15.9607 15.867 17.25H15.75V9ZM1.5 10.5V12H6V10.5H1.5ZM6.75 16.5C7.58775 16.5 8.25 17.1622 8.25 18C8.25 18.8378 7.58775 19.5 6.75 19.5C5.91225 19.5 5.25 18.8378 5.25 18C5.25 17.1622 5.91225 16.5 6.75 16.5ZM18.75 16.5C19.5877 16.5 20.25 17.1622 20.25 18C20.25 18.8378 19.5877 19.5 18.75 19.5C17.9123 19.5 17.25 18.8378 17.25 18C17.25 17.1622 17.9123 16.5 18.75 16.5Z"
+                    fill="#2F2C28"
+                  />
+                </svg>{" "}
+                {shippingOptions}
+              </p>
+            </div>
+            <div className={styles.paymentOptions}>
+              <h4>Payment Methods</h4>
+              <p>
+                {" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none">
+                  <path
+                    d="M19.125 4.5H4.875C3.42525 4.5 2.25 5.67525 2.25 7.125V16.875C2.25 18.3247 3.42525 19.5 4.875 19.5H19.125C20.5747 19.5 21.75 18.3247 21.75 16.875V7.125C21.75 5.67525 20.5747 4.5 19.125 4.5Z"
+                    stroke="#2F2C28"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M2.25 9H21.75M6 14.0625H8.25V15H6V14.0625Z"
+                    stroke="#2F2C28"
+                    stroke-width="1.875"
+                    stroke-linejoin="round"
+                  />
+                </svg>{" "}
+                {paymentOptions}
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
       <div className={styles.sellerContainer}>
         <div className={styles.sellerInfo}>
@@ -385,7 +495,9 @@ export default function ProductPage() {
           <p>Located in {sellerLocation}</p>
         </div>
         <div className={styles.sellerLogo}>
-          <div className={styles.sellerCircle}>
+          <div
+            className={styles.sellerCircle}
+            style={{ backgroundColor: randomColorForLogo(sellerUsername, sellerMemberSince) }}>
             <p>{sellerUsername.toString()[0]}</p>
           </div>
           <p>{sellerUsername}</p>
@@ -402,11 +514,6 @@ export default function ProductPage() {
                   <strong>Q: {qa.question}</strong>
                 </p>
                 <p>A: {qa.answer}</p>
-                <p>
-                  <em>
-                    Asked by {qa.username} on {new Date(qa.date).toLocaleDateString()}
-                  </em>
-                </p>
               </div>
             ))
           ) : (
