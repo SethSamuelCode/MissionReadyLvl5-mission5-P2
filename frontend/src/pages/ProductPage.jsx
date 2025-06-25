@@ -18,6 +18,29 @@ function ProductDescription({ description }) {
     </>
   );
 }
+
+function randomColorForLogo(username, joinDate) {
+  const colors = [
+    "#FF5733",
+    "#33FF57",
+    "#3357FF",
+    "#F1C40F",
+    "#8E44AD",
+    "#E67E22",
+    "#2ECC71",
+    "#3498DB",
+    "#9B59B6",
+    "#F39C12",
+  ];
+  const combinedData = JSON.stringify({ username, joinDate });
+  const encoder = new TextEncoder();
+  const byteArray = encoder.encode(combinedData);
+  const index =
+    byteArray.reduce((acc, byte) => {
+      return acc ^ byte; // XOR operation to combine bytes
+    }, 0) % colors.length;
+  return colors[index];
+}
 function ProductDetails({ condition, dimensions, weight, color, material, manufacturer }) {
   return (
     <>
@@ -325,16 +348,33 @@ export default function ProductPage() {
             <button>Place Bid</button>
           </div>
           <div className={styles.bidHistory}>
-            <h4>Recent Bids</h4>
             <ul>
               {/* {console.log(bidHistory)} */}
-              {bidHistory.map((bid) => {
-                return (
-                  <li key={bid.userName + bid.Bid}>
-                    {bid.userName}: ${bid.Bid}
-                  </li>
-                );
-              })}
+              {bidHistory
+                .sort((a, b) => b.Bid - a.Bid)
+                .map((bid, index) => {
+                  if (index >= 3) {
+                    return null;
+                  } // Limit to the top 3 bids
+                  const prefix = () => {
+                    if (index === 0) return "1st";
+                    if (index === 1) return "2nd";
+                    if (index === 2) return "3rd";
+                  };
+                  return (
+                    <li key={bid.userName + bid.Bid}>
+                      <p className={styles.bidHistoryLine}>
+                        <span className={styles.bidPrefix}>{prefix()} </span>
+                        <div
+                          className={styles.biderLogo}
+                          style={{ backgroundColor: randomColorForLogo(bid.userName, bid.date) }}>
+                          {bid.userName[0]}
+                        </div>{" "}
+                        {bid.userName}: ${bid.Bid}
+                      </p>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
         </div>
@@ -385,7 +425,9 @@ export default function ProductPage() {
           <p>Located in {sellerLocation}</p>
         </div>
         <div className={styles.sellerLogo}>
-          <div className={styles.sellerCircle}>
+          <div
+            className={styles.sellerCircle}
+            style={{ backgroundColor: randomColorForLogo(sellerUsername, sellerMemberSince) }}>
             <p>{sellerUsername.toString()[0]}</p>
           </div>
           <p>{sellerUsername}</p>
@@ -402,11 +444,6 @@ export default function ProductPage() {
                   <strong>Q: {qa.question}</strong>
                 </p>
                 <p>A: {qa.answer}</p>
-                <p>
-                  <em>
-                    Asked by {qa.username} on {new Date(qa.date).toLocaleDateString()}
-                  </em>
-                </p>
               </div>
             ))
           ) : (
