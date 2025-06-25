@@ -317,11 +317,11 @@ export default function ProductPage() {
             </button>
           </div>
           <div className={styles.bidBox}>
-            <p>Buy Now</p>
-            <p>${buyNowPrice}</p>
+            <p className={styles.bidLable}>Buy Now</p>
+            <p className={styles.bidPrice}>${buyNowPrice}</p>
             <button>Buy Now</button>
-            <p>Current Bid:</p>
-            <p>${currentBid}</p>
+            <p className={styles.bidLable}>Current Bid:</p>
+            <p className={styles.bidPrice}>${currentBid}</p>
             <button>Place Bid</button>
           </div>
           <div className={styles.bidHistory}>

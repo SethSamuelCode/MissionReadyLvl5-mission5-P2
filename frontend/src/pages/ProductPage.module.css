@@ -92,10 +92,16 @@
   justify-content: center;
   gap: 0.5rem;
 
-  p{
+  p {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    color: var(--Grey-07, #44413d);
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 }
 
@@ -131,6 +137,45 @@
   flex-direction: column;
   border: 1px solid #e0e0e0;
   background-color: #e1bee7;
+  justify-content: center;
+  align-items: center;
+
+  border-style: none;
+
+  .bidPrice {
+    color: var(--Grey-07, #44413d);
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 100%; /* 48px */
+  }
+
+  .bidLable {
+    color: var(--Grey-07, #44413d);
+    text-align: center;
+
+    /* Body Text 1 */
+    font-family: Arial;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  button {
+    border-radius: 4px;
+    background: var(--Blue-05, #007acd);
+    color: var(--Grey-01, #fff);
+    text-align: center;
+    height: 50px;
+    width: 100%;
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 }
 
 .bidHistory {
