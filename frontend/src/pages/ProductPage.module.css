@@ -317,8 +317,8 @@
 
 .sellerContainer {
   display: flex;
+  flex-direction: column;
   flex: 1;
-  gap: 2rem;
   padding: 1.5rem;
   background-color: #c5cae9;
   border: 1px solid #e0e0e0;
@@ -326,9 +326,27 @@
   width: 100%;
 }
 
+.innerSellerContainer {
+  display: flex;
+  gap: 2rem;
+}
+
 .sellerInfo {
+  display: flex;
+  flex-direction: column;
   flex: 1;
   background-color: #dcedc8;
+  justify-content: center;
+  p {
+    max-width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px #e0e0e0;
+  }
+  span:first-child {
+    min-width: 10em;
+  }
 }
 .sellerLogo {
   flex: 1;
@@ -368,13 +386,13 @@
 }
 
 .sellerRating {
-  color: var(--Grey-06, #65605D);
-/* Body Text 1 */
-font-family: Arial;
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  color: var(--Grey-06, #65605d);
+  /* Body Text 1 */
+  font-family: Arial;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .productDescription {

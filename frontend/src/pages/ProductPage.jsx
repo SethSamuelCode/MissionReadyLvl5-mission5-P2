@@ -488,20 +488,25 @@ export default function ProductPage() {
         </div>
       </div>
       <div className={styles.sellerContainer}>
-        <div className={styles.sellerInfo}>
-          <h3>{sellerUsername}</h3>
-          <p>Rating: ⭐⭐⭐⭐⭐ ({sellerRating} )</p>
-          <p>Member since {sellerMemberSince}</p>
-          <p>Located in {sellerLocation}</p>
-        </div>
-        <div className={styles.sellerLogo}>
-          <div
-            className={styles.sellerCircle}
-            style={{ backgroundColor: randomColorForLogo(sellerUsername, sellerMemberSince) }}>
-            <p className={styles.sellerInitial} >{sellerUsername.toString()[0]}</p>
+        <p>About the seller</p>
+        <div className={styles.innerSellerContainer}>
+          <div className={styles.sellerInfo}>
+            <p>
+              <span> Location:</span> <span>{sellerLocation}</span>
+            </p>
+            <p>
+              <span> Member since:</span> <span>{sellerMemberSince}</span>
+            </p>
           </div>
-          <p className={styles.sellerName} >{sellerUsername}</p>
-          <p className={styles.sellerRating} >seller rating: {sellerRating}</p>
+          <div className={styles.sellerLogo}>
+            <div
+              className={styles.sellerCircle}
+              style={{ backgroundColor: randomColorForLogo(sellerUsername, sellerMemberSince) }}>
+              <p className={styles.sellerInitial}>{sellerUsername.toString()[0]}</p>
+            </div>
+            <p className={styles.sellerName}>{sellerUsername}</p>
+            <p className={styles.sellerRating}>seller rating: {sellerRating}</p>
+          </div>
         </div>
       </div>
       <div className={styles.questionsAndAnswers}>
