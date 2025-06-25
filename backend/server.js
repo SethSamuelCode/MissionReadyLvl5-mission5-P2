@@ -50,14 +50,9 @@ async function setupDB(dbObject) {
     // Establish connection to MongoDB
     await dbObject.client.connect()
     // Get database and collection references
-<<<<<<< Updated upstream
-    dbObject.db = dbObject.client.db(DATABASE_NAME)
-    dbObject.collection = dbObject.db.collection(COLLECTION_NAME)
-=======
     dbObject.db = dbObject.client.db(DATABASE_NAME);
     dbObject.itemCollection = dbObject.db.collection(ITEM_COLLECTION_NAME);
     dbObject.userCollection = dbObject.db.collection(USER_COLLECTION_NAME);
->>>>>>> Stashed changes
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error)
     throw error
