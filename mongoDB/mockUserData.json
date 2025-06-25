@@ -1,0 +1,982 @@
+[
+  {
+    "userName": "AuctionMaster42",
+    "email": "auctionmaster42@email.com",
+    "password": "SecurePass123!",
+    "PhoneNumber": "022-555-1234",
+    "memberSince": "2023-01-15",
+    "location": "Auckland, NZ",
+    "starRating": 4.8,
+    "userReviewsReceived": [
+      {
+        "userName": "VintageFinder",
+        "review": "Great transaction! Item was exactly as described.",
+        "rating": 5,
+        "date": "2023-03-20"
+      },
+      {
+        "userName": "CollectorPro",
+        "review": "Fast shipping and excellent communication.",
+        "rating": 5,
+        "date": "2023-05-12"
+      },
+      {
+        "userName": "BiddingQueen",
+        "review": "Very reliable seller, would buy from again.",
+        "rating": 4,
+        "date": "2023-08-30"
+      }
+    ],
+    "currentBids": ["item123", "item456"],
+    "watchlist": ["item789", "item234", "item567"],
+    "favoriteSellers": ["VintageFinder", "AntiqueLover99"]
+  },
+  {
+    "userName": "VintageFinder",
+    "email": "vintagefinder@email.com",
+    "password": "V1ntage2023",
+    "PhoneNumber": "021-555-2345",
+    "memberSince": "2022-11-05",
+    "location": "Wellington, NZ",
+    "starRating": 4.6,
+    "userReviewsReceived": [
+      {
+        "userName": "AuctionMaster42",
+        "review": "Smooth transaction and prompt payment.",
+        "rating": 5,
+        "date": "2023-02-18"
+      },
+      {
+        "userName": "CollectiblesHunter",
+        "review": "Great buyer, would sell to again!",
+        "rating": 4,
+        "date": "2023-07-22"
+      }
+    ],
+    "currentBids": ["item345", "item678"],
+    "watchlist": ["item901", "item234"],
+    "favoriteSellers": ["AuctionMaster42", "RareFinds"]
+  },
+  {
+    "userName": "CollectorPro",
+    "email": "collectorpro@email.com",
+    "password": "Collect2023!",
+    "PhoneNumber": "027-555-3456",
+    "memberSince": "2022-08-20",
+    "location": "Christchurch, NZ",
+    "starRating": 4.9,
+    "userReviewsReceived": [
+      {
+        "userName": "AntiqueLover99",
+        "review": "Perfect transaction from start to finish.",
+        "rating": 5,
+        "date": "2023-01-10"
+      },
+      {
+        "userName": "VintageFinder",
+        "review": "Excellent communication and fast payment.",
+        "rating": 5,
+        "date": "2023-04-05"
+      },
+      {
+        "userName": "AuctionMaster42",
+        "review": "A pleasure to deal with!",
+        "rating": 5,
+        "date": "2023-06-22"
+      }
+    ],
+    "currentBids": ["item567", "item890"],
+    "watchlist": ["item123", "item456", "item789"],
+    "favoriteSellers": ["AuctionMaster42", "RareFinds", "VintageFinder"]
+  },
+  {
+    "userName": "BiddingQueen",
+    "email": "biddingqueen@email.com",
+    "password": "BidWin2023$",
+    "PhoneNumber": "022-555-4567",
+    "memberSince": "2023-02-10",
+    "location": "Hamilton, NZ",
+    "starRating": 4.5,
+    "userReviewsReceived": [
+      {
+        "userName": "TreasureHunter",
+        "review": "Quick payment and friendly communication.",
+        "rating": 5,
+        "date": "2023-03-15"
+      },
+      {
+        "userName": "CollectorPro",
+        "review": "Good buyer, no issues.",
+        "rating": 4,
+        "date": "2023-05-28"
+      }
+    ],
+    "currentBids": ["item901", "item234"],
+    "watchlist": ["item567", "item890"],
+    "favoriteSellers": ["CollectorPro", "AntiqueLover99"]
+  },
+  {
+    "userName": "AntiqueLover99",
+    "email": "antiquelover99@email.com",
+    "password": "Antiques4Life!",
+    "PhoneNumber": "021-555-5678",
+    "memberSince": "2022-06-18",
+    "location": "Dunedin, NZ",
+    "starRating": 4.7,
+    "userReviewsReceived": [
+      {
+        "userName": "RareFinds",
+        "review": "Outstanding seller with unique items.",
+        "rating": 5,
+        "date": "2022-08-30"
+      },
+      {
+        "userName": "CollectiblesHunter",
+        "review": "Beautiful items, carefully packaged.",
+        "rating": 5,
+        "date": "2022-11-22"
+      },
+      {
+        "userName": "BiddingQueen",
+        "review": "Excellent experience, highly recommend!",
+        "rating": 4,
+        "date": "2023-04-18"
+      }
+    ],
+    "currentBids": ["item123", "item789"],
+    "watchlist": ["item456", "item234", "item901"],
+    "favoriteSellers": ["CollectorPro", "VintageFinder"]
+  },
+  {
+    "userName": "RareFinds",
+    "email": "rarefinds@email.com",
+    "password": "R@reStuff2023",
+    "PhoneNumber": "027-555-6789",
+    "memberSince": "2022-09-25",
+    "location": "Tauranga, NZ",
+    "starRating": 4.8,
+    "userReviewsReceived": [
+      {
+        "userName": "AuctionMaster42",
+        "review": "Great items, fair prices.",
+        "rating": 5,
+        "date": "2022-12-10"
+      },
+      {
+        "userName": "VintageFinder",
+        "review": "Unique selection, smooth transaction.",
+        "rating": 5,
+        "date": "2023-02-08"
+      },
+      {
+        "userName": "BiddingQueen",
+        "review": "Fantastic seller with rare treasures.",
+        "rating": 4,
+        "date": "2023-07-15"
+      }
+    ],
+    "currentBids": ["item345", "item678"],
+    "watchlist": ["item123", "item789"],
+    "favoriteSellers": ["AntiqueLover99", "CollectorPro"]
+  },
+  {
+    "userName": "CollectiblesHunter",
+    "email": "collectibleshunter@email.com",
+    "password": "Hunt4Tr3asures",
+    "PhoneNumber": "022-555-7890",
+    "memberSince": "2022-10-15",
+    "location": "Palmerston North, NZ",
+    "starRating": 4.6,
+    "userReviewsReceived": [
+      {
+        "userName": "TreasureHunter",
+        "review": "Great to deal with, fair and honest.",
+        "rating": 5,
+        "date": "2022-12-20"
+      },
+      {
+        "userName": "AuctionMaster42",
+        "review": "Reliable buyer, smooth transaction.",
+        "rating": 4,
+        "date": "2023-03-05"
+      }
+    ],
+    "currentBids": ["item456", "item890"],
+    "watchlist": ["item678", "item901"],
+    "favoriteSellers": ["RareFinds", "AuctionMaster42"]
+  },
+  {
+    "userName": "TreasureHunter",
+    "email": "treasurehunter@email.com",
+    "password": "FindTr3@sures!",
+    "PhoneNumber": "021-555-8901",
+    "memberSince": "2022-12-05",
+    "location": "New Plymouth, NZ",
+    "starRating": 4.7,
+    "userReviewsReceived": [
+      {
+        "userName": "CollectiblesHunter",
+        "review": "Excellent communication and fast payment.",
+        "rating": 5,
+        "date": "2023-01-28"
+      },
+      {
+        "userName": "RareFinds",
+        "review": "Great buyer, smooth transaction.",
+        "rating": 5,
+        "date": "2023-04-12"
+      },
+      {
+        "userName": "CollectorPro",
+        "review": "Pleasant to deal with, would recommend.",
+        "rating": 4,
+        "date": "2023-08-03"
+      }
+    ],
+    "currentBids": ["item567", "item234"],
+    "watchlist": ["item123", "item456", "item890"],
+    "favoriteSellers": ["VintageFinder", "AntiqueLover99", "RareFinds"]
+  },
+  {
+    "userName": "VintageCollector",
+    "email": "vintagecollector@email.com",
+    "password": "0ldTr3asures",
+    "PhoneNumber": "027-555-9012",
+    "memberSince": "2023-03-20",
+    "location": "Napier, NZ",
+    "starRating": 4.5,
+    "userReviewsReceived": [
+      {
+        "userName": "AntiqueLover99",
+        "review": "Great buyer, prompt payment.",
+        "rating": 5,
+        "date": "2023-05-15"
+      },
+      {
+        "userName": "RareFinds",
+        "review": "Good communication, pleasant transaction.",
+        "rating": 4,
+        "date": "2023-07-28"
+      }
+    ],
+    "currentBids": ["item678", "item901"],
+    "watchlist": ["item567", "item234"],
+    "favoriteSellers": ["AntiqueLover99", "CollectorPro"]
+  },
+  {
+    "userName": "AuctionPro87",
+    "email": "auctionpro87@email.com",
+    "password": "Pr0Bidder!",
+    "PhoneNumber": "022-555-0123",
+    "memberSince": "2022-07-12",
+    "location": "Whangarei, NZ",
+    "starRating": 4.9,
+    "userReviewsReceived": [
+      {
+        "userName": "VintageCollector",
+        "review": "Exceptional service and quality items.",
+        "rating": 5,
+        "date": "2022-09-30"
+      },
+      {
+        "userName": "TreasureHunter",
+        "review": "Outstanding seller, highly recommend!",
+        "rating": 5,
+        "date": "2022-12-15"
+      },
+      {
+        "userName": "CollectiblesHunter",
+        "review": "Smooth transaction, item as described.",
+        "rating": 5,
+        "date": "2023-04-22"
+      },
+      {
+        "userName": "BiddingQueen",
+        "review": "Great seller, fast shipping.",
+        "rating": 5,
+        "date": "2023-06-08"
+      }
+    ],
+    "currentBids": ["item123", "item789"],
+    "watchlist": ["item456", "item890", "item567"],
+    "favoriteSellers": ["CollectorPro", "AntiqueLover99", "RareFinds"]
+  },
+  {
+    "userName": "CurioCollector",
+    "email": "curiocollector@email.com",
+    "password": "Cur10s!ty",
+    "PhoneNumber": "021-555-1234",
+    "memberSince": "2023-01-05",
+    "location": "Gisborne, NZ",
+    "starRating": 4.6,
+    "userReviewsReceived": [
+      {
+        "userName": "AuctionPro87",
+        "review": "Great buyer, prompt payment.",
+        "rating": 5,
+        "date": "2023-02-18"
+      },
+      {
+        "userName": "VintageCollector",
+        "review": "Pleasant to deal with, would sell to again.",
+        "rating": 4,
+        "date": "2023-05-22"
+      }
+    ],
+    "currentBids": ["item345", "item567"],
+    "watchlist": ["item678", "item901", "item234"],
+    "favoriteSellers": ["AuctionPro87", "CollectorPro"]
+  },
+  {
+    "userName": "AntiqueFinder",
+    "email": "antiquefinder@email.com",
+    "password": "F1ndTr3@sures",
+    "PhoneNumber": "027-555-2345",
+    "memberSince": "2022-08-30",
+    "location": "Nelson, NZ",
+    "starRating": 4.7,
+    "userReviewsReceived": [
+      {
+        "userName": "CurioCollector",
+        "review": "Excellent seller, unique items.",
+        "rating": 5,
+        "date": "2022-11-12"
+      },
+      {
+        "userName": "AuctionMaster42",
+        "review": "Great communication and fast shipping.",
+        "rating": 5,
+        "date": "2023-01-30"
+      },
+      {
+        "userName": "CollectiblesHunter",
+        "review": "Good transaction, as described.",
+        "rating": 4,
+        "date": "2023-06-18"
+      }
+    ],
+    "currentBids": ["item456", "item890"],
+    "watchlist": ["item123", "item789", "item345"],
+    "favoriteSellers": ["AuctionPro87", "RareFinds"]
+  },
+  {
+    "userName": "RaritySeeker",
+    "email": "rarityseeker@email.com",
+    "password": "S33kR@rities",
+    "PhoneNumber": "022-555-3456",
+    "memberSince": "2022-10-10",
+    "location": "Rotorua, NZ",
+    "starRating": 4.5,
+    "userReviewsReceived": [
+      {
+        "userName": "AntiqueFinder",
+        "review": "Good buyer, smooth transaction.",
+        "rating": 5,
+        "date": "2022-12-05"
+      },
+      {
+        "userName": "CurioCollector",
+        "review": "Prompt payment, excellent communication.",
+        "rating": 4,
+        "date": "2023-03-18"
+      }
+    ],
+    "currentBids": ["item789", "item234"],
+    "watchlist": ["item456", "item567", "item678"],
+    "favoriteSellers": ["AntiqueFinder", "VintageCollector"]
+  },
+  {
+    "userName": "VintageEnthusiast",
+    "email": "vintageenthusiast@email.com",
+    "password": "V1nt@geLove",
+    "PhoneNumber": "021-555-4567",
+    "memberSince": "2023-02-15",
+    "location": "Whanganui, NZ",
+    "starRating": 4.6,
+    "userReviewsReceived": [
+      {
+        "userName": "RaritySeeker",
+        "review": "Great to deal with, honest seller.",
+        "rating": 5,
+        "date": "2023-04-20"
+      },
+      {
+        "userName": "AntiqueFinder",
+        "review": "Smooth transaction, would buy from again.",
+        "rating": 4,
+        "date": "2023-07-08"
+      }
+    ],
+    "currentBids": ["item567", "item901"],
+    "watchlist": ["item789", "item234", "item345"],
+    "favoriteSellers": ["AuctionPro87", "AntiqueFinder"]
+  },
+  {
+    "userName": "CollectorsChoice",
+    "email": "collectorschoice@email.com",
+    "password": "Ch01c3C0llect",
+    "PhoneNumber": "027-555-5678",
+    "memberSince": "2022-11-22",
+    "location": "Invercargill, NZ",
+    "starRating": 4.8,
+    "userReviewsReceived": [
+      {
+        "userName": "VintageEnthusiast",
+        "review": "Excellent items, carefully packaged.",
+        "rating": 5,
+        "date": "2023-01-10"
+      },
+      {
+        "userName": "RaritySeeker",
+        "review": "Outstanding seller, true to descriptions.",
+        "rating": 5,
+        "date": "2023-03-25"
+      },
+      {
+        "userName": "CurioCollector",
+        "review": "Great selection, fair prices.",
+        "rating": 5,
+        "date": "2023-06-05"
+      },
+      {
+        "userName": "AuctionPro87",
+        "review": "Superb quality items, fast shipping.",
+        "rating": 4,
+        "date": "2023-08-15"
+      }
+    ],
+    "currentBids": ["item678", "item123"],
+    "watchlist": ["item456", "item890", "item567"],
+    "favoriteSellers": ["AntiqueFinder", "VintageCollector", "AuctionPro87"]
+  },
+  {
+    "userName": "TreasureTrader",
+    "email": "treasuretrader@email.com",
+    "password": "Tr@desTr3asure",
+    "PhoneNumber": "022-555-6789",
+    "memberSince": "2022-09-05",
+    "location": "Queenstown, NZ",
+    "starRating": 4.7,
+    "userReviewsReceived": [
+      {
+        "userName": "CollectorsChoice",
+        "review": "Reliable seller with quality items.",
+        "rating": 5,
+        "date": "2022-11-18"
+      },
+      {
+        "userName": "VintageEnthusiast",
+        "review": "Great transaction, item as described.",
+        "rating": 5,
+        "date": "2023-02-28"
+      },
+      {
+        "userName": "RaritySeeker",
+        "review": "Pleasant to deal with, would buy again.",
+        "rating": 4,
+        "date": "2023-05-15"
+      }
+    ],
+    "currentBids": ["item890", "item234"],
+    "watchlist": ["item123", "item456", "item789"],
+    "favoriteSellers": ["CollectorsChoice", "AuctionPro87"]
+  },
+  {
+    "userName": "AuctionExplorer",
+    "email": "auctionexplorer@email.com",
+    "password": "Expl0reAuctions!",
+    "PhoneNumber": "021-555-7890",
+    "memberSince": "2023-03-10",
+    "location": "Blenheim, NZ",
+    "starRating": 4.5,
+    "userReviewsReceived": [
+      {
+        "userName": "TreasureTrader",
+        "review": "Good buyer, prompt payment.",
+        "rating": 5,
+        "date": "2023-05-22"
+      },
+      {
+        "userName": "CollectorsChoice",
+        "review": "Pleasant transaction, would sell to again.",
+        "rating": 4,
+        "date": "2023-08-10"
+      }
+    ],
+    "currentBids": ["item345", "item567"],
+    "watchlist": ["item678", "item890", "item234"],
+    "favoriteSellers": ["TreasureTrader", "VintageEnthusiast"]
+  },
+  {
+    "userName": "VintageTreasures",
+    "email": "vintagetreasures@email.com",
+    "password": "Tr3@suresV1nt",
+    "PhoneNumber": "027-555-8901",
+    "memberSince": "2022-07-18",
+    "location": "Timaru, NZ",
+    "starRating": 4.9,
+    "userReviewsReceived": [
+      {
+        "userName": "AuctionExplorer",
+        "review": "Exceptional items, carefully packaged.",
+        "rating": 5,
+        "date": "2022-10-05"
+      },
+      {
+        "userName": "TreasureTrader",
+        "review": "Outstanding seller, true to descriptions.",
+        "rating": 5,
+        "date": "2022-12-22"
+      },
+      {
+        "userName": "CollectorsChoice",
+        "review": "Fantastic vintage items, great communication.",
+        "rating": 5,
+        "date": "2023-03-08"
+      },
+      {
+        "userName": "VintageEnthusiast",
+        "review": "Superb quality, fast shipping.",
+        "rating": 5,
+        "date": "2023-05-30"
+      },
+      {
+        "userName": "RaritySeeker",
+        "review": "A pleasure to deal with, highly recommend!",
+        "rating": 5,
+        "date": "2023-08-15"
+      }
+    ],
+    "currentBids": ["item789", "item901"],
+    "watchlist": ["item123", "item456", "item567"],
+    "favoriteSellers": ["AuctionPro87", "CollectorsChoice", "TreasureTrader"]
+  },
+  {
+    "userName": "AntiqueBidder",
+    "email": "antiquebidder@email.com",
+    "password": "B1dAnt1ques!",
+    "PhoneNumber": "022-555-9012",
+    "memberSince": "2022-12-15",
+    "location": "Wanaka, NZ",
+    "starRating": 4.6,
+    "userReviewsReceived": [
+      {
+        "userName": "VintageTreasures",
+        "review": "Great buyer, smooth transaction.",
+        "rating": 5,
+        "date": "2023-02-08"
+      },
+      {
+        "userName": "AuctionExplorer",
+        "review": "Prompt payment, good communication.",
+        "rating": 4,
+        "date": "2023-05-12"
+      }
+    ],
+    "currentBids": ["item123", "item456"],
+    "watchlist": ["item789", "item234", "item678"],
+    "favoriteSellers": ["VintageTreasures", "TreasureTrader"]
+  },
+  {
+    "userName": "CollectiblesSeeker",
+    "email": "collectiblesseeker@email.com",
+    "password": "S33kC0ll3ct",
+    "PhoneNumber": "021-555-0123",
+    "memberSince": "2023-01-25",
+    "location": "Taupo, NZ",
+    "starRating": 4.7,
+    "userReviewsReceived": [
+      {
+        "userName": "AntiqueBidder",
+        "review": "Excellent buyer, would sell to again.",
+        "rating": 5,
+        "date": "2023-03-18"
+      },
+      {
+        "userName": "VintageTreasures",
+        "review": "Pleasant transaction, prompt payment.",
+        "rating": 5,
+        "date": "2023-06-22"
+      },
+      {
+        "userName": "AuctionExplorer",
+        "review": "Great communication, smooth process.",
+        "rating": 4,
+        "date": "2023-08-05"
+      }
+    ],
+    "currentBids": ["item567", "item890"],
+    "watchlist": ["item123", "item901", "item345"],
+    "favoriteSellers": ["VintageTreasures", "AntiqueBidder", "CollectorsChoice"]
+  },
+  {
+    "userName": "VintageVault",
+    "email": "vintagevault@email.com",
+    "password": "V@ultV1ntage",
+    "PhoneNumber": "027-555-1234",
+    "memberSince": "2022-08-12",
+    "location": "Oamaru, NZ",
+    "starRating": 4.8,
+    "userReviewsReceived": [
+      {
+        "userName": "CollectiblesSeeker",
+        "review": "Incredible selection of vintage items.",
+        "rating": 5,
+        "date": "2022-10-28"
+      },
+      {
+        "userName": "AntiqueBidder",
+        "review": "Outstanding seller, carefully packaged items.",
+        "rating": 5,
+        "date": "2023-01-15"
+      },
+      {
+        "userName": "TreasureTrader",
+        "review": "Exceptional quality, true to descriptions.",
+        "rating": 5,
+        "date": "2023-04-22"
+      },
+      {
+        "userName": "AuctionExplorer",
+        "review": "A pleasure to deal with, highly recommend!",
+        "rating": 5,
+        "date": "2023-07-10"
+      }
+    ],
+    "currentBids": ["item678", "item234"],
+    "watchlist": ["item456", "item789", "item567"],
+    "favoriteSellers": ["VintageTreasures", "CollectorsChoice", "TreasureTrader"]
+  },
+  {
+    "userName": "TreasureTrove",
+    "email": "treasuretrove@email.com",
+    "password": "Tr0v3Tr3@sure",
+    "PhoneNumber": "022-555-2345",
+    "memberSince": "2022-10-20",
+    "location": "Ashburton, NZ",
+    "starRating": 4.7,
+    "userReviewsReceived": [
+      {
+        "userName": "VintageVault",
+        "review": "Great selection, fair prices.",
+        "rating": 5,
+        "date": "2022-12-15"
+      },
+      {
+        "userName": "CollectiblesSeeker",
+        "review": "Reliable seller, items as described.",
+        "rating": 5,
+        "date": "2023-03-08"
+      },
+      {
+        "userName": "AntiqueBidder",
+        "review": "Excellent communication, fast shipping.",
+        "rating": 4,
+        "date": "2023-06-22"
+      }
+    ],
+    "currentBids": ["item789", "item567"],
+    "watchlist": ["item123", "item890", "item345"],
+    "favoriteSellers": ["VintageVault", "VintageTreasures"]
+  },
+  {
+    "userName": "AuctionAddict",
+    "email": "auctionaddict@email.com",
+    "password": "Add1ct3d2B1d",
+    "PhoneNumber": "021-555-3456",
+    "memberSince": "2023-02-28",
+    "location": "Cambridge, NZ",
+    "starRating": 4.5,
+    "userReviewsReceived": [
+      {
+        "userName": "TreasureTrove",
+        "review": "Good buyer, prompt payment.",
+        "rating": 5,
+        "date": "2023-04-15"
+      },
+      {
+        "userName": "VintageVault",
+        "review": "Pleasant transaction, would sell to again.",
+        "rating": 4,
+        "date": "2023-07-28"
+      }
+    ],
+    "currentBids": ["item345", "item901"],
+    "watchlist": ["item678", "item234", "item789"],
+    "favoriteSellers": ["TreasureTrove", "VintageVault"]
+  },
+  {
+    "userName": "CollectorsCorner",
+    "email": "collectorscorner@email.com",
+    "password": "C0rn3rC0llect",
+    "PhoneNumber": "027-555-4567",
+    "memberSince": "2022-09-15",
+    "location": "Hastings, NZ",
+    "starRating": 4.9,
+    "userReviewsReceived": [
+      {
+        "userName": "AuctionAddict",
+        "review": "Exceptional quality items, carefully packaged.",
+        "rating": 5,
+        "date": "2022-11-28"
+      },
+      {
+        "userName": "TreasureTrove",
+        "review": "Outstanding seller, true to descriptions.",
+        "rating": 5,
+        "date": "2023-02-10"
+      },
+      {
+        "userName": "VintageVault",
+        "review": "Fantastic collection, great communication.",
+        "rating": 5,
+        "date": "2023-05-22"
+      },
+      {
+        "userName": "CollectiblesSeeker",
+        "review": "Superb quality, fast shipping.",
+        "rating": 5,
+        "date": "2023-08-08"
+      }
+    ],
+    "currentBids": ["item123", "item678"],
+    "watchlist": ["item456", "item789", "item567"],
+    "favoriteSellers": ["VintageTreasures", "TreasureTrove", "VintageVault"]
+  },
+  {
+    "userName": "VintageVisionary",
+    "email": "vintagevisionary@email.com",
+    "password": "V1s10nV1ntage",
+    "PhoneNumber": "022-555-5678",
+    "memberSince": "2022-11-10",
+    "location": "Kaikoura, NZ",
+    "starRating": 4.6,
+    "userReviewsReceived": [
+      {
+        "userName": "CollectorsCorner",
+        "review": "Great items, smooth transaction.",
+        "rating": 5,
+        "date": "2023-01-25"
+      },
+      {
+        "userName": "AuctionAddict",
+        "review": "Reliable seller, items as described.",
+        "rating": 4,
+        "date": "2023-04-18"
+      },
+      {
+        "userName": "TreasureTrove",
+        "review": "Good communication, would buy from again.",
+        "rating": 5,
+        "date": "2023-07-05"
+      }
+    ],
+    "currentBids": ["item456", "item890"],
+    "watchlist": ["item123", "item789", "item234"],
+    "favoriteSellers": ["CollectorsCorner", "VintageVault"]
+  },
+  {
+    "userName": "AntiqueTreasurer",
+    "email": "antiquetreasurer@email.com",
+    "password": "Tr3@sureAnt1que",
+    "PhoneNumber": "021-555-6789",
+    "memberSince": "2022-07-28",
+    "location": "Greymouth, NZ",
+    "starRating": 4.8,
+    "userReviewsReceived": [
+      {
+        "userName": "VintageVisionary",
+        "review": "Exceptional antique selection, carefully packaged.",
+        "rating": 5,
+        "date": "2022-10-12"
+      },
+      {
+        "userName": "CollectorsCorner",
+        "review": "Outstanding seller, true to descriptions.",
+        "rating": 5,
+        "date": "2022-12-28"
+      },
+      {
+        "userName": "AuctionAddict",
+        "review": "Fantastic items, great communication.",
+        "rating": 5,
+        "date": "2023-03-15"
+      },
+      {
+        "userName": "TreasureTrove",
+        "review": "Superb quality, fast shipping.",
+        "rating": 5,
+        "date": "2023-06-22"
+      },
+      {
+        "userName": "VintageVault",
+        "review": "A pleasure to deal with, highly recommend!",
+        "rating": 4,
+        "date": "2023-08-10"
+      }
+    ],
+    "currentBids": ["item567", "item234"],
+    "watchlist": ["item123", "item456", "item678"],
+    "favoriteSellers": ["CollectorsCorner", "VintageVisionary", "VintageTreasures"]
+  },
+  {
+    "userName": "BidWinner",
+    "email": "bidwinner@email.com",
+    "password": "W1nB1ds2023",
+    "PhoneNumber": "027-555-7890",
+    "memberSince": "2023-01-08",
+    "location": "Westport, NZ",
+    "starRating": 4.7,
+    "userReviewsReceived": [
+      {
+        "userName": "AntiqueTreasurer",
+        "review": "Great buyer, prompt payment.",
+        "rating": 5,
+        "date": "2023-02-22"
+      },
+      {
+        "userName": "VintageVisionary",
+        "review": "Excellent communication, smooth transaction.",
+        "rating": 5,
+        "date": "2023-05-10"
+      },
+      {
+        "userName": "CollectorsCorner",
+        "review": "Reliable buyer, would sell to again.",
+        "rating": 4,
+        "date": "2023-08-18"
+      }
+    ],
+    "currentBids": ["item789", "item345"],
+    "watchlist": ["item567", "item901", "item234"],
+    "favoriteSellers": ["AntiqueTreasurer", "VintageVisionary"]
+  },
+  {
+    "userName": "CollectiblesConnoisseur",
+    "email": "collectiblesconnoisseur@email.com",
+    "password": "C0nn01ss3ur!",
+    "PhoneNumber": "022-555-8901",
+    "memberSince": "2022-08-22",
+    "location": "Whakatane, NZ",
+    "starRating": 4.9,
+    "userReviewsReceived": [
+      {
+        "userName": "BidWinner",
+        "review": "Exceptional collection, carefully curated.",
+        "rating": 5,
+        "date": "2022-11-05"
+      },
+      {
+        "userName": "AntiqueTreasurer",
+        "review": "Outstanding seller, true to descriptions.",
+        "rating": 5,
+        "date": "2023-01-18"
+      },
+      {
+        "userName": "VintageVisionary",
+        "review": "Fantastic items, great communication.",
+        "rating": 5,
+        "date": "2023-04-22"
+      },
+      {
+        "userName": "CollectorsCorner",
+        "review": "Superb quality, fast shipping.",
+        "rating": 5,
+        "date": "2023-07-08"
+      }
+    ],
+    "currentBids": ["item901", "item678"],
+    "watchlist": ["item123", "item456", "item789"],
+    "favoriteSellers": ["AntiqueTreasurer", "CollectorsCorner", "VintageTreasures"]
+  },
+  {
+    "userName": "VintageValue",
+    "email": "vintagevalue@email.com",
+    "password": "V@lu3V1ntage",
+    "PhoneNumber": "021-555-9012",
+    "memberSince": "2022-10-05",
+    "location": "Masterton, NZ",
+    "starRating": 4.6,
+    "userReviewsReceived": [
+      {
+        "userName": "CollectiblesConnoisseur",
+        "review": "Great selection at fair prices.",
+        "rating": 5,
+        "date": "2022-12-18"
+      },
+      {
+        "userName": "BidWinner",
+        "review": "Reliable seller, items as described.",
+        "rating": 5,
+        "date": "2023-03-05"
+      },
+      {
+        "userName": "AntiqueTreasurer",
+        "review": "Good communication, smooth transaction.",
+        "rating": 4,
+        "date": "2023-06-22"
+      }
+    ],
+    "currentBids": ["item123", "item456"],
+    "watchlist": ["item567", "item890", "item234"],
+    "favoriteSellers": ["CollectiblesConnoisseur", "AntiqueTreasurer"]
+  },
+  {
+    "userName": "TreasureFinder",
+    "email": "treasurefinder@email.com",
+    "password": "F1ndTr3@sure!",
+    "PhoneNumber": "027-555-0123",
+    "memberSince": "2022-12-20",
+    "location": "Levin, NZ",
+    "starRating": 4.7,
+    "userReviewsReceived": [
+      {
+        "userName": "VintageValue",
+        "review": "Great buyer, smooth transaction.",
+        "rating": 5,
+        "date": "2023-02-08"
+      },
+      {
+        "userName": "CollectiblesConnoisseur",
+        "review": "Prompt payment, excellent communication.",
+        "rating": 5,
+        "date": "2023-05-15"
+      },
+      {
+        "userName": "BidWinner",
+        "review": "Reliable buyer, would sell to again.",
+        "rating": 4,
+        "date": "2023-08-02"
+      }
+    ],
+    "currentBids": ["item789", "item890"],
+    "watchlist": ["item123", "item678", "item345"],
+    "favoriteSellers": ["VintageValue", "CollectiblesConnoisseur"]
+  },
+  {
+    "userName": "AuctionArtisan",
+    "email": "auctionartisan@email.com",
+    "password": "Art1s@nAuction",
+    "PhoneNumber": "022-555-1234",
+    "memberSince": "2023-03-05",
+    "location": "Feilding, NZ",
+    "starRating": 4.5,
+    "userReviewsReceived": [
+      {
+        "userName": "TreasureFinder",
+        "review": "Good seller, item as described.",
+        "rating": 5,
+        "date": "2023-05-18"
+      },
+      {
+        "userName": "VintageValue",
+        "review": "Pleasant transaction, would buy from again.",
+        "rating": 4,
+        "date": "2023-08-10"
+      }
+    ],
+    "currentBids": ["item567", "item234"],
+    "watchlist": ["item456", "item789", "item901"],
+    "favoriteSellers": ["TreasureFinder", "VintageValue"]
+  }
+]

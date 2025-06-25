@@ -50,8 +50,14 @@ async function setupDB(dbObject) {
     // Establish connection to MongoDB
     await dbObject.client.connect()
     // Get database and collection references
+<<<<<<< Updated upstream
     dbObject.db = dbObject.client.db(DATABASE_NAME)
     dbObject.collection = dbObject.db.collection(COLLECTION_NAME)
+=======
+    dbObject.db = dbObject.client.db(DATABASE_NAME);
+    dbObject.itemCollection = dbObject.db.collection(ITEM_COLLECTION_NAME);
+    dbObject.userCollection = dbObject.db.collection(USER_COLLECTION_NAME);
+>>>>>>> Stashed changes
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error)
     throw error
@@ -71,6 +77,7 @@ setupDB(dbObject)
 
 // ------------------------ SETH ------------------------ //
 
+<<<<<<< Updated upstream
 app.get('/api/item/:itemId', (req, resp) => {
   console.log(req.params)
   const itemID = req.params.itemId
@@ -79,6 +86,83 @@ app.get('/api/item/:itemId', (req, resp) => {
   console.log(itemFromDB)
   resp.send(itemFromDB)
 })
+=======
+app.get("/api/item/:itemId", async (req, resp) => {
+  const itemID = req.params.itemId;
+  if (!ObjectId.isValid(itemID)) {
+    // console.log(itemID);
+    return resp.status(400).json({ status: "error", message: "Invalid item ID format" });
+  }
+
+  const itemFromDB = await dbObject.itemCollection.findOne({ _id: new ObjectId(itemID) });
+  // console.log(itemFromDB);
+  resp.status(200).json(itemFromDB);
+});
+
+app.get("/api/user/:userName", async (req, resp) => {
+  const userName = req.params.userName;
+  // console.log(dbObject);
+
+  const userFromDB = await dbObject.userCollection.findOne({ userName: userName });
+  if (!userFromDB) {
+    return resp.status(404).json({ status: "error", message: "User not found" });
+  }
+
+  resp.status(200).json(userFromDB);
+});
+>>>>>>> Stashed changes
+
+app.get("/api/randomByField/:fieldName/:value/:number", async (req, resp) => {
+  const fieldName = req.params.fieldName;
+  const value = req.params.value;
+  const number = parseInt(req.params.number, 10);
+  if (isNaN(number) || number <= 0) {
+    return resp.status(400).json({ status: "error", message: "Invalid number parameter" });
+  }
+  if (!fieldName) {
+    return resp.status(400).json({ status: "error", message: "Field name is required" });
+  }
+  if (!value) {
+    return resp.status(400).json({ status: "error", message: "Value is required" });
+  }
+
+  // Try to convert value to number or boolean if possible
+  let matchValue = value;
+  if (!isNaN(Number(value))) {
+    matchValue = Number(value);
+  } else if (value === "true") {
+    matchValue = true;
+  } else if (value === "false") {
+    matchValue = false;
+  }
+  const objectsFromDB = await dbObject.itemCollection.aggregate([
+    { $match: { [fieldName]: matchValue } },
+    { $sample: { size: number } }
+  ]).toArray();
+
+  if (objectsFromDB.length === 0) {
+    return resp.status(404).json({ status: "error", message: "No items found" });
+  }
+  // console.log(objectsFromDB);
+  resp.status(200).json(objectsFromDB);
+});
+
+app.get("/api/random/:number", async (req, resp) => {
+  const number = parseInt(req.params.number, 10);
+  if (isNaN(number) || number <= 0) {
+    return resp.status(400).json({ status: "error", message: "Invalid number parameter" });
+  }
+
+  const objectsFromDB = await dbObject.itemCollection.aggregate([
+    { $sample: { size: number } }
+  ]).toArray();
+
+  if (objectsFromDB.length === 0) {
+    return resp.status(404).json({ status: "error", message: "No items found" });
+  }
+  // console.log(objectsFromDB);
+  resp.status(200).json(objectsFromDB);
+});
 
 // ---------------------- VALENTINE --------------------- //
 // WatchList: POST -add item to watchList
@@ -151,10 +235,17 @@ app.get('/test', (req, resp) => {
 })
 
 // Test POST endpoint to echo received data
+<<<<<<< Updated upstream
 app.post('/postTest', (req, resp) => {
   console.log(req.body)
   resp.status(200).json({ status: 'success', data: req.body })
 })
+=======
+app.post("/postTest", (req, resp) => {
+  // console.log(req.body);
+  resp.status(200).json({ status: "success", data: req.body });
+});
+>>>>>>> Stashed changes
 
 // Start the Express server
 app

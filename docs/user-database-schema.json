@@ -1,8 +1,18 @@
 {
-    "userName":"",
-    "email":"",
-    "password":"",
-    "PhoneNumber":"",
-    "currentBids": [],
-    "watchlist ": []
+  "userName": "",
+  "email": "",
+  "password": "",
+  "PhoneNumber": "",
+  "starRating": 0,
+  "userReviewsReceived": [
+    {
+      "userName": "",
+      "review": "",
+      "rating": 0,
+      "date": ""
+    }
+  ],
+  "currentBids": [],
+  "watchlist": [],
+  "favoriteSellers": []
 }
