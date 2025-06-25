@@ -88,12 +88,15 @@ app.post("/api/items/compare", async (req, resp) => {
    if (!Array.isArray(ids))  {
       return resp.status(400).json({ status: "error", message: "IDs must be an array" }); 
    }
+   if (ids.length === 0) {
+    return resp.status(400).json({ status: "error", message: "IDs array is empty" });
+  }
 
-   const ObjectIds = ids
+   const validObjectIds = ids
    .filter((id) => ObjectId.isValid(id))
    .map((id) => new ObjectId(id)); 
 
-   const items = await dbObject.itemCollection.find({ _id: { $in: ObjectIds } }).toArray(); 
+   const items = await dbObject.itemCollection.find({ _id: { $in: validObjectIds } }).toArray(); 
 
    resp.status(200).json(items);
   }catch(error){

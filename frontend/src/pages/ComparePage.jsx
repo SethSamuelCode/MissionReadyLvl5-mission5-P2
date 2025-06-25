@@ -6,34 +6,27 @@ import Footer from '../components/Footer';
 
 const Compare = () => {
   const [allItems, setAllItems] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
-  const [comparisonItems, setComparisonItems] = useState([]);
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:4000/api/items')
-      .then((res) => setAllItems(res.data))
-      .catch((err) => console.error('Error loading items:', err));
+    axios.get('http://localhost:4000/api/items')
+      .then(res => setAllItems(res.data))
+      .catch(err => console.error('Error loading all items:', err));
   }, []);
 
   useEffect(() => {
-    if (selectedIds.length === 2) {
-      axios
-        .post('http://localhost:4000/api/items/compare', { ids: selectedIds })
-        .then((res) => setComparisonItems(res.data))
-        .catch((err) => console.error('Compare fetch error:', err));
-    } else {
-      setComparisonItems([]);
+    if (selectedIds.length === 0) {
+      setItems([]);
+      return;
     }
+    axios
+      .post('http://localhost:4000/api/items/compare', { ids: selectedIds })
+      .then(res => setItems(res.data))
+      .catch(err => console.error('Compare fetch error:', err));
   }, [selectedIds]);
-
-  const handleCompareToggle = (itemId) => {
-    if (selectedIds.includes(itemId)) {
-      setSelectedIds(selectedIds.filter((id) => id !== itemId));
-    } else if (selectedIds.length < 2) {
-      setSelectedIds([...selectedIds, itemId]);
-    }
-  };
 
   const comparisonFields = [
     { label: 'Title', key: 'title' },
@@ -45,25 +38,38 @@ const Compare = () => {
     { label: 'Description', key: 'description' }
   ];
 
+  const handleSearch = () => {
+    const filtered = allItems.filter(item =>
+      item.title?.toLowerCase().includes(searchInput.toLowerCase()) ||
+      item.category?.toLowerCase().includes(searchInput.toLowerCase())
+    );
+    setSearchResults(filtered);
+    setSearchInput('');
+  };
+
   return (
-    <>
-      <Header />
-      <main className={styles.compareWrapper}>
-        <h1 className={styles.heading}>Comparison Table</h1>
+        <div className={styles.compareWrapper}> 
+      <Header />    
+      <h1 className={styles.heading}>Compare Items</h1>
 
-        {/* Search Bar */}
-        <div className={styles.searchRow}>
-          <input
-            type="text"
-            placeholder="Search product by name, Brand, categories"
-            className={styles.searchInput}
-          />
-          <button className={styles.addButton}>Add</button>
-        </div>
+      {/* Search */}    
+      <div className={styles.searchRow}>
+        <input
+          type="text"
+          placeholder="Search item by title or category"
+          className={styles.searchInput}
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <button className={styles.addButton} onClick={handleSearch}>
+          Add
+        </button>
+      </div>
 
-        {/* Selectable Item Cards */}
+      {/* Show search results (no cards shown by default) */}
+      {searchResults.length > 0 && (
         <div className={styles.selectionGrid}>
-          {allItems.map((item) => {
+          {searchResults.map(item => {
             const image = item.images_links?.[0];
             const isChecked = selectedIds.includes(item._id);
             return (
@@ -77,70 +83,58 @@ const Compare = () => {
                   <input
                     type="checkbox"
                     checked={isChecked}
-                    onChange={() => handleCompareToggle(item._id)}
                     disabled={!isChecked && selectedIds.length >= 2}
-                  />
-                  Compare
+                    onChange={() =>
+                      setSelectedIds(prev =>
+                        isChecked
+                          ? prev.filter(id => id !== item._id)
+                          : [...prev, item._id]
+                      )
+                    }
+                  /> Compare
                 </label>
               </div>
             );
           })}
         </div>
+      )}
 
-        {/* Selected Preview (above table) */}
-        <div className={styles.selectedItems}>
-          {comparisonItems.map((item) => (
-            <div key={item._id} className={styles.selectedCard}>
-              <img
-                src={item.images_links?.[0] || 'https://via.placeholder.com/100x70'}
-                alt={item.title}
-              />
-              <div className={styles.itemLocation}>{item.pickupLocation || 'Location N/A'}</div>
-              <div className={styles.itemClose}>
-                Closes {new Date(item.closingDate).toDateString()}
-              </div>
-              <div className={styles.itemTitle}>{item.title}</div>
-              <button
-                className={styles.removeBtn}
-                onClick={() => setSelectedIds(prev => prev.filter(id => id !== item._id))}
-              >
-                ✖
-              </button>
-            </div>
-          ))}
-        </div>
+      {/* Optional message */}
+      {selectedIds.length >= 2 && (
+        <p style={{ color: '#999', fontSize: '0.85rem' }}>
+          You can only compare 2 items at a time.
+        </p>
+      )}
 
-        {/* Comparison Table */}
-        {comparisonItems.length === 2 && (
-          <div className={styles.comparisonGrid}>
-            <div className={styles.leftColumn}>
-              {comparisonFields.map((field) => (
-                <div key={field.key} className={styles.fieldLabel}>
-                  {field.label}
-                </div>
-              ))}
-            </div>
-
-            {comparisonItems.map((item) => (
-              <div key={item._id} className={styles.itemColumn}>
-                <div className={styles.imageContainer}>
-                  <img
-                    src={item.images_links?.[0] || 'https://via.placeholder.com/200x150'}
-                    alt={item.title}
-                  />
-                </div>
-                {comparisonFields.map((field) => (
-                  <div key={field.key} className={styles.fieldValue}>
-                    {item[field.key] || 'N/A'}
-                  </div>
-                ))}
+      {/* Comparison Grid */}
+      {items.length === 2 && (
+        <div className={styles.comparisonGrid}>
+          <div className={styles.leftColumn}>
+            {comparisonFields.map(field => (
+              <div key={field.key} className={styles.fieldLabel}>
+                {field.label}
               </div>
             ))}
           </div>
-        )}
-      </main>
+          {items.map(item => (
+            <div key={item._id} className={styles.itemColumn}>
+              <div className={styles.imageContainer}>
+                <img
+                  src={item.images_links?.[0] || 'https://via.placeholder.com/200x150'}
+                  alt={item.title}
+                />
+              </div>
+              {comparisonFields.map(field => (
+                <div key={field.key} className={styles.fieldValue}>
+                  {item[field.key] || 'N/A'}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
       <Footer />
-    </>
+    </div>
   );
 };
 
