@@ -3,16 +3,8 @@
   "email": "",
   "password": "",
   "PhoneNumber": "",
-  "starRating": 0,
-  "userReviewsReceived": [
-    {
-      "userName": "",
-      "review": "",
-      "rating": 0,
-      "date": ""
-    }
-  ],
+  "memberSince": "",
+  "location": "",
   "currentBids": [],
-  "watchlist": [],
-  "favoriteSellers": []
+  "watchlist ": []
 }

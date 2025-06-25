@@ -272,45 +272,15 @@
 
 .productDetailsContainer {
   background-color: #b3e5fc;
-  border: 10px solid #007acd;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
 }
 
-.detailAndDescriptionTabs {
+.detailAndDescriptionTabs{
   display: flex;
   gap: 1rem;
   align-items: center;
-  justify-content: space-between;
-
-  .middleTab {
-    flex-grow: 1;
-  }
-  .clickTab {
-    flex-grow: 5;
-    text-align: center;
-    border-top: inset solid 3px #d8efff;
-    border-left: inset solid 3px #d8efff;
-    border-right: inset solid 3px #d8efff;
-    border-radius: 10px 10px 0px 0px;
-  }
-
-  p {
-    padding: 0.5rem 0;
-    cursor: pointer;
-    /* background-color: #e3f2fd; */
-    /* border-radius: 4px; */
-    /* transition: background-color 0.3s ease; */
-
-    &:hover {
-      background-color: #bbdefb;
-      border-radius: 10px 10px 0px 0px;
-    }
-  }
-}
-
-.activeTab {
-  border-radius: 10px 10px 0px 0px;
-  background: #007acd;
-  color: #fff;
+  justify-content: space-around;
 }
 
 .sellerContainer {
@@ -397,31 +367,6 @@
   border-radius: 8px;
 }
 
-.similarItemsList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-
-  .similarItem {
-    flex: 1 1 calc(33.333% - 1rem);
-    background-color: #e3f2fd;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    p {
-      margin-top: 0.5rem;
-      font-weight: bold;
-    }
-  }
-}
-
 .bidHistory {
   li {
     list-style-type: none;
@@ -440,5 +385,10 @@
   .shippingAndPaymentOptions {
     grid-column: 1;
     grid-row: auto;
+  }
+}
+
+  .sellerLogo {
+    margin: 0 auto;
   }
 }
