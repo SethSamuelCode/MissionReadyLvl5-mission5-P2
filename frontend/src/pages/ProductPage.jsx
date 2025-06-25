@@ -76,8 +76,21 @@ function ProductDetails({ condition, dimensions, weight, color, material, manufa
 
 // ---------------------- FUNCTIONS --------------------- //
 
-function changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription) {
+function changeShowDetailsOrDescription(
+  setShowDetailsOrDescription,
+  detailsOrDescription,
+  setProductTabClass,
+  setDescriptionTabClass
+) {
   setShowDetailsOrDescription(detailsOrDescription);
+
+  if (detailsOrDescription === "details") {
+    setProductTabClass(styles.activeTab);
+    setDescriptionTabClass("");
+  } else if (detailsOrDescription === "description") {
+    setProductTabClass("");
+    setDescriptionTabClass(styles.activeTab);
+  }
 }
 
 function handleClickSimilarItem(itemID, setItemID, navigate) {
@@ -128,6 +141,8 @@ export default function ProductPage() {
   const [itemCategory, setItemCategory] = useState("");
   const [similarItems, setSimilarItems] = useState([]);
   const [buyNowPrice, setBuyNowPrice] = useState(0);
+  const [productTabClass, setProductTabClass] = useState(styles.activeTab);
+  const [descriptionTabClass, setDescriptionTabClass] = useState("");
 
   const BACKEND_URL = "http://localhost:4000/api";
   const navigate = useNavigate();
@@ -392,30 +407,43 @@ export default function ProductPage() {
       <div className={styles.productDetailsAndDescription}>
         <div className={styles.detailAndDescriptionTabs}>
           <div
-            onClick={() => changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DETAILS)}>
-            <p>Product Details</p>
+            onClick={() =>
+              changeShowDetailsOrDescription(
+                setShowDetailsOrDescription,
+                detailsOrDescription.DETAILS,
+                setProductTabClass,
+                setDescriptionTabClass
+              )
+            }>
+            <p className={productTabClass}>Product Details</p>
           </div>
           <div
             onClick={() =>
-              changeShowDetailsOrDescription(setShowDetailsOrDescription, detailsOrDescription.DESCRIPTION)
+              changeShowDetailsOrDescription(
+                setShowDetailsOrDescription,
+                detailsOrDescription.DESCRIPTION,
+                setProductTabClass,
+                setDescriptionTabClass
+              )
             }>
-            <p>Product Description</p>
+            <p className={descriptionTabClass}>Product Description</p>
           </div>
         </div>
-
-        {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
-          <ProductDescription description={itemDescription} />
-        ) : null}
-        {showDetailsOrDescription === detailsOrDescription.DESCRIPTION ? (
-          <ProductDetails
-            condition={condition}
-            dimensions={dimensions}
-            weight={weight}
-            color={color}
-            material={material}
-            manufacturer={manufacturer}
-          />
-        ) : null}
+        <div className={styles.productDetailsContainer}>
+          {showDetailsOrDescription === detailsOrDescription.DETAILS ? (
+            <ProductDescription description={itemDescription} />
+          ) : null}
+          {showDetailsOrDescription === detailsOrDescription.DESCRIPTION ? (
+            <ProductDetails
+              condition={condition}
+              dimensions={dimensions}
+              weight={weight}
+              color={color}
+              material={material}
+              manufacturer={manufacturer}
+            />
+          ) : null}
+        </div>
       </div>
       <div className={styles.sellerContainer}>
         <div className={styles.sellerInfo}>
