@@ -406,7 +406,8 @@ export default function ProductPage() {
       </div>
       <div className={styles.productDetailsAndDescription}>
         <div className={styles.detailAndDescriptionTabs}>
-          <div
+          <div 
+            className={styles.clickTab}
             onClick={() =>
               changeShowDetailsOrDescription(
                 setShowDetailsOrDescription,
@@ -417,7 +418,9 @@ export default function ProductPage() {
             }>
             <p className={productTabClass}>Product Details</p>
           </div>
+          <div className={styles.middleTab}></div>
           <div
+            className={styles.clickTab}
             onClick={() =>
               changeShowDetailsOrDescription(
                 setShowDetailsOrDescription,

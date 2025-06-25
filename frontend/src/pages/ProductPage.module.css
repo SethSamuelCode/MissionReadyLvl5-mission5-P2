@@ -265,10 +265,22 @@
   display: flex;
   gap: 1rem;
   align-items: center;
-  justify-content: space-around;
-
+  justify-content: space-between;
+  
+  .middleTab{
+    flex-grow: 1;
+  }
+  .clickTab{
+    flex-grow: 5;
+    text-align: center;
+    border-top: inset solid 3px #D8EFFF;
+    border-left:inset solid 3px #D8EFFF;
+    border-right:inset solid 3px #D8EFFF;
+    border-radius: 10px 10px 0px 0px;
+  }
+  
   p {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0;
     cursor: pointer;
     /* background-color: #e3f2fd; */
     /* border-radius: 4px; */
