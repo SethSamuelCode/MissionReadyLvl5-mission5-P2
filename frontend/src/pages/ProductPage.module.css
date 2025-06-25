@@ -7,7 +7,7 @@
   font-size: 10rem;
 }
 
-.locationBar{
+.locationBar {
   padding-left: 20px;
 }
 
@@ -20,16 +20,16 @@
   background-color: #f0e6ff;
 }
 
-.title{
+.title {
   font-family: Arial;
-font-size: 28px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
-.section1{
-  display:flex;
+.section1 {
+  display: flex;
   gap: 2rem;
 }
 
@@ -42,8 +42,8 @@ line-height: normal;
   flex-grow: 2;
   max-height: 70vh;
   max-width: auto;
-  
-  img{
+
+  img {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -58,7 +58,7 @@ line-height: normal;
   padding: 1rem;
   background-color: #e8f5e9;
 
-  img{
+  img {
     height: 100%;
     max-height: 10vh;
     object-fit: contain;
@@ -86,11 +86,44 @@ line-height: normal;
   background-color: #fff9c4;
 }
 
-.watchListAndCompareButton {
+.closingInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+
+  p{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.watchListAndCompareButtons {
   display: flex;
   gap: 1rem;
   align-items: center;
   background-color: #bbdefb;
+  justify-content: center;
+  /* align-self: stretch; */
+
+  button {
+    display: flex;
+    width: 218px;
+    height: 50px;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: #f9af2c;
+    border-radius: 4px;
+    color: var(--Yellow-4, #943900);
+    font-family: Arial;
+    font-size: medium;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 }
 
 .bidBox {
@@ -137,7 +170,7 @@ line-height: normal;
   border-radius: 8px;
 }
 
-.detailAndDescriptionTabs{
+.detailAndDescriptionTabs {
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -158,7 +191,7 @@ line-height: normal;
 
 .sellerContainer {
   display: flex;
-  flex:1;
+  flex: 1;
   gap: 2rem;
   padding: 1.5rem;
   background-color: #c5cae9;
@@ -171,17 +204,16 @@ line-height: normal;
   flex: 1;
   background-color: #dcedc8;
 }
-.sellerLogo{
-
-  flex:1;
+.sellerLogo {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
-.sellerCircle{
+.sellerCircle {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -190,7 +222,6 @@ line-height: normal;
   align-items: center;
   justify-content: center;
 }
-
 
 .questionsAndAnswers {
   grid-column: 1 / -1;
@@ -201,8 +232,8 @@ line-height: normal;
 }
 
 .similarItems {
-display: flex;
-flex-direction: column;
+  display: flex;
+  flex-direction: column;
   padding: 1.5rem;
   background-color: #f5f5f5;
   border: 1px solid #e0e0e0;

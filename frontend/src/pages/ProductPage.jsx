@@ -5,6 +5,8 @@ import { useParams, useNavigate, Link } from "react-router";
 import { use, useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import watchListIcon from "../assets/images/watchlistIcon.svg";
+import compareIcon from "../assets/images/compareIcon.svg";
 
 // ------------------ HELPER COMPONENTS ------------------ //
 
@@ -102,6 +104,7 @@ export default function ProductPage() {
   const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
   const [itemCategory, setItemCategory] = useState("");
   const [similarItems, setSimilarItems] = useState([]);
+  const [buyNowPrice, setBuyNowPrice] = useState(0);
 
   const BACKEND_URL = "http://localhost:4000/api";
   const navigate = useNavigate();
@@ -109,7 +112,6 @@ export default function ProductPage() {
   // ----------------------- USE EFFECTS ---------------------- //
   useEffect(() => {
     async function setItemFromDB() {
-
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
       const tempFromDB = await resp.json();
       setImageUrl(tempFromDB.images_links[0]);
@@ -130,6 +132,7 @@ export default function ProductPage() {
       setSellerUsername(tempFromDB.owner);
       setQuestionsAndAnswers(tempFromDB.questionsAndAnswers || []); // Set questions and answers if available
       setItemCategory(tempFromDB.category); // Set item category if available
+      setBuyNowPrice(tempFromDB.buy_now_price || 0); // Set buy now price if available
 
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
@@ -214,18 +217,22 @@ export default function ProductPage() {
 
   // ------------ START OF THE RETURN STATEMENT ----------- //
   if (!loaded) {
-    return <div>
-      <Header/>
-    <div className={styles.loading}>Loading...</div>; // Show loading state while data is being fetched
-      <Footer/>
-    </div>
+    return (
+      <div>
+        <Header />
+        <div className={styles.loading}>Loading...</div>; // Show loading state while data is being fetched
+        <Footer />
+      </div>
+    );
   }
   return (
     <div className={styles.container}>
       <Header />
       <div className={styles.locationBar}>
-        <Link to="/" className={styles.homeLink}>
-          Home 
+        <Link
+          to="/"
+          className={styles.homeLink}>
+          Home
         </Link>
         <span> / </span>
         <Link to={`/${itemCategory}`}>{itemCategory}</Link>
@@ -252,10 +259,62 @@ export default function ProductPage() {
         </div>
         <div className={styles.sidebar}>
           <div className={styles.title}>{title}</div>
-            <p>Time Left: {timeLeftInAuction}</p>
-          <div className={styles.watchListAndCompareButton}>
-            <button>❤️ Add to Watchlist</button>
-            <button>🔄 Compare</button>
+          <div className={styles.closingInfo}>
+            <p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none">
+                <path
+                  d="M14.375 3.75C17.5244 3.75 20.5449 5.00111 22.7719 7.22811C24.9989 9.4551 26.25 12.4756 26.25 15.625C26.25 18.7744 24.9989 21.7949 22.7719 24.0219C20.5449 26.2489 17.5244 27.5 14.375 27.5C11.2256 27.5 8.2051 26.2489 5.97811 24.0219C3.75111 21.7949 2.5 18.7744 2.5 15.625C2.5 12.4756 3.75111 9.4551 5.97811 7.22811C8.2051 5.00111 11.2256 3.75 14.375 3.75ZM14.375 5C11.5571 5 8.85456 6.11942 6.86199 8.11199C4.86942 10.1046 3.75 12.8071 3.75 15.625C3.75 18.4429 4.86942 21.1454 6.86199 23.138C8.85456 25.1306 11.5571 26.25 14.375 26.25C15.7703 26.25 17.1519 25.9752 18.441 25.4412C19.7301 24.9073 20.9014 24.1246 21.888 23.138C22.8746 22.1514 23.6573 20.9801 24.1912 19.691C24.7252 18.4019 25 17.0203 25 15.625C25 12.8071 23.8806 10.1046 21.888 8.11199C19.8954 6.11942 17.1929 5 14.375 5ZM13.75 8.75H15V15.525L20.875 18.9125L20.25 20L13.75 16.25V8.75Z"
+                  fill="#2F2C28"
+                />
+              </svg>
+              Closes:{" "}
+              {new Date(auctionClosingTime)
+                .toLocaleDateString("en-US", {
+                  weekday: "long",
+                  day: "numeric",
+                  month: "long",
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
+                })
+                .replace(" at", "")}
+            </p>
+            <p>
+              {" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                fill="none">
+                <path
+                  d="M14.375 3.75C17.5244 3.75 20.5449 5.00111 22.7719 7.22811C24.9989 9.4551 26.25 12.4756 26.25 15.625C26.25 18.7744 24.9989 21.7949 22.7719 24.0219C20.5449 26.2489 17.5244 27.5 14.375 27.5C11.2256 27.5 8.2051 26.2489 5.97811 24.0219C3.75111 21.7949 2.5 18.7744 2.5 15.625C2.5 12.4756 3.75111 9.4551 5.97811 7.22811C8.2051 5.00111 11.2256 3.75 14.375 3.75ZM14.375 5C11.5571 5 8.85456 6.11942 6.86199 8.11199C4.86942 10.1046 3.75 12.8071 3.75 15.625C3.75 18.4429 4.86942 21.1454 6.86199 23.138C8.85456 25.1306 11.5571 26.25 14.375 26.25C15.7703 26.25 17.1519 25.9752 18.441 25.4412C19.7301 24.9073 20.9014 24.1246 21.888 23.138C22.8746 22.1514 23.6573 20.9801 24.1912 19.691C24.7252 18.4019 25 17.0203 25 15.625C25 12.8071 23.8806 10.1046 21.888 8.11199C19.8954 6.11942 17.1929 5 14.375 5ZM13.75 8.75H15V15.525L20.875 18.9125L20.25 20L13.75 16.25V8.75Z"
+                  fill="#2F2C28"
+                />
+              </svg>
+              Time Left: {timeLeftInAuction}
+            </p>
+          </div>
+          <div className={styles.watchListAndCompareButtons}>
+            <button>
+              <img
+                src={watchListIcon}
+                alt="Watchlist Icon"
+              />{" "}
+              Add to Watchlist
+            </button>
+            <button>
+              <img
+                src={compareIcon}
+                alt="Compare Icon"
+              />{" "}
+              Compare
+            </button>
           </div>
           <div className={styles.bidBox}>
             <h3>Current Bid: ${currentBid}</h3>
@@ -263,13 +322,7 @@ export default function ProductPage() {
               type="number"
               placeholder="Enter bid amount"
             />
-            <button
-              style={{
-                marginTop: "10px",
-                display: "block",
-              }}>
-              Place Bid
-            </button>
+            <button>Place Bid</button>
           </div>
           <div className={styles.bidHistory}>
             <h4>Recent Bids</h4>
@@ -365,8 +418,14 @@ export default function ProductPage() {
         <h3>Similar Items You May Like</h3>
         <div className={styles.similarItemsList}>
           {similarItems.map((item) => (
-            <div key={item._id} className={styles.similarItem} onClick={() => handleClickSimilarItem(item._id.toString(), setItemID, navigate)}>
-              <img src={item.images_links[0]} alt={item.Title} />
+            <div
+              key={item._id}
+              className={styles.similarItem}
+              onClick={() => handleClickSimilarItem(item._id.toString(), setItemID, navigate)}>
+              <img
+                src={item.images_links[0]}
+                alt={item.Title}
+              />
               <h4>{item.Title}</h4>
               <p>Price: ${item.Current_Bid_price}</p>
             </div>
@@ -374,6 +433,6 @@ export default function ProductPage() {
         </div>
       </div>
       <Footer />
-    </div>    
+    </div>
   );
 }
