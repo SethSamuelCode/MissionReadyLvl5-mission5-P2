@@ -2,10 +2,20 @@ require("dotenv").config();
 const fs = require("fs");
 const { MongoClient } = require("mongodb"); 
 
-
 const CONNECTION_STRING = process.env.CONNECTION_STRING;
 const DATABASE_NAME = process.env.DATABASE_NAME;
 const ITEM_COLLECTION_NAME = process.env.ITEM_COLLECTION_NAME;  
+
+function toCamelCase(obj){
+    const newObj = {};
+    for(let key in obj){
+        const camelKey = key
+        .replace(/_([a-z])/g, (_, letter) => letter.toUpperCase())
+        .replace(/^([A-Z])/, (_, letter) => letter.toLowerCase());
+      newObj[camelKey] = obj[key];
+    }
+    return newObj;
+}
 
 async function seedDB(){
     const client = new MongoClient(CONNECTION_STRING);
@@ -16,7 +26,8 @@ async function seedDB(){
         const collection = db.collection(ITEM_COLLECTION_NAME);
 
         const rawData = fs.readFileSync("../mongodb/SampleAuctionData.json", "utf-8");
-        const products = JSON.parse(rawData)
+        const products = JSON.parse(rawData).map(toCamelCase);
+        console.log("🔍 Sample cleaned product:", products[0]);
 
         await collection.deleteMany({});
         const result = await collection.insertMany(products);

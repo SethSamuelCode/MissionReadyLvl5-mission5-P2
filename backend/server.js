@@ -143,3 +143,5 @@ app.post("/postTest", (req, resp) => {
   console.log(req.body);
   resp.status(200).json({ status: "success", data: req.body });
 });
+
+startServer();
