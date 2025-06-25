@@ -287,12 +287,14 @@
   .middleTab{
     flex-grow: 1;
   }
+
   .clickTab{
     flex-grow: 5;
     text-align: center;
-    border-top: inset solid 3px #D8EFFF;
+    box-shadow: inset 2px 2px 0 2px #D8EFFF, inset -2px 2px 0 2px #D8EFFF;
+    /* border-top: inset solid 3px #D8EFFF;
     border-left:inset solid 3px #D8EFFF;
-    border-right:inset solid 3px #0295ffa9;
+    border-right:inset solid 3px #0295ffa9; */
     border-radius: 10px 10px 0px 0px;
   }
   
