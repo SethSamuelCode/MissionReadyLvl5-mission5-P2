@@ -50,9 +50,9 @@ async function setupDB(dbObject) {
     // Establish connection to MongoDB
     await dbObject.client.connect()
     // Get database and collection references
-    dbObject.db = dbObject.client.db(DATABASE_NAME);
-    dbObject.itemCollection = dbObject.db.collection(ITEM_COLLECTION_NAME);
-    dbObject.userCollection = dbObject.db.collection(USER_COLLECTION_NAME);
+    dbObject.db = dbObject.client.db(DATABASE_NAME)
+    dbObject.itemCollection = dbObject.db.collection(ITEM_COLLECTION_NAME)
+    dbObject.userCollection = dbObject.db.collection(USER_COLLECTION_NAME)
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error)
     throw error
@@ -73,29 +73,35 @@ setupDB(dbObject)
 
 // ------------------------ SETH ------------------------ //
 
-app.get("/api/item/:itemId", async (req, resp) => {
-  const itemID = req.params.itemId;
+app.get('/api/item/:itemId', async (req, resp) => {
+  const itemID = req.params.itemId
   if (!ObjectId.isValid(itemID)) {
-    console.log(itemID);
-    return resp.status(400).json({ status: "error", message: "Invalid item ID format" });
+    console.log(itemID)
+    return resp
+      .status(400)
+      .json({ status: 'error', message: 'Invalid item ID format' })
   }
 
-  const itemFromDB = await dbObject.itemCollection.findOne({ _id: new ObjectId(itemID) });
+  const itemFromDB = await dbObject.itemCollection.findOne({
+    _id: new ObjectId(itemID),
+  })
   console.log(itemFromDB)
-  resp.status(200).json(itemFromDB);
-});
+  resp.status(200).json(itemFromDB)
+})
 
-app.get("/api/user/:userName", async (req, resp) => {
-  const userName = req.params.userName;
+app.get('/api/user/:userName', async (req, resp) => {
+  const userName = req.params.userName
   console.log(dbObject)
 
-  const userFromDB = await dbObject.userCollection.findOne({ userName: userName });
+  const userFromDB = await dbObject.userCollection.findOne({
+    userName: userName,
+  })
   if (!userFromDB) {
-    return resp.status(404).json({ status: "error", message: "User not found" });
+    return resp.status(404).json({ status: 'error', message: 'User not found' })
   }
 
-  resp.status(200).json(userFromDB);
-});
+  resp.status(200).json(userFromDB)
+})
 
 // ---------------------- VALENTINE --------------------- //
 // WatchList: POST -add item to watchList
@@ -168,17 +174,10 @@ app.get('/test', (req, resp) => {
 })
 
 // Test POST endpoint to echo received data
-<<<<<<< Updated upstream
 app.post('/postTest', (req, resp) => {
-  console.log(req.body)
+  // console.log(req.body);
   resp.status(200).json({ status: 'success', data: req.body })
 })
-=======
-app.post("/postTest", (req, resp) => {
-  // console.log(req.body);
-  resp.status(200).json({ status: "success", data: req.body });
-});
->>>>>>> Stashed changes
 
 // Start the Express server
 app
