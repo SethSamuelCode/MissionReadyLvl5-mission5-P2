@@ -112,7 +112,7 @@ app.post('/api/watchlist', async (req, res) => {
   }
 })
 // WatchList: GET - retrieve all items for a user
-app.get('api/watchlist', async (req, res) => {
+app.get('/api/watchlist', async (req, res) => {
   const userId = req.query.userId
   if (!userId) {
     return res.status(400).json({ error: 'userId is required' })
@@ -126,7 +126,7 @@ app.get('api/watchlist', async (req, res) => {
         { $match: { userId } },
         {
           $lookup: {
-            from: 'auctionItems',
+            from: 'auctions',
             localField: 'itemId',
             foreignField: '_id',
             as: 'itemDetails',
@@ -136,7 +136,7 @@ app.get('api/watchlist', async (req, res) => {
       ])
       .toArray()
 
-    res.join(items)
+    res.json(items)
   } catch (error) {
     console.error('Error fetching watchlist:', error)
     res.status(500).json({ error: 'Server error' })
