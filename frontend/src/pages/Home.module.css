@@ -1,15 +1,14 @@
 .pageContainer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .searchFilterContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
 }
 
 .searchBar {
@@ -130,24 +129,21 @@ select {
   grid-column: span 1;
 }
 
-
 .catergoryListContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    gap: 300px;
-    padding: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 300px;
+  padding: 50px;
 }
 .catergoryListContainer ul {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: auto;
-    
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: auto;
 }
 .catergoryListContainer li {
-    display: flex;
-    list-style: none;
-    width: 150px;
-    
+  display: flex;
+  list-style: none;
+  width: 150px;
 }
