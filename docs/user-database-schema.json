@@ -1,10 +1,23 @@
 {
-  "userName": "",
-  "email": "",
-  "password": "",
-  "PhoneNumber": "",
-  "memberSince": "",
-  "location": "",
-  "currentBids": [],
-  "watchlist ": []
+
+    "userName":"",
+    "email":"",
+    "password":"",
+    "PhoneNumber":"",
+    "memberSince":"",
+    "location":"",
+    "starRating": 0,
+    "userReviewsReceived":[
+        {
+            "userName": "",
+            "review": "",
+            "rating": 0,
+            "date": ""
+        }
+    ],
+    "currentBids": [],
+    "watchlist": [],
+    "favoriteSellers": []
+
 }
+
