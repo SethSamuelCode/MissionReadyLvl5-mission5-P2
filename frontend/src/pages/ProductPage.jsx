@@ -498,10 +498,10 @@ export default function ProductPage() {
           <div
             className={styles.sellerCircle}
             style={{ backgroundColor: randomColorForLogo(sellerUsername, sellerMemberSince) }}>
-            <p>{sellerUsername.toString()[0]}</p>
+            <p className={styles.sellerInitial} >{sellerUsername.toString()[0]}</p>
           </div>
-          <p>{sellerUsername}</p>
-          <p>sellerRating: {sellerRating}</p>
+          <p className={styles.sellerName} >{sellerUsername}</p>
+          <p className={styles.sellerRating} >seller rating: {sellerRating}</p>
         </div>
       </div>
       <div className={styles.questionsAndAnswers}>
