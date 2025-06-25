@@ -317,11 +317,11 @@ export default function ProductPage() {
             </button>
           </div>
           <div className={styles.bidBox}>
-            <h3>Current Bid: ${currentBid}</h3>
-            <input
-              type="number"
-              placeholder="Enter bid amount"
-            />
+            <p>Buy Now</p>
+            <p>${buyNowPrice}</p>
+            <button>Buy Now</button>
+            <p>Current Bid:</p>
+            <p>${currentBid}</p>
             <button>Place Bid</button>
           </div>
           <div className={styles.bidHistory}>
