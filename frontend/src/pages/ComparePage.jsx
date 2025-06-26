@@ -60,6 +60,9 @@ const Compare = () => {
           className={styles.searchInput}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
+          onKeyDown={(e) =>{if (e.key === 'Enter'){handleSearch();
+          }
+        }}  
         />
         <button className={styles.addButton} onClick={handleSearch}>
           Add
@@ -67,37 +70,42 @@ const Compare = () => {
       </div>
 
       {/* Show search results (no cards shown by default) */}
-      {searchResults.length > 0 && (
-        <div className={styles.selectionGrid}>
-          {searchResults.map(item => {
-            const image = item.images_links?.[0];
-            const isChecked = selectedIds.includes(item._id);
-            return (
-              <div key={item._id} className={styles.card}>
-                <img
-                  src={image || 'https://via.placeholder.com/200x150?text=No+Image'}
-                  alt={item.title}
-                />
-                <p><strong>{item.title || 'No Title'}</strong></p>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={isChecked}
-                    disabled={!isChecked && selectedIds.length >= 2}
-                    onChange={() =>
-                      setSelectedIds(prev =>
-                        isChecked
-                          ? prev.filter(id => id !== item._id)
-                          : [...prev, item._id]
-                      )
-                    }
-                  /> Compare
-                </label>
-              </div>
-            );
-          })}
+      {searchResults.length === 0 && (
+  <p className={styles.noResults}>No matching items found. Try another keyword.</p>
+)}
+
+{searchResults.length > 0 && (
+  <div className={styles.selectionGrid}>
+    {searchResults.map(item => {
+      const image = item.images_links?.[0];
+      const isChecked = selectedIds.includes(item._id);
+      return (
+        <div key={item._id} className={styles.card}>
+          <img
+            src={image || 'https://via.placeholder.com/200x150?text=No+Image'}
+            alt={item.title}
+          />
+          <p><strong>{item.title || 'No Title'}</strong></p>
+          <label>
+            <input
+              type="checkbox"
+              checked={isChecked}
+              disabled={!isChecked && selectedIds.length >= 2}
+              onChange={() =>
+                setSelectedIds(prev =>
+                  isChecked
+                    ? prev.filter(id => id !== item._id)
+                    : [...prev, item._id]
+                )
+              }
+            /> Compare
+          </label>
         </div>
-      )}
+      );
+    })}
+  </div>
+)}
+
 
       {/* Optional message */}
       {selectedIds.length >= 2 && (

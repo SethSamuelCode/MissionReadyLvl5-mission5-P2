@@ -6,16 +6,19 @@ const CONNECTION_STRING = process.env.CONNECTION_STRING;
 const DATABASE_NAME = process.env.DATABASE_NAME;
 const ITEM_COLLECTION_NAME = process.env.ITEM_COLLECTION_NAME;  
 
-function toCamelCase(obj){
-    const newObj = {};
-    for(let key in obj){
-        const camelKey = key
-        .replace(/_([a-z])/g, (_, letter) => letter.toUpperCase())
-        .replace(/^([A-Z])/, (_, letter) => letter.toLowerCase());
-      newObj[camelKey] = obj[key];
+function toCamelCase(obj) {
+    if (Array.isArray(obj)) {
+      return obj.map(v => toCamelCase(v));
+    } else if (obj !== null && obj.constructor === Object) {
+      return Object.entries(obj).reduce((acc, [key, val]) => {
+        const camelKey = key.replace(/_([a-z])/g, g => g[1].toUpperCase())
+                            .replace(/^[A-Z]/, l => l.toLowerCase());
+        acc[camelKey] = toCamelCase(val);
+        return acc;
+      }, {});
     }
-    return newObj;
-}
+    return obj;
+  }  
 
 async function seedDB(){
     const client = new MongoClient(CONNECTION_STRING);
