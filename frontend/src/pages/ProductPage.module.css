@@ -276,7 +276,7 @@
   border-radius: 8px;
 }
 
-.detailAndDescriptionTabs{
+.detailAndDescriptionTabs {
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -388,7 +388,6 @@
   }
 }
 
-  .sellerLogo {
-    margin: 0 auto;
-  }
+.sellerLogo {
+  margin: 0 auto;
 }
