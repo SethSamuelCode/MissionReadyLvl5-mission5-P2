@@ -2,16 +2,16 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import ProductPage from './pages/ProductPage'
 import Page404 from './pages/Page404'
+import Watchlist from './pages/Watchlist'
 function App() {
-
-
   return (
     <>
-     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/item/:ParamItemID' element={<ProductPage />} />
-      <Route path='*' element={<Page404 />} />
-     </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/item/:ParamItemID" element={<ProductPage />} />
+        <Route path="*" element={<Page404 />} />
+        <Route path="/watchlist" element={<Watchlist />} />
+      </Routes>
     </>
   )
 }
