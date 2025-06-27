@@ -325,15 +325,15 @@
   border-radius: 8px;
   width: 100%;
 
-  > p {
+  > p{
     color: #000;
 
-    /* h2 */
-    font-family: Arial;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+/* h2 */
+font-family: Arial;
+font-size: 24px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
   }
 }
 
@@ -359,13 +359,13 @@
     justify-content: space-between;
     text-wrap: nowrap;
 
-    color: var(--Grey-06, #65605d);
-    /* Body Text 1 */
-    font-family: Arial;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    color: var(--Grey-06, #65605D);
+/* Body Text 1 */
+font-family: Arial;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
   }
   a {
     display: grid;
@@ -377,11 +377,11 @@
     align-items: center;
     border-bottom: 1px solid #65605d;
 
-    color: var(--Blue-06, #4854d3);
-    font-family: Roboto;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
+    color: var(--Blue-06, #4854D3);
+font-family: Roboto;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
 
     span:nth-child(3) {
       text-align: right;
