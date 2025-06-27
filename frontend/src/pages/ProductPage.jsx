@@ -257,7 +257,7 @@ export default function ProductPage() {
     return (
       <div>
         <Header />
-        <div className={styles.loading}>Loading...</div>; // Show loading state while data is being fetched
+        <div className={styles.loading}>Loading...</div>; {/* Show loading state while data is being fetched */}
         <Footer />
       </div>
     );
@@ -379,11 +379,11 @@ export default function ProductPage() {
                     <li key={bid.userName + bid.Bid}>
                       <p className={styles.bidHistoryLine}>
                         <span className={styles.bidPrefix}>{prefix()} </span>
-                        <div
+                        <span
                           className={styles.biderLogo}
                           style={{ backgroundColor: randomColorForLogo(bid.userName, bid.date) }}>
                           {bid.userName[0]}
-                        </div>{" "}
+                        </span>{" "}
                         {bid.userName}: ${bid.Bid}
                       </p>
                     </li>
