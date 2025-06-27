@@ -11,8 +11,7 @@ function toCamelCase(obj) {
       return obj.map(v => toCamelCase(v));
     } else if (obj !== null && obj.constructor === Object) {
       return Object.entries(obj).reduce((acc, [key, val]) => {
-        const camelKey = key.replace(/_([a-z])/g, g => g[1].toUpperCase()) //Then I clear any old data with deleteMany({})
-        // and reload fresh items using insertMany(products) — so every time we reseed, we’re working with clean and consistent records
+        const camelKey = key.replace(/_([a-z])/g, g => g[1].toUpperCase())
                             .replace(/^[A-Z]/, l => l.toLowerCase());
         acc[camelKey] = toCamelCase(val);
         return acc;
