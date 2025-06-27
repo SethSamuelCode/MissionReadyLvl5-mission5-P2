@@ -488,20 +488,47 @@ export default function ProductPage() {
         </div>
       </div>
       <div className={styles.sellerContainer}>
-        <div className={styles.sellerInfo}>
-          <h3>{sellerUsername}</h3>
-          <p>Rating: ⭐⭐⭐⭐⭐ ({sellerRating} )</p>
-          <p>Member since {sellerMemberSince}</p>
-          <p>Located in {sellerLocation}</p>
-        </div>
-        <div className={styles.sellerLogo}>
-          <div
-            className={styles.sellerCircle}
-            style={{ backgroundColor: randomColorForLogo(sellerUsername, sellerMemberSince) }}>
-            <p>{sellerUsername.toString()[0]}</p>
+        <p>About the seller</p>
+        <div className={styles.innerSellerContainer}>
+          <div className={styles.sellerInfo}>
+            <p>
+              <span> Location:</span> <span></span> <span>{sellerLocation}</span>
+            </p>
+            <p>
+              <span> Member since:</span> <span></span> <span>{sellerMemberSince}</span>
+            </p>
+            
+              <Link>
+                <span>View sellers Other listings</span>
+                <span></span>
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="12"
+                      height="22"
+                      viewBox="0 0 12 22"
+                      fill="none">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M11.5229 12.1665L2.30425 21.5L0 19.167L8.0665 11L0 2.83297L2.30425 0.5L11.5229 9.83352C11.8284 10.1429 12 10.5625 12 11C12 11.4375 11.8284 11.8571 11.5229 12.1665Z"
+                        fill="#4854D3"
+                      />
+                    </svg>
+                  </span>
+            </Link>
+
+            
           </div>
-          <p>{sellerUsername}</p>
-          <p>sellerRating: {sellerRating}</p>
+          <div className={styles.sellerLogo}>
+            <div
+              className={styles.sellerCircle}
+              style={{ backgroundColor: randomColorForLogo(sellerUsername, sellerMemberSince) }}>
+              <p className={styles.sellerInitial}>{sellerUsername.toString()[0]}</p>
+            </div>
+            <p className={styles.sellerName}>{sellerUsername}</p>
+            <p className={styles.sellerRating}>seller rating: {sellerRating}</p>
+          </div>
         </div>
       </div>
       <div className={styles.questionsAndAnswers}>
