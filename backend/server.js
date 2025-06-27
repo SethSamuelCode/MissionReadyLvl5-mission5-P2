@@ -69,6 +69,25 @@ setupDB(dbObject);
 
 // ------------------------ KERRY ----------------------- //
 
+app.get("/api/items", async (req, res) => {
+  try {
+    const allItems = await dbObject.itemCollection.find({}).toArray();
+
+// Preserve underscores in keys while lowercasing
+const jsonString = JSON.stringify(allItems).replace(
+  /"([\w_]+)"\s*:/g,
+  (_, key) => `"${key.toLowerCase()}":`
+);
+
+const normalizedItems = JSON.parse(jsonString);
+
+res.status(200).json({ status: "success", data: normalizedItems });
+  } catch (error) {
+    console.error("Error fetching items:", error);
+    res.status(500).json({ status: "error", message: "Internal server error" });
+  }
+});
+
 // ------------------------ SETH ------------------------ //
 
 app.get("/api/item/:itemId", async (req, resp) => {
@@ -93,6 +112,7 @@ app.get("/api/user/:userName", async (req, resp) => {
   }
 
   resp.status(200).json(userFromDB);
+  
 });
 
 // ---------------------- VALENTINE --------------------- //
