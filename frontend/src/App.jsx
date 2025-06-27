@@ -1,9 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import ProductPage from './pages/ProductPage'
+import ComparePage from './pages/ComparePage' 
+
 import Page404 from './pages/Page404'
 function App() {
-
 
   return (
     <>
@@ -11,6 +12,7 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/item/:ParamItemID' element={<ProductPage />} />
       <Route path='*' element={<Page404 />} />
+      <Route path='/compare' element = {<ComparePage/>}></Route>  
      </Routes>
     </>
   )

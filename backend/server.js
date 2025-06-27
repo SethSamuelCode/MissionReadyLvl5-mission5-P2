@@ -10,6 +10,7 @@ const PORT = process.env.SERVER_LISTEN_PORT; // Port from environment
 const assert = require("node:assert/strict"); // Assertion utility for debugging
 const { MongoClient, ObjectId } = require("mongodb"); // MongoDB client
 
+
 // --------------------- MIDDLEWARES -------------------- //
 
 const morgan = require("morgan"); // HTTP request logger
@@ -40,7 +41,7 @@ const USER_COLLECTION_NAME = process.env.USER_COLLECTION_NAME;
 
 const dbObject = {};
 
-async function setupDB(dbObject) {
+async function setupDB() {
   try {
     // Create new MongoDB client instance
     const client = new MongoClient(CONNECTION_STRING);
@@ -57,8 +58,21 @@ async function setupDB(dbObject) {
   }
 }
 
-// Initialize database connection
-setupDB(dbObject);
+// Start server only after DB connects
+async function startServer() {
+  try {
+    await setupDB(); //waiting until DB is fully ready
+    console.log("✅ MongoDB connected");
+    
+    app.listen(PORT, () => {
+      console.log(`🚀 Server is listening at http://localhost:${PORT}`);  
+    });
+    
+  } catch (error) {
+    console.error("Failed to start server:", error);
+    process.exit(1); //exit with failure
+  }
+}
 
 // use database as dbObject.itemCollection.METHOD()
 // use database as dbObject.userCollection.METHOD()
@@ -66,6 +80,40 @@ setupDB(dbObject);
 // ---------------------- FUNCTIONS --------------------- //
 
 // ------------------------ CESS ------------------------ //
+//compare items by multiple IDs
+app.post("/api/items/compare", async (req, resp) => {
+  try{
+   const { ids} = req.body;
+
+   if (!Array.isArray(ids))  {
+      return resp.status(400).json({ status: "error", message: "IDs must be an array" }); 
+   }
+   if (ids.length === 0) {
+    return resp.status(400).json({ status: "error", message: "IDs array is empty" });
+  }
+
+   const validObjectIds = ids
+   .filter((id) => ObjectId.isValid(id))
+   .map((id) => new ObjectId(id)); 
+
+   const items = await dbObject.itemCollection.find({ _id: { $in: validObjectIds } }).toArray(); 
+
+   resp.status(200).json(items);
+  }catch(error){
+    console.error("Compare error:", error); 
+    resp.status(500).json({ status: "error", message: "Something went wrong." });    
+   }  
+});
+
+app.get("/api/items", async (req, res) => {
+  try {
+    const allItems = await dbObject.itemCollection.find({}).toArray();
+    res.status(200).json(allItems);
+  } catch (error) {
+    console.error("Error fetching all items:", error);
+    res.status(500).json({ status: "error", message: "Failed to load items" });
+  }
+});
 
 // ------------------------ KERRY ----------------------- //
 
@@ -162,11 +210,4 @@ app.post("/postTest", (req, resp) => {
   resp.status(200).json({ status: "success", data: req.body });
 });
 
-// Start the Express server
-app
-  .listen(PORT, () => {
-    console.log(`server is listening at http://localhost:${PORT}`);
-  })
-  .on("error", (error) => {
-    console.log("server error !!!!", error);
-  });
+startServer();
