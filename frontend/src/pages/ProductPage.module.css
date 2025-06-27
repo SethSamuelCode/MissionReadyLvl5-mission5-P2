@@ -225,13 +225,17 @@
 }
 
 .bidHistoryLine {
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
-  gap: 2rem;
 
-  .bidPrefix {
-    min-width: 2em;
+  span:first-child {
+    max-width: 3em;
+    /* background-color: red; */
   }
+
+  /* gap: 2rem; */
 }
 
 .biderLogo {
@@ -241,6 +245,12 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
+
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .shippingAndPaymentOptions {
