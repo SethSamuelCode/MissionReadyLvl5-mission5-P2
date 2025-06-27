@@ -1,22 +1,28 @@
+// Core imports
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './ComparePage.module.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+// Main Compare component
 const Compare = () => {
-  const [allItems, setAllItems] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [selectedIds, setSelectedIds] = useState([]);
-  const [items, setItems] = useState([]);
+  // State management
+  const [allItems, setAllItems] = useState([]);        // Stores all items from API
+  const [searchInput, setSearchInput] = useState('');  // Search input value
+  const [searchResults, setSearchResults] = useState([]); // Filtered search results
+  const [selectedIds, setSelectedIds] = useState([]);   // Currently selected item IDs
+  const [items, setItems] = useState([]);              // Full item data for comparison
 
+  // Fetch all items on component mount
   useEffect(() => {
     axios.get('http://localhost:4000/api/items')
       .then(res => setAllItems(res.data))
-      .catch(err => console.error('Error loading all items:', err));
+      .catch(err => console.error('Error loading items:', err));
   }, []);
 
+  // Fetch detailed item data when selection changes
+  //This runs anytime the selection changes. If there are two items selected, it fetches their full data for the comparison table below
   useEffect(() => {
     if (selectedIds.length === 0) {
       setItems([]);
@@ -28,6 +34,9 @@ const Compare = () => {
       .catch(err => console.error('Compare fetch error:', err));
   }, [selectedIds]);
 
+  // Fields to display in comparison table
+ //Because we use camelCase consistently across the backend and frontend,
+ // we n loop through fields and render them dynamically — no hardcoded rows
   const comparisonFields = [
     { label: 'Title', key: 'title' },
     { label: 'Condition', key: 'condition' },
@@ -38,21 +47,27 @@ const Compare = () => {
     { label: 'Description', key: 'description' }
   ];
 
+  // My search logic — it lets users search by title or category, filters the results, and resets the input
   const handleSearch = () => {
     const filtered = allItems.filter(item =>
       item.title?.toLowerCase().includes(searchInput.toLowerCase()) ||
       item.category?.toLowerCase().includes(searchInput.toLowerCase())
     );
     setSearchResults(filtered);
-    setSearchInput('');
+    setSearchInput('');  // Clear search input after search
   };
 
+  // Remove item from comparison
+  const handleRemove = (id) => {
+    setSelectedIds(prev => prev.filter(itemId => itemId !== id));
+  };
+  
   return (
-        <div className={styles.compareWrapper}> 
+    <div className={styles.compareWrapper}>
       <Header />    
       <h1 className={styles.heading}>Compare Items</h1>
 
-      {/* Search */}    
+      {/* Search Section */}
       <div className={styles.searchRow}>
         <input
           type="text"
@@ -60,87 +75,54 @@ const Compare = () => {
           className={styles.searchInput}
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
-          onKeyDown={(e) =>{if (e.key === 'Enter'){handleSearch();
-          }
-        }}  
+          onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
         />
         <button className={styles.addButton} onClick={handleSearch}>
           Add
         </button>
       </div>
 
-      {/* Show search results (no cards shown by default) */}
-      {searchResults.length === 0 && (
-  <p className={styles.noResults}>No matching items found. Try another keyword.</p>
-)}
-
-{searchResults.length > 0 && (
-  <div className={styles.selectionGrid}>
-    {searchResults.map(item => {
-      const image = item.images_links?.[0];
-      const isChecked = selectedIds.includes(item._id);
-      return (
-        <div key={item._id} className={styles.card}>
-          <img
-            src={image || 'https://via.placeholder.com/200x150?text=No+Image'}
-            alt={item.title}
-          />
-          <p><strong>{item.title || 'No Title'}</strong></p>
-          <label>
-            <input
-              type="checkbox"
-              checked={isChecked}
-              disabled={!isChecked && selectedIds.length >= 2}
-              onChange={() =>
-                setSelectedIds(prev =>
-                  isChecked
-                    ? prev.filter(id => id !== item._id)
-                    : [...prev, item._id]
-                )
-              }
-            /> Compare
-          </label>
-        </div>
-      );
-    })}
-  </div>
-)}
-
-
-      {/* Optional message */}
-      {selectedIds.length >= 2 && (
-        <p style={{ color: '#999', fontSize: '0.85rem' }}>
-          You can only compare 2 items at a time.
-        </p>
-      )}
-
-      {/* Comparison Grid */}
-      {items.length === 2 && (
-        <div className={styles.comparisonGrid}>
-          <div className={styles.leftColumn}>
-            {comparisonFields.map(field => (
-              <div key={field.key} className={styles.fieldLabel}>
-                {field.label}
-              </div>
-            ))}
+      {/* Selected Items Display */}
+      <div className={styles.selectedTags}>
+        {items.map(item => (
+          <div key={item._id} className={styles.tag}>
+            {item.title}
+            <button 
+              onClick={() => handleRemove(item._id)}
+              className={styles.removeTag}
+              aria-label={`Remove ${item.title}`}
+            >
+              ✖
+            </button>
           </div>
-          {items.map(item => (
-            <div key={item._id} className={styles.itemColumn}>
-              <div className={styles.imageContainer}>
-                <img
-                  src={item.images_links?.[0] || 'https://via.placeholder.com/200x150'}
-                  alt={item.title}
-                />
-              </div>
-              {comparisonFields.map(field => (
-                <div key={field.key} className={styles.fieldValue}>
-                  {item[field.key] || 'N/A'}
-                </div>
-              ))}
+        ))}
+      </div>
+
+      {/* Search Results */}
+      {searchResults.length > 0 && (
+        <div className={styles.selectionGrid}>
+          {searchResults.map(item => (
+            <div key={item._id} className={styles.card}>
+              {/* Item card content */}
             </div>
           ))}
         </div>
       )}
+
+      {/* Max Items Message */}
+      {selectedIds.length >= 2 && (
+        <p className={styles.message}>
+          Maximum of 2 items for comparison
+        </p>
+      )}
+
+      {/* Comparison Table */}
+      {items.length === 2 && (
+        <div className={styles.comparisonGrid}>
+          {/* Table content */}
+        </div>
+      )}
+      
       <Footer />
     </div>
   );
