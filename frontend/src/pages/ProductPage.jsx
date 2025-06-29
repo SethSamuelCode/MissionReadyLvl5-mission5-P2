@@ -551,7 +551,7 @@ export default function ProductPage() {
         </div>
       </div>
       <div className={styles.similarItems}>
-        <h3>Similar Items You May Like</h3>
+        <p className={styles.similarTitle}>Similar Items You May Like</p>
         <div className={styles.similarItemsList}>
           {similarItems.map((item) => (
             <div

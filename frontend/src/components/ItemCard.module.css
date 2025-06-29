@@ -7,21 +7,21 @@
   cursor: pointer;
   gap: 0.5rem;
   img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 8px;
-    }
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+  }
 }
 
 .bottom {
-    display: flex;
+  display: flex;
   flex-direction: column;
   /* justify-content: flex-start; */
   /* align-items: center; */
   text-align: left;
   width: 100%;
-
+  /* location and closing info */
   p {
     color: var(--Grey-07, #44413d);
     /* Body Text 2 */
@@ -32,37 +32,38 @@
     line-height: normal;
   }
 
+  /* item title */
   p:nth-child(2) {
     font-size: 18px;
-    margin: .25em 0;
-    color: var(--Grey-07, #44413D);
-/* Body Text 1 */
-font-family: Arial;
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    margin: 0.25em 0;
+    color: var(--Grey-07, #44413d);
+    /* Body Text 1 */
+    font-family: Arial;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 
-  /* this is a more specific selector then selecting the class name */
+  /* buy now words */
   p:nth-child(3) {
     font-size: 12px;
-    color: var(--Grey-07, #44413D);
-/* Body Text 4 */
-font-family: Arial;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    color: var(--Grey-07, #44413d);
+    /* Body Text 4 */
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
-
+  /* dollar value */
   p:nth-child(4) {
     margin: 0 0;
     font-family: Arial;
-font-size: 20px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 }
 
@@ -82,7 +83,7 @@ line-height: normal;
 .locationAndClosing {
   display: flex;
   justify-content: space-between;
-    align-items: center;
+  align-items: center;
   width: 100%;
   gap: 0.5rem;
 }
