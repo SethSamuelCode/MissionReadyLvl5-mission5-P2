@@ -8,8 +8,13 @@ import Footer from "../components/Footer";
 import watchListIcon from "../assets/images/watchlistIcon.svg";
 import compareIcon from "../assets/images/compareIcon.svg";
 import ItemCard from "../components/itemCard";
+
 // ------------------ HELPER COMPONENTS ------------------ //
 
+/**
+ * Renders the product description section
+ * @param {string} description - The product description text
+ */
 function ProductDescription({ description }) {
   return (
     <>
@@ -18,6 +23,13 @@ function ProductDescription({ description }) {
   );
 }
 
+/**
+ * Generates a random color for seller avatars based on username and join date
+ * Uses XOR operation to create a consistent but random-looking color
+ * @param {string} username - The seller's username
+ * @param {string} joinDate - The date the seller joined
+ * @returns {string} A hex color code
+ */
 function randomColorForLogo(username, joinDate) {
   const colors = [
     "#FF5733",
@@ -40,6 +52,11 @@ function randomColorForLogo(username, joinDate) {
     }, 0) % colors.length;
   return colors[index];
 }
+
+/**
+ * Renders the product details section with all specifications
+ * @param {Object} props - Product specifications
+ */
 function ProductDetails({ condition, dimensions, weight, color, material, manufacturer }) {
   return (
     <>
@@ -75,6 +92,10 @@ function ProductDetails({ condition, dimensions, weight, color, material, manufa
 
 // ---------------------- FUNCTIONS --------------------- //
 
+/**
+ * Handles switching between product details and description tabs
+ * Updates the UI state and styling accordingly
+ */
 function changeShowDetailsOrDescription(
   setShowDetailsOrDescription,
   detailsOrDescription,
@@ -92,17 +113,32 @@ function changeShowDetailsOrDescription(
   }
 }
 
+/**
+ * Handles navigation when a similar item is clicked
+ * @param {string} itemID - The ID of the clicked item
+ * @param {Function} setItemID - State setter for current item ID
+ * @param {Function} navigate - React Router navigate function
+ */
 function handleClickSimilarItem(itemID, setItemID, navigate) {
   // Navigate to the product page of the clicked similar item
   navigate(`/item/${itemID}`);
   setItemID(itemID);
 }
 
-// ---------------------- COMPONENT --------------------- //
-// This is the main component for the Product Page
+// ---------------------- MAIN COMPONENT --------------------- //
+
+/**
+ * ProductPage Component
+ * Displays detailed information about a product including:
+ * - Product images and carousel
+ * - Auction details (current bid, time left)
+ * - Product specifications
+ * - Seller information
+ * - Q&A section
+ * - Similar items
+ */
 export default function ProductPage() {
-  // This object is used to switch between product details and product description
-  // It is used in the ProductPage component to toggle between the two views
+  // --- Constants and Enums ---
   const detailsOrDescription = {
     DETAILS: "details",
     DESCRIPTION: "description",
@@ -113,7 +149,8 @@ export default function ProductPage() {
   // ----------------------- DEFINES ---------------------- //
 
   const { ParamItemID } = useParams();
-  const [itemID, setItemID] = useState(ParamItemID); // Get the item ID from the URL parameters
+  const [itemID, setItemID] = useState(ParamItemID);
+  // State for product details
   const [imageUrl, setImageUrl] = useState();
   const [itemImages, setItemImages] = useState([]);
   const [title, setTitle] = useState();
@@ -121,6 +158,8 @@ export default function ProductPage() {
   const [auctionClosingTime, setActionClosingTime] = useState(new Date("January 01, 2000"));
   const [timeLeftInAuction, setTimeLeftInAuction] = useState();
   const [bidHistory, setBidHistory] = useState([]);
+
+  // State for product specifications
   const [shippingOptions, setShippingOptions] = useState();
   const [paymentOptions, setPaymentOptions] = useState();
   const [showDetailsOrDescription, setShowDetailsOrDescription] = useState(detailsOrDescription.DETAILS);
@@ -131,10 +170,14 @@ export default function ProductPage() {
   const [color, setColor] = useState("");
   const [material, setMaterial] = useState("");
   const [manufacturer, setManufacturer] = useState("");
+
+  // State for seller information
   const [sellerUsername, setSellerUsername] = useState("");
   const [sellerRating, setSellerRating] = useState("");
   const [sellerLocation, setSellerLocation] = useState("");
   const [sellerMemberSince, setSellerMemberSince] = useState("");
+
+  // UI state
   const [loaded, setLoaded] = useState(false);
   const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
   const [itemCategory, setItemCategory] = useState("");
@@ -146,7 +189,9 @@ export default function ProductPage() {
   const BACKEND_URL = "http://localhost:4000/api";
   const navigate = useNavigate();
 
-  // ----------------------- USE EFFECTS ---------------------- //
+  // --------------------- USE EFFECTS --------------------- //
+
+  // Fetch item details when itemID changes
   useEffect(() => {
     async function setItemFromDB() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
@@ -203,6 +248,7 @@ export default function ProductPage() {
     setSellerInfoFromDB();
   }, [sellerUsername]);
 
+  // Update auction time remaining every second
   useEffect(() => {
     const timer = setInterval(() => {
       const msLeft = auctionClosingTime - new Date();
@@ -231,6 +277,7 @@ export default function ProductPage() {
     return () => clearInterval(timer);
   }, [auctionClosingTime]);
 
+  // Fetch similar items when category changes
   useEffect(() => {
     // Fetch similar items based on the category of the current item
 
@@ -255,19 +302,25 @@ export default function ProductPage() {
     setSimilarItemsVar();
   }, [itemCategory]);
 
-  // ------------ START OF THE RETURN STATEMENT ----------- //
+  // ------------ PAGE RENDER LOGIC STARTS HERE ----------- //
+
+  // Show loading state while data is being fetched
   if (!loaded) {
     return (
       <div>
         <Header />
-        <div className={styles.loading}>Loading...</div>; {/* Show loading state while data is being fetched */}
+        <div className={styles.loading}>Loading...</div>;
         <Footer />
       </div>
     );
   }
+
+  // ---------------------- MAIN PAGE --------------------- //
+
   return (
     <div className={styles.container}>
       <Header />
+      {/* -------------------- LOCATION BAR -------------------- */}
       <div className={styles.locationBar}>
         <Link
           to="/"
@@ -277,12 +330,18 @@ export default function ProductPage() {
         <span> / </span>
         <Link to={`/${itemCategory}`}>{itemCategory}</Link>
       </div>
+
+      {/* -------------------- SECTION ONE -------------------- */}
+
       <div className={styles.section1}>
+        {/* --------------------- MAIN IMAGE --------------------- */}
         <div className={styles.images}>
           <img
             src={imageUrl}
             alt="Random product"
           />
+          {/* ---------------------- CAROUSEL ---------------------- */}
+
           <div className={styles.carouselContainer}>
             {itemImages.map((image, index) => (
               <div
@@ -297,6 +356,7 @@ export default function ProductPage() {
             ))}
           </div>
         </div>
+        {/* ---------------------- SIDEBAR ---------------------- */}
         <div className={styles.sidebar}>
           <div className={styles.title}>{title}</div>
           <div className={styles.closingInfo}>
@@ -340,6 +400,7 @@ export default function ProductPage() {
               Time Left: {timeLeftInAuction}
             </p>
           </div>
+          {/* -------------------- WATCHLIST AND COMPARE BUTTONS -------------------- */}
           <div className={styles.watchListAndCompareButtons}>
             <button>
               <img
@@ -356,6 +417,7 @@ export default function ProductPage() {
               Compare
             </button>
           </div>
+          {/* -------------------- BIDDING BUTTONS AND INFORMATION -------------------- */}
           <div className={styles.bidBox}>
             <p className={styles.bidLable}>Buy Now</p>
             <p className={styles.bidPrice}>${buyNowPrice}</p>
@@ -364,6 +426,7 @@ export default function ProductPage() {
             <p className={styles.bidPrice}>${currentBid}</p>
             <button>Place Bid</button>
           </div>
+          {/* -------------------- BIDDING HISTORY -------------------- */}
           <div className={styles.bidHistory}>
             <ul>
               {/* {console.log(bidHistory)} */}
@@ -397,7 +460,9 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
+      {/* -------------------- SECTION TWO -------------------- */}
       <div className={styles.section2}>
+        {/* ---------------------- PRODUCT DETAILS AND DESCRIPTION ---------- */}
         <div className={styles.productDetailsAndDescription}>
           <div className={styles.detailAndDescriptionTabs}>
             <div
@@ -442,6 +507,7 @@ export default function ProductPage() {
             ) : null}
           </div>
         </div>
+        {/* ---------------------- SHIPPING AND PAYMENT SIDEBAR ---------------------- */}
         <div className={styles.sidebar2}>
           <div className={styles.shippingAndPaymentOptions}>
             <div className={styles.shippingAndPickup}>
@@ -492,6 +558,8 @@ export default function ProductPage() {
         </div>
       </div>
       <div className={styles.sellerContainer}>
+        {/* ------------------ ABOUT THE SELLER ------------------ */}
+
         <p>About the seller</p>
         <div className={styles.innerSellerContainer}>
           <div className={styles.sellerInfo}>
@@ -521,7 +589,7 @@ export default function ProductPage() {
                 </svg>
               </span>
             </Link>
-            <button className={styles.addToFavoriteButton} >
+            <button className={styles.addToFavoriteButton}>
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -537,6 +605,7 @@ export default function ProductPage() {
               Add to Favorite Seller
             </button>
           </div>
+          {/* ------------------ SELLER LOGO ------------------ */}
           <div className={styles.sellerLogo}>
             <div
               className={styles.sellerCircle}
@@ -548,6 +617,7 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
+      {/* ------------------ QUESTIONS AND ANSWERS ------------------ */}
       <div className={styles.questionsAndAnswers}>
         <h3 className={styles.questionsTitle}>Questions & Answers</h3>
         <div className={styles.questionsList}>
@@ -576,6 +646,7 @@ export default function ProductPage() {
           <button className={styles.askButton}>Ask Question</button>
         </div>
       </div>
+      {/* ------------------ SIMILAR ITEMS ------------------ */}
       <div className={styles.similarItems}>
         <p className={styles.similarTitle}>Similar Items You May Like</p>
         <div className={styles.similarItemsList}>
