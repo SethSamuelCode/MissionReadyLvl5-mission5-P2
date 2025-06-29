@@ -150,7 +150,7 @@ This is a full-stack auction platform application that mimics TradeMe's function
 - Includes data seeding capabilities for development and testing
 
 ## 🤝 Contributions
-* [seth](https://github.com/SethSamuelCode)
 * [cess](https://github.com/Cess-stack)
-* [valentine](https://github.com/valentine-ncube)
 * [kerry](https://github.com/LuCinemax)
+* [seth](https://github.com/SethSamuelCode)
+* [valentine](https://github.com/valentine-ncube)
