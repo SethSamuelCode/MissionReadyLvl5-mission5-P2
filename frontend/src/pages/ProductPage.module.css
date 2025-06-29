@@ -520,28 +520,23 @@
 }
 
 .similarItemsList {
-  display: flex;
-  flex-wrap: wrap;
+  
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
+  list-style-type: none;
+  padding: 0;
 
-  .similarItem {
-    flex: 1 1 calc(33.333% - 1rem);
+  /* .similarItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     background-color: #e3f2fd;
-    padding: 1rem;
     border-radius: 8px;
-    text-align: center;
+    padding: 1rem;
+    cursor: pointer;
 
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    p {
-      margin-top: 0.5rem;
-      font-weight: bold;
-    }
-  }
+  } */
 }
 
 .bidHistory {

@@ -7,7 +7,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import watchListIcon from "../assets/images/watchlistIcon.svg";
 import compareIcon from "../assets/images/compareIcon.svg";
-
+import ItemCard from "../components/itemCard";
 // ------------------ HELPER COMPONENTS ------------------ //
 
 function ProductDescription({ description }) {
@@ -558,12 +558,7 @@ export default function ProductPage() {
               key={item._id}
               className={styles.similarItem}
               onClick={() => handleClickSimilarItem(item._id.toString(), setItemID, navigate)}>
-              <img
-                src={item.images_links[0]}
-                alt={item.Title}
-              />
-              <h4>{item.Title}</h4>
-              <p>Price: ${item.Current_Bid_price}</p>
+              <ItemCard item={item} />
             </div>
           ))}
         </div>

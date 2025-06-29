@@ -1,0 +1,88 @@
+.itemCardContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--Grey-04, #d9d9d9);
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  gap: 0.5rem;
+  img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+}
+
+.bottom {
+    display: flex;
+  flex-direction: column;
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+  text-align: left;
+  width: 100%;
+
+  p {
+    color: var(--Grey-07, #44413d);
+    /* Body Text 2 */
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  p:nth-child(2) {
+    font-size: 18px;
+    margin: .25em 0;
+    color: var(--Grey-07, #44413D);
+/* Body Text 1 */
+font-family: Arial;
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+  }
+
+  /* this is a more specific selector then selecting the class name */
+  p:nth-child(3) {
+    font-size: 12px;
+    color: var(--Grey-07, #44413D);
+/* Body Text 4 */
+font-family: Arial;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+  }
+
+  p:nth-child(4) {
+    margin: 0 0;
+    font-family: Arial;
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+}
+
+.buyNowText {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  p:nth-child(1) {
+    color: var(--Grey-07, #44413d);
+    /* Body Text 4 */
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+  }
+}
+.locationAndClosing {
+  display: flex;
+  justify-content: space-between;
+    align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
