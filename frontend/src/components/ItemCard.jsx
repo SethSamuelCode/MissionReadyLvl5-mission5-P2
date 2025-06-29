@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./itemCard.module.css";
+import styles from "./ItemCard.module.css";
 
 export default function ItemCard({ item }) {
   return (

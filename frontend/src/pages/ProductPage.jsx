@@ -7,7 +7,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import watchListIcon from "../assets/images/watchlistIcon.svg";
 import compareIcon from "../assets/images/compareIcon.svg";
-import ItemCard from "../components/itemCard";
+import ItemCard from "../components/ItemCard";
 
 // ------------------ HELPER COMPONENTS ------------------ //
 

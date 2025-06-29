@@ -1,0 +1,40 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: front.Dockerfile
+    ports:
+      - 8080:80
+
+  backend:
+    build:
+      context: backend
+      dockerfile: back.Dockerfile
+    depends_on:
+      - mongo
+    env_file:
+      - ./backend/.env
+    ports:
+      - 4000:4000
+  mongo:
+    image: mongo
+    restart: always
+    env_file:
+      - ./MongoDB/.env
+    volumes:
+      - mongo_storage:/data/db
+    ports:
+      - 27017:27017
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    env_file:
+      - ./MongoDB/.env
+
+
+
+volumes:
+  mongo_storage:
