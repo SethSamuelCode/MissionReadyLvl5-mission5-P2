@@ -151,6 +151,9 @@ export default function ProductPage() {
     async function setItemFromDB() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
       const tempFromDB = await resp.json();
+      if (!tempFromDB) {
+        navigate("/404"); // Navigate to 404 page if item not found
+      }
       setImageUrl(tempFromDB.images_links[0]);
       setItemImages(tempFromDB.images_links);
       setTitle(tempFromDB.Title);
