@@ -27,7 +27,7 @@ function ProductDescription({ description }) {
  * Generates a random color for seller avatars based on username and join date
  * Uses XOR operation to create a consistent but random-looking color
  * @param {string} username - The seller's username
- * @param {string} joinDate - The date the seller joined
+ * @param {any} joinDate - The date the seller joined
  * @returns {string} A hex color code
  */
 function randomColorForLogo(username, joinDate) {
