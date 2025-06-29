@@ -534,21 +534,30 @@ export default function ProductPage() {
         </div>
       </div>
       <div className={styles.questionsAndAnswers}>
-        <h3>Questions & Answers</h3>
+        <h3 className={styles.questionsTitle}>Questions & Answers</h3>
         <div className={styles.questionsList}>
           {questionsAndAnswers.length !== 0 ? (
             questionsAndAnswers.map((qa, index) => (
               <div key={index}>
-                <p>
-                  <strong>Q: {qa.question}</strong>
-                </p>
-                <p>A: {qa.answer}</p>
+                <p className={styles.question}>
+                  {qa.question} <span>:Q</span>
+                </p> 
+                <p className={styles.answer}> <span>A: </span> {qa.answer}</p>
               </div>
             ))
           ) : (
             <p>No questions have been asked yet.</p>
           )}
         </div>
+        <div className={styles.questionBar}>
+          <input
+            type="text"
+            placeholder="Type your question here..."
+            className={styles.questionInput}
+          />
+          <button className={styles.askButton}>Ask Question</button>
+        </div>
+
       </div>
       <div className={styles.similarItems}>
         <p className={styles.similarTitle}>Similar Items You May Like</p>

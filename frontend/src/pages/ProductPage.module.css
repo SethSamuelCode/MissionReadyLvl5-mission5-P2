@@ -499,9 +499,15 @@
   gap: 1.5rem;
 }
 
-.shippingAndPaymentOptions {
+.questionsTitle {
+  color: var(--Grey-07, #44413d);
+  /* h2 */
+  font-family: Arial;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
-
 .questionsAndAnswers {
   grid-column: 1 / -1;
   padding: 1.5rem;
@@ -510,6 +516,75 @@
   border-radius: 8px;
 }
 
+.questionsList {
+}
+
+.question,
+.answer {
+  margin: 0.5rem auto;
+  border: solid 1px #65605d;
+  background-color: white;
+  border-radius: 18px;
+  padding: 0.5rem;
+  max-width: 80%;
+
+  color: var(--Grey-06, #65605d);
+  /* Body Text 1 */
+  font-family: Arial;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.question {
+  text-align: right;
+}
+
+.answer {
+  text-align: left;
+}
+
+.questionBar {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid #65605d;
+  padding: 1rem 0;
+
+  .questionInput {
+    width : 100%;
+    padding: 0 0.75rem;
+    align-self: stretch;
+    fill: var(--Grey-01, #fff);
+    stroke-width: 1px;
+    stroke: var(--Grey-06, #65605d);
+    color: var(--Grey-06, #65605d);
+    /* Body Text 1 */
+    font-family: Arial;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  .askButton {
+    border-radius: 4px;
+    background: var(--Blue-05, #007acd);
+    padding: 1em 2em;
+    color: var(--Grey-01, #fff);
+    font-family: inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: #005f99;
+    }
+  }
+}
 .similarItems {
   display: flex;
   flex-direction: column;
