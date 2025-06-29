@@ -149,8 +149,8 @@ This is a full-stack auction platform application that mimics TradeMe's function
 - Built with best practices for both frontend and backend development
 - Includes data seeding capabilities for development and testing
 
-## 🤝 Contributing
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📝 License
-This project is proprietary and confidential.
+## 🤝 Contributions
+* [seth](https://github.com/SethSamuelCode)
+* [cess](https://github.com/Cess-stack)
+* [valentine](https://github.com/valentine-ncube)
+* [kerry](https://github.com/LuCinemax)
