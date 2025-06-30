@@ -20,7 +20,7 @@ services:
     image: mongo
     restart: always
     env_file:
-      - ./MongoDB/.env
+      - ./mongoDB/.env
     volumes:
       - mongo_storage:/data/db
     ports:
@@ -32,9 +32,43 @@ services:
     ports:
       - 8081:8081
     env_file:
-      - ./MongoDB/.env
-
-
+      - ./mongoDB/.env
+  minio:
+    image: minio/minio:RELEASE.2025-06-13T11-33-47Z-cpuv1
+    ports:
+      - 9000:9000
+      - 9001:9001
+    # volumes:
+    #   # - ./images:/data
+    #   - ./minio/setBucketOpen.sh:/docker-entrypoint-initbucket.d/policy.sh
+    env_file:
+      - path: minio/.env
+        required: true
+    command: server /data --console-address ":9001"
+  createbuckets:
+    image: minio/minio:RELEASE.2025-06-13T11-33-47Z-cpuv1
+    depends_on:
+      - minio
+    restart: on-failure
+    env_file:
+      - path: minio/.env
+        required: true
+    volumes:
+      - ./images:/images
+    entrypoint: >
+      /bin/sh -c "
+      sleep 5;
+      /usr/bin/mc alias set dockerminio http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
+      /usr/bin/mc mb dockerminio/$MINIO_BUCKET;
+      /usr/bin/mc anonymous set download dockerminio/$MINIO_BUCKET;
+      cd /images ;
+      for image in *;
+      do ;
+        /usr/bin/mc put $image dockerminio/$MINIO_BUCKET;
+      done;
+      exit 0;
+      "
 
 volumes:
   mongo_storage:
+  minio:
