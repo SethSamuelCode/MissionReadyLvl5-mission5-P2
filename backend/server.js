@@ -138,6 +138,11 @@ res.status(200).json({ status: "success", data: normalizedItems });
 
 // ------------------------ SETH ------------------------ //
 
+// Get item by ID
+// Returns a single item from the database by its ID
+// If the ID is not valid, it returns a 400 error
+// If the item is not found, it returns a 404 error
+// Example: /api/item/60c72b2f9b1d8c001c8e4f3a
 app.get("/api/item/:itemId", async (req, resp) => {
   const itemID = req.params.itemId;
   if (!ObjectId.isValid(itemID)) {
@@ -163,6 +168,11 @@ app.get("/api/user/:userName", async (req, resp) => {
   
 });
 
+//get a random number of items from the database by field name and value
+// The number of items is specified in the URL parameter
+// Example: /api/randomByField/category/electronics/5 will return 5 random items from the electronics category
+// If the number is not a valid positive integer, it returns a 400 error
+// If the field name or value is not provided, it returns a 400 error
 app.get("/api/randomByField/:fieldName/:value/:number", async (req, resp) => {
   const fieldName = req.params.fieldName;
   const value = req.params.value;
@@ -198,6 +208,10 @@ app.get("/api/randomByField/:fieldName/:value/:number", async (req, resp) => {
   resp.status(200).json(objectsFromDB);
 });
 
+// get a random number of items from the database
+// The number of items is specified in the URL parameter
+// Example: /api/random/5 will return 5 random items
+// If the number is not a valid positive integer, it returns a 400 error
 app.get("/api/random/:number", async (req, resp) => {
   const number = parseInt(req.params.number, 10);
   if (isNaN(number) || number <= 0) {
