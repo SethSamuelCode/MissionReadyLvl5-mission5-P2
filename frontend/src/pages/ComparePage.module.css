@@ -1,3 +1,8 @@
+.container {
+  width: 1152px;
+  margin: 0 auto;
+}
+
 .compareWrapper {
     padding: 2rem;
     font-family: 'Segoe UI', sans-serif;
@@ -74,14 +79,15 @@
   }
   
   .comparisonGrid {
-    display: flex;
-    gap: 2rem;
-    background-color: #fff;
-    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   }
-  
+
   .leftColumn {
     flex-shrink: 0;
     background-color: #fca311;
@@ -91,36 +97,52 @@
   }
   
   .fieldLabel {
-    padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    min-height: 60px;
-    display: flex;
-    align-items: center;
+    background-color: #FFA726;
+    border-radius: 20px;
+    padding: 6px 14px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    min-width: 120px;
   }
-  
+
   .itemColumn {
     flex: 1;
     background-color: #ffffff;
     border-left: 1px solid #eee;
+  }
+
+  .itemColumn, .leftColumn {
+    display: flex;
+    flex-direction: column;
   }
   
   .imageContainer {
     padding: 1rem;
     text-align: center;
   }
-  
+
   .imageContainer img {
     width: 100%;
-    max-height: 200px;
-    object-fit: contain;
-    border-radius: 0.5rem;
+    height: auto;
+    margin-bottom: 12px;
   }
   
   .fieldValue {
-    padding: 1rem;
-    border-top: 1px solid #f0f0f0;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
+    padding: 12px;
+    border-top: 1px solid #eee;
+background-color: #fafafa;
+  }
+
+  .fieldValue:nth-child(even) {
+    background-color: #f0f0f0;
   }
   
+  .selectedCard {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+  }

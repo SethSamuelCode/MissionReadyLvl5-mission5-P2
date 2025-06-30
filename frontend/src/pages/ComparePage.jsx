@@ -29,15 +29,22 @@ const Compare = () => {
   }, [selectedIds]);
 
   const comparisonFields = [
-    { label: 'Title', key: 'title' },
+    { label: 'Listing Price', key: 'current_BidPrice' },
     { label: 'Condition', key: 'condition' },
-    { label: 'Dimensions', key: 'dimensions' },
+    { label: 'Feature', key: 'material' }, // This will work as a feature
+    { label: 'Description', key: 'description' },
+    { label: 'Dimension', key: 'dimensions' },
     { label: 'Weight', key: 'weight' },
-    { label: 'Material', key: 'material' },
-    { label: 'Pickup Location', key: 'pickupLocation' },
-    { label: 'Description', key: 'description' }
+    { label: 'Color', key: 'color' },
+    { label: 'Seller Review', key: 'owner' }, // Temporary placeholder
+    { label: 'Shipping', key: 'shippingType' },
+    { label: 'Payment', key: 'paymentOptions' },
+    { label: 'Brand', key: 'manufacturer' }
   ];
+  console.log(items[0]);
 
+
+  
   const handleSearch = () => {
     const filtered = allItems.filter(item =>
       item.title?.toLowerCase().includes(searchInput.toLowerCase()) ||
@@ -50,6 +57,7 @@ const Compare = () => {
   return (
         <div className={styles.compareWrapper}> 
       <Header />    
+      <div className={styles.container}>
       <h1 className={styles.heading}>Compare Items</h1>
 
       {/* Search */}    
@@ -106,7 +114,6 @@ const Compare = () => {
   </div>
 )}
 
-
       {/* Optional message */}
       {selectedIds.length >= 2 && (
         <p style={{ color: '#999', fontSize: '0.85rem' }}>
@@ -134,13 +141,14 @@ const Compare = () => {
               </div>
               {comparisonFields.map(field => (
                 <div key={field.key} className={styles.fieldValue}>
-                  {item[field.key] || 'N/A'}
+                {item[field.key] ? item[field.key] : '—'}
                 </div>
               ))}
             </div>
           ))}
         </div>
-      )}
+      )}  
+      </div>
       <Footer />
     </div>
   );
