@@ -49,25 +49,20 @@ services:
     image: minio/minio:RELEASE.2025-06-13T11-33-47Z-cpuv1
     depends_on:
       - minio
-    restart: on-failure
+    # restart: on-failure
     env_file:
       - path: minio/.env
         required: true
     volumes:
       - ./images:/images
+      - ./minio/entrypoint.sh:/entrypoint.sh 
     entrypoint: >
       /bin/sh -c "
-      sleep 5;
-      /usr/bin/mc alias set dockerminio http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD;
-      /usr/bin/mc mb dockerminio/$MINIO_BUCKET;
-      /usr/bin/mc anonymous set download dockerminio/$MINIO_BUCKET;
-      cd /images ;
-      for image in *;
-      do ;
-        /usr/bin/mc put $image dockerminio/$MINIO_BUCKET;
-      done;
-      exit 0;
+        chmod +x /entrypoint.sh;
+        /bin/sh /entrypoint.sh;
+        exit 0;
       "
+
 
 volumes:
   mongo_storage:
