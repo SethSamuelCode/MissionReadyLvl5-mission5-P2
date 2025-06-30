@@ -1,4 +1,3 @@
-
 /* -------------------- LOADING PAGE -------------------- */
 
 .loading {
@@ -33,6 +32,10 @@
   max-width: 1440px;
   margin: 0 auto;
   /* background-color: #f0e6ff; */
+
+  button{
+    border-style: none;
+  }
 }
 
 /* --------------------- SECTION ONE -------------------- */
@@ -242,6 +245,19 @@
   /* gap: 2rem; */
 }
 
+.reportButton {
+  border-radius: 4px;
+  background: var(--Blue-05, #007acd);
+  color: var(--Grey-01, #fff);
+  text-align: center;
+  height: 50px;
+  width: 100%;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
 /* ----------- SMALL CIRCLE WITH LETTER IN IT ----------- */
 
 .biderLogo {
@@ -386,7 +402,6 @@
 }
 
 /* --------------------- SELLER INFO -------------------- */
-
 
 .sellerContainer {
   display: flex;

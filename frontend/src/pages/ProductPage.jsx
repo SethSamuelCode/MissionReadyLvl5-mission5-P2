@@ -341,7 +341,6 @@ export default function ProductPage() {
             alt="Random product"
           />
           {/* ---------------------- CAROUSEL ---------------------- */}
-
           <div className={styles.carouselContainer}>
             {itemImages.map((image, index) => (
               <div
@@ -458,6 +457,7 @@ export default function ProductPage() {
                 })}
             </ul>
           </div>
+                <button className={styles.reportButton}>Report</button>
         </div>
       </div>
       {/* -------------------- SECTION TWO -------------------- */}
