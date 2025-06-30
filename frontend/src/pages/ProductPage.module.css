@@ -1,3 +1,5 @@
+/* -------------------- LOADING PAGE -------------------- */
+
 .loading {
   display: flex;
   justify-content: center;
@@ -7,9 +9,21 @@
   font-size: 10rem;
 }
 
+/* --------- LOCATION BAR AT THE TOP OF THE PAGE --------- */
+
 .locationBar {
   padding-left: 20px;
+
+  p {
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 }
+
+/* ------------------- MAIN CONTAINER ------------------- */
 
 .container {
   display: flex;
@@ -17,16 +31,14 @@
   gap: 1rem;
   max-width: 1440px;
   margin: 0 auto;
-  background-color: #f0e6ff;
+  /* background-color: #f0e6ff; */
+
+  button{
+    border-style: none;
+  }
 }
 
-.title {
-  font-family: Arial;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
+/* --------------------- SECTION ONE -------------------- */
 
 .section1 {
   display: grid;
@@ -38,15 +50,15 @@
   display: flex;
   flex-direction: column;
   /* min-height: 50vh; */
-  background-color: #ffcdd2;
+  /* background-color: #ffcdd2; */
   border-radius: 8px;
   flex-grow: 2;
   /* max-height: 70vh; */
   max-width: auto;
 
   img {
+    max-height: 80vh;
     width: 100%;
-    height: 100%;
     object-fit: contain;
     border-radius: 8px;
   }
@@ -57,7 +69,7 @@
   flex-direction: row;
   gap: 1rem;
   padding: 1rem;
-  background-color: #e8f5e9;
+  /* background-color: #e8f5e9; */
 
   img {
     height: 100%;
@@ -73,18 +85,18 @@
   }
 }
 
+/* --------------------- TOP SIDEBAR -------------------- */
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  background-color: #c8e6c9;
+  /* background-color: #c8e6c9; */
   flex-grow: 1;
 }
 
 .title {
   font-size: 1.5rem;
   font-weight: bold;
-  background-color: #fff9c4;
   color: var(--Grey-07, #44413d);
   text-align: center;
 
@@ -119,7 +131,7 @@
   display: flex;
   gap: 1rem;
   align-items: center;
-  background-color: #bbdefb;
+  /* background-color: #bbdefb; */
   justify-content: center;
   /* align-self: stretch; */
 
@@ -142,11 +154,13 @@
   }
 }
 
+/* ------------ BUY NOW AND CURRENT BID AREA ------------ */
+
 .bidBox {
   display: flex;
   flex-direction: column;
   border: 1px solid #e0e0e0;
-  background-color: #e1bee7;
+  /* background-color: #e1bee7; */
   justify-content: center;
   align-items: center;
 
@@ -192,6 +206,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  p {
+    color: var(--Grey-07, #44413d);
+    text-align: center;
+    /* Body Text 1 */
+    font-family: Arial;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 }
 
 .bidHistory ul {
@@ -199,21 +224,41 @@
   flex-direction: column;
   padding: 1rem auto;
   width: 100%;
-  background-color: #b2ebf2;
+  background-color: hsl(199, 92%, 97%);
   border-radius: 8px;
   gap: 1rem;
   justify-content: space-evenly;
+  padding: 1rem 0;
 }
 
 .bidHistoryLine {
-  display: flex;
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   align-items: center;
-  gap: 2rem;
 
-  .bidPrefix {
-    min-width: 2em;
+  span:first-child {
+    max-width: 3em;
+    /* background-color: red; */
   }
+
+  /* gap: 2rem; */
 }
+
+.reportButton {
+  border-radius: 4px;
+  background: var(--Blue-05, #007acd);
+  color: var(--Grey-01, #fff);
+  text-align: center;
+  height: 50px;
+  width: 100%;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+/* ----------- SMALL CIRCLE WITH LETTER IN IT ----------- */
 
 .biderLogo {
   display: flex;
@@ -222,46 +267,22 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
+
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
-.shippingAndPaymentOptions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  background-color: #ffccbc;
+/* --------------------- SECTION TWO -------------------- */
+.section2 {
+  display: grid;
+  grid-template-columns: 6fr 3fr;
+  gap: 1.5rem;
 }
 
-.shippingAndPickup {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  background-color: #d7ccc8;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-
-  p {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-}
-
-.paymentOptions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  padding: 1rem;
-  background-color: #f8bbd0;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-
-  p {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-}
+/* ------------- PRODUCT AND DETAILS SECTION ------------ */
 
 .productDetailsAndDescription {
   /* border: 1px solid #e0e0e0; */
@@ -309,31 +330,98 @@
   }
 }
 
+/* this is for the active product or description tab */
 .activeTab {
   border-radius: 10px 10px 0px 0px;
   background: #007acd;
   color: #fff;
 }
 
+.productDescription {
+  padding: 1.5rem;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+
+  .detailItem {
+    min-width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    .detailLabel {
+      min-width: 6em;
+    }
+  }
+}
+/* ------------ SHIPPING AND PAYMENT SIDEBAR ------------ */
+
+.shippingAndPaymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* background-color: #ffccbc; */
+}
+
+.shippingAndPickup {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: hsl(199, 92%, 97%);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.paymentOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: hsl(199, 92%, 97%);
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+/* --------------------- SELLER INFO -------------------- */
+
 .sellerContainer {
   display: flex;
   flex-direction: column;
   flex: 1;
   padding: 1.5rem;
-  background-color: #c5cae9;
+  /* background-color: #c5cae9; */
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   width: 100%;
 
-  > p{
+  > p {
     color: #000;
 
-/* h2 */
-font-family: Arial;
-font-size: 24px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+    /* h2 */
+    font-family: Arial;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 }
 
@@ -346,7 +434,7 @@ line-height: normal;
   display: flex;
   flex-direction: column;
   flex: 1;
-  background-color: #dcedc8;
+  /* background-color: #dcedc8; */
   justify-content: center;
   align-items: center;
   gap: 1rem;
@@ -359,13 +447,13 @@ line-height: normal;
     justify-content: space-between;
     text-wrap: nowrap;
 
-    color: var(--Grey-06, #65605D);
-/* Body Text 1 */
-font-family: Arial;
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+    color: var(--Grey-06, #65605d);
+    /* Body Text 1 */
+    font-family: Arial;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
   a {
     display: grid;
@@ -377,11 +465,11 @@ line-height: normal;
     align-items: center;
     border-bottom: 1px solid #65605d;
 
-    color: var(--Blue-06, #4854D3);
-font-family: Roboto;
-font-size: 20px;
-font-style: normal;
-font-weight: 400;
+    color: var(--Blue-06, #4854d3);
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
 
     span:nth-child(3) {
       text-align: right;
@@ -393,6 +481,24 @@ font-weight: 400;
     min-width: 10em;
   }
 }
+
+.addToFavoriteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.25rem;
+  color: #fff;
+  background-color: #007acd;
+  border-radius: 4px;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+/* -------- BIG CIRCLE WITH THE SELLER'S INITIAL -------- */
+
 .sellerLogo {
   flex: 1;
   display: flex;
@@ -440,79 +546,118 @@ font-weight: 400;
   line-height: normal;
 }
 
-.productDescription {
+/* ------------------ QUESTIONS AND ANSWERS ------------------ */
+
+.questionsTitle {
+  color: var(--Grey-07, #44413d);
+  /* h2 */
+  font-family: Arial;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.questionsAndAnswers {
+  grid-column: 1 / -1;
   padding: 1.5rem;
+  background-color: #f3faff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
 }
 
-.detailsContainer {
+.question,
+.answer {
+  margin: 0.5rem auto;
+  border: solid 1px #65605d;
+  background-color: white;
+  border-radius: 18px;
+  padding: 0.5rem;
+  max-width: 80%;
+
+  color: var(--Grey-06, #65605d);
+  /* Body Text 1 */
+  font-family: Arial;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.question {
+  text-align: right;
+}
+
+.answer {
+  text-align: left;
+}
+
+.questionBar {
   display: flex;
-  flex-direction: column;
   gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-  padding: 1.5rem 0;
+  margin-top: 1rem;
+  border-top: 1px solid #65605d;
+  padding: 1rem 0;
 
-  .detailItem {
-    min-width: 50%;
-    display: flex;
-    justify-content: flex-start;
-    gap: 0.5rem;
+  .questionInput {
+    width: 100%;
+    padding: 0 0.75rem;
+    align-self: stretch;
+    fill: var(--Grey-01, #fff);
+    stroke-width: 1px;
+    stroke: var(--Grey-06, #65605d);
+    color: var(--Grey-06, #65605d);
+    /* Body Text 1 */
+    font-family: Arial;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 
-    .detailLabel {
-      min-width: 6em;
+  .askButton {
+    border-radius: 4px;
+    background: var(--Blue-05, #007acd);
+    padding: 1em 2em;
+    color: var(--Grey-01, #fff);
+    font-family: inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: #005f99;
     }
   }
 }
 
-.section2 {
-  display: grid;
-  grid-template-columns: 6fr 3fr;
-  gap: 1.5rem;
-}
-
-.shippingAndPaymentOptions {
-}
-
-.questionsAndAnswers {
-  grid-column: 1 / -1;
-  padding: 1.5rem;
-  background-color: #b2dfdb;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-}
+/* -------------------- SIMILAR ITEMS ------------------- */
 
 .similarItems {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  background-color: #f5f5f5;
+  background-color: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
+
+  .similarTitle {
+    color: var(--Grey-07, #44413d);
+    padding-bottom: 1rem;
+    font-family: Arial;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 }
 
 .similarItemsList {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
-
-  .similarItem {
-    flex: 1 1 calc(33.333% - 1rem);
-    background-color: #e3f2fd;
-    padding: 1rem;
-    border-radius: 8px;
-    text-align: center;
-
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-
-    p {
-      margin-top: 0.5rem;
-      font-weight: bold;
-    }
-  }
+  list-style-type: none;
 }
 
 .bidHistory {

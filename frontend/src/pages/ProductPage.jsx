@@ -7,9 +7,14 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import watchListIcon from "../assets/images/watchlistIcon.svg";
 import compareIcon from "../assets/images/compareIcon.svg";
+import ItemCard from "../components/ItemCard";
 
 // ------------------ HELPER COMPONENTS ------------------ //
 
+/**
+ * Renders the product description section
+ * @param {string} description - The product description text
+ */
 function ProductDescription({ description }) {
   return (
     <>
@@ -18,6 +23,13 @@ function ProductDescription({ description }) {
   );
 }
 
+/**
+ * Generates a random color for seller avatars based on username and join date
+ * Uses XOR operation to create a consistent but random-looking color
+ * @param {string} username - The seller's username
+ * @param {any} joinDate - The date the seller joined
+ * @returns {string} A hex color code
+ */
 function randomColorForLogo(username, joinDate) {
   const colors = [
     "#FF5733",
@@ -40,6 +52,11 @@ function randomColorForLogo(username, joinDate) {
     }, 0) % colors.length;
   return colors[index];
 }
+
+/**
+ * Renders the product details section with all specifications
+ * @param {Object} props - Product specifications
+ */
 function ProductDetails({ condition, dimensions, weight, color, material, manufacturer }) {
   return (
     <>
@@ -75,6 +92,10 @@ function ProductDetails({ condition, dimensions, weight, color, material, manufa
 
 // ---------------------- FUNCTIONS --------------------- //
 
+/**
+ * Handles switching between product details and description tabs
+ * Updates the UI state and styling accordingly
+ */
 function changeShowDetailsOrDescription(
   setShowDetailsOrDescription,
   detailsOrDescription,
@@ -92,17 +113,32 @@ function changeShowDetailsOrDescription(
   }
 }
 
+/**
+ * Handles navigation when a similar item is clicked
+ * @param {string} itemID - The ID of the clicked item
+ * @param {Function} setItemID - State setter for current item ID
+ * @param {Function} navigate - React Router navigate function
+ */
 function handleClickSimilarItem(itemID, setItemID, navigate) {
   // Navigate to the product page of the clicked similar item
   navigate(`/item/${itemID}`);
   setItemID(itemID);
 }
 
-// ---------------------- COMPONENT --------------------- //
-// This is the main component for the Product Page
+// ---------------------- MAIN COMPONENT --------------------- //
+
+/**
+ * ProductPage Component
+ * Displays detailed information about a product including:
+ * - Product images and carousel
+ * - Auction details (current bid, time left)
+ * - Product specifications
+ * - Seller information
+ * - Q&A section
+ * - Similar items
+ */
 export default function ProductPage() {
-  // This object is used to switch between product details and product description
-  // It is used in the ProductPage component to toggle between the two views
+  // --- Constants and Enums ---
   const detailsOrDescription = {
     DETAILS: "details",
     DESCRIPTION: "description",
@@ -113,7 +149,8 @@ export default function ProductPage() {
   // ----------------------- DEFINES ---------------------- //
 
   const { ParamItemID } = useParams();
-  const [itemID, setItemID] = useState(ParamItemID); // Get the item ID from the URL parameters
+  const [itemID, setItemID] = useState(ParamItemID);
+  // State for product details
   const [imageUrl, setImageUrl] = useState();
   const [itemImages, setItemImages] = useState([]);
   const [title, setTitle] = useState();
@@ -121,6 +158,8 @@ export default function ProductPage() {
   const [auctionClosingTime, setActionClosingTime] = useState(new Date("January 01, 2000"));
   const [timeLeftInAuction, setTimeLeftInAuction] = useState();
   const [bidHistory, setBidHistory] = useState([]);
+
+  // State for product specifications
   const [shippingOptions, setShippingOptions] = useState();
   const [paymentOptions, setPaymentOptions] = useState();
   const [showDetailsOrDescription, setShowDetailsOrDescription] = useState(detailsOrDescription.DETAILS);
@@ -131,10 +170,14 @@ export default function ProductPage() {
   const [color, setColor] = useState("");
   const [material, setMaterial] = useState("");
   const [manufacturer, setManufacturer] = useState("");
+
+  // State for seller information
   const [sellerUsername, setSellerUsername] = useState("");
   const [sellerRating, setSellerRating] = useState("");
   const [sellerLocation, setSellerLocation] = useState("");
   const [sellerMemberSince, setSellerMemberSince] = useState("");
+
+  // UI state
   const [loaded, setLoaded] = useState(false);
   const [questionsAndAnswers, setQuestionsAndAnswers] = useState([]);
   const [itemCategory, setItemCategory] = useState("");
@@ -146,11 +189,16 @@ export default function ProductPage() {
   const BACKEND_URL = "http://localhost:4000/api";
   const navigate = useNavigate();
 
-  // ----------------------- USE EFFECTS ---------------------- //
+  // --------------------- USE EFFECTS --------------------- //
+
+  // Fetch item details when itemID changes
   useEffect(() => {
     async function setItemFromDB() {
       const resp = await fetch(`${BACKEND_URL}/item/${itemID}`);
       const tempFromDB = await resp.json();
+      if (!tempFromDB) {
+        navigate("/404"); // Navigate to 404 page if item not found
+      }
       setImageUrl(tempFromDB.images_links[0]);
       setItemImages(tempFromDB.images_links);
       setTitle(tempFromDB.Title);
@@ -200,6 +248,7 @@ export default function ProductPage() {
     setSellerInfoFromDB();
   }, [sellerUsername]);
 
+  // Update auction time remaining every second
   useEffect(() => {
     const timer = setInterval(() => {
       const msLeft = auctionClosingTime - new Date();
@@ -228,6 +277,7 @@ export default function ProductPage() {
     return () => clearInterval(timer);
   }, [auctionClosingTime]);
 
+  // Fetch similar items when category changes
   useEffect(() => {
     // Fetch similar items based on the category of the current item
 
@@ -252,19 +302,25 @@ export default function ProductPage() {
     setSimilarItemsVar();
   }, [itemCategory]);
 
-  // ------------ START OF THE RETURN STATEMENT ----------- //
+  // ------------ PAGE RENDER LOGIC STARTS HERE ----------- //
+
+  // Show loading state while data is being fetched
   if (!loaded) {
     return (
       <div>
         <Header />
-        <div className={styles.loading}>Loading...</div>; // Show loading state while data is being fetched
+        <div className={styles.loading}>Loading...</div>;
         <Footer />
       </div>
     );
   }
+
+  // ---------------------- MAIN PAGE --------------------- //
+
   return (
     <div className={styles.container}>
       <Header />
+      {/* -------------------- LOCATION BAR -------------------- */}
       <div className={styles.locationBar}>
         <Link
           to="/"
@@ -274,12 +330,17 @@ export default function ProductPage() {
         <span> / </span>
         <Link to={`/${itemCategory}`}>{itemCategory}</Link>
       </div>
+
+      {/* -------------------- SECTION ONE -------------------- */}
+
       <div className={styles.section1}>
+        {/* --------------------- MAIN IMAGE --------------------- */}
         <div className={styles.images}>
           <img
             src={imageUrl}
             alt="Random product"
           />
+          {/* ---------------------- CAROUSEL ---------------------- */}
           <div className={styles.carouselContainer}>
             {itemImages.map((image, index) => (
               <div
@@ -294,6 +355,7 @@ export default function ProductPage() {
             ))}
           </div>
         </div>
+        {/* ---------------------- SIDEBAR ---------------------- */}
         <div className={styles.sidebar}>
           <div className={styles.title}>{title}</div>
           <div className={styles.closingInfo}>
@@ -337,6 +399,7 @@ export default function ProductPage() {
               Time Left: {timeLeftInAuction}
             </p>
           </div>
+          {/* -------------------- WATCHLIST AND COMPARE BUTTONS -------------------- */}
           <div className={styles.watchListAndCompareButtons}>
             <button>
               <img
@@ -353,6 +416,7 @@ export default function ProductPage() {
               Compare
             </button>
           </div>
+          {/* -------------------- BIDDING BUTTONS AND INFORMATION -------------------- */}
           <div className={styles.bidBox}>
             <p className={styles.bidLable}>Buy Now</p>
             <p className={styles.bidPrice}>${buyNowPrice}</p>
@@ -361,6 +425,7 @@ export default function ProductPage() {
             <p className={styles.bidPrice}>${currentBid}</p>
             <button>Place Bid</button>
           </div>
+          {/* -------------------- BIDDING HISTORY -------------------- */}
           <div className={styles.bidHistory}>
             <ul>
               {/* {console.log(bidHistory)} */}
@@ -379,21 +444,25 @@ export default function ProductPage() {
                     <li key={bid.userName + bid.Bid}>
                       <p className={styles.bidHistoryLine}>
                         <span className={styles.bidPrefix}>{prefix()} </span>
-                        <div
+                        <span
                           className={styles.biderLogo}
                           style={{ backgroundColor: randomColorForLogo(bid.userName, bid.date) }}>
                           {bid.userName[0]}
-                        </div>{" "}
-                        {bid.userName}: ${bid.Bid}
+                        </span>
+                        <span>{bid.userName}:</span>
+                        <span>${bid.Bid}</span>
                       </p>
                     </li>
                   );
                 })}
             </ul>
           </div>
+                <button className={styles.reportButton}>Report</button>
         </div>
       </div>
+      {/* -------------------- SECTION TWO -------------------- */}
       <div className={styles.section2}>
+        {/* ---------------------- PRODUCT DETAILS AND DESCRIPTION ---------- */}
         <div className={styles.productDetailsAndDescription}>
           <div className={styles.detailAndDescriptionTabs}>
             <div
@@ -438,6 +507,7 @@ export default function ProductPage() {
             ) : null}
           </div>
         </div>
+        {/* ---------------------- SHIPPING AND PAYMENT SIDEBAR ---------------------- */}
         <div className={styles.sidebar2}>
           <div className={styles.shippingAndPaymentOptions}>
             <div className={styles.shippingAndPickup}>
@@ -488,6 +558,8 @@ export default function ProductPage() {
         </div>
       </div>
       <div className={styles.sellerContainer}>
+        {/* ------------------ ABOUT THE SELLER ------------------ */}
+
         <p>About the seller</p>
         <div className={styles.innerSellerContainer}>
           <div className={styles.sellerInfo}>
@@ -497,29 +569,43 @@ export default function ProductPage() {
             <p>
               <span> Member since:</span> <span></span> <span>{sellerMemberSince}</span>
             </p>
-            
-              <Link>
-                <span>View sellers Other listings</span>
-                <span></span>
-                  <span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="12"
-                      height="22"
-                      viewBox="0 0 12 22"
-                      fill="none">
-                      <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M11.5229 12.1665L2.30425 21.5L0 19.167L8.0665 11L0 2.83297L2.30425 0.5L11.5229 9.83352C11.8284 10.1429 12 10.5625 12 11C12 11.4375 11.8284 11.8571 11.5229 12.1665Z"
-                        fill="#4854D3"
-                      />
-                    </svg>
-                  </span>
-            </Link>
 
-            
+            <Link>
+              <span>View sellers Other listings</span>
+              <span></span>
+              <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="22"
+                  viewBox="0 0 12 22"
+                  fill="none">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M11.5229 12.1665L2.30425 21.5L0 19.167L8.0665 11L0 2.83297L2.30425 0.5L11.5229 9.83352C11.8284 10.1429 12 10.5625 12 11C12 11.4375 11.8284 11.8571 11.5229 12.1665Z"
+                    fill="#4854D3"
+                  />
+                </svg>
+              </span>
+            </Link>
+            <button className={styles.addToFavoriteButton}>
+              {" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none">
+                <path
+                  d="M12.1 18.55L12 18.65L11.89 18.55C7.14 14.24 4 11.39 4 8.5C4 6.5 5.5 5 7.5 5C9.04 5 10.54 6 11.07 7.36H12.93C13.46 6 14.96 5 16.5 5C18.5 5 20 6.5 20 8.5C20 11.39 16.86 14.24 12.1 18.55ZM16.5 3C14.76 3 13.09 3.81 12 5.08C10.91 3.81 9.24 3 7.5 3C4.42 3 2 5.41 2 8.5C2 12.27 5.4 15.36 10.55 20.03L12 21.35L13.45 20.03C18.6 15.36 22 12.27 22 8.5C22 5.41 19.58 3 16.5 3Z"
+                  fill="white"
+                />
+              </svg>{" "}
+              Add to Favorite Seller
+            </button>
           </div>
+          {/* ------------------ SELLER LOGO ------------------ */}
           <div className={styles.sellerLogo}>
             <div
               className={styles.sellerCircle}
@@ -531,37 +617,45 @@ export default function ProductPage() {
           </div>
         </div>
       </div>
+      {/* ------------------ QUESTIONS AND ANSWERS ------------------ */}
       <div className={styles.questionsAndAnswers}>
-        <h3>Questions & Answers</h3>
+        <h3 className={styles.questionsTitle}>Questions & Answers</h3>
         <div className={styles.questionsList}>
           {questionsAndAnswers.length !== 0 ? (
             questionsAndAnswers.map((qa, index) => (
               <div key={index}>
-                <p>
-                  <strong>Q: {qa.question}</strong>
+                <p className={styles.question}>
+                  {qa.question} <span>:Q</span>
                 </p>
-                <p>A: {qa.answer}</p>
+                <p className={styles.answer}>
+                  {" "}
+                  <span>A: </span> {qa.answer}
+                </p>
               </div>
             ))
           ) : (
             <p>No questions have been asked yet.</p>
           )}
         </div>
+        <div className={styles.questionBar}>
+          <input
+            type="text"
+            placeholder="Type your question here..."
+            className={styles.questionInput}
+          />
+          <button className={styles.askButton}>Ask Question</button>
+        </div>
       </div>
+      {/* ------------------ SIMILAR ITEMS ------------------ */}
       <div className={styles.similarItems}>
-        <h3>Similar Items You May Like</h3>
+        <p className={styles.similarTitle}>Similar Items You May Like</p>
         <div className={styles.similarItemsList}>
           {similarItems.map((item) => (
             <div
               key={item._id}
               className={styles.similarItem}
               onClick={() => handleClickSimilarItem(item._id.toString(), setItemID, navigate)}>
-              <img
-                src={item.images_links[0]}
-                alt={item.Title}
-              />
-              <h4>{item.Title}</h4>
-              <p>Price: ${item.Current_Bid_price}</p>
+              <ItemCard item={item} />
             </div>
           ))}
         </div>
