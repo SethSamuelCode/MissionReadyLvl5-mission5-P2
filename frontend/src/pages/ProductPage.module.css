@@ -303,6 +303,8 @@
   justify-content: space-between;
 
   .middleTab {
+
+  .middleTab {
     flex-grow: 1;
   }
 
@@ -315,6 +317,7 @@
     border-right:inset solid 3px #0295ffa9; */
     border-radius: 10px 10px 0px 0px;
   }
+
 
   p {
     padding: 0.5rem 0;
@@ -332,6 +335,9 @@
 
 /* this is for the active product or description tab */
 .activeTab {
+  border-radius: 10px 10px 0px 0px;
+  background: #007acd;
+  color: #fff;
   border-radius: 10px 10px 0px 0px;
   background: #007acd;
   color: #fff;
