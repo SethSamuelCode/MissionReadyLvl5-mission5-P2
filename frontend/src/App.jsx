@@ -15,6 +15,7 @@ function App() {
         <Route path="/item/:ParamItemID" element={<ProductPage />} />
         <Route path="*" element={<Page404 />} />
         <Route path="/compare" element={<ComparePage />}></Route>
+        <Route path="/watchlist" element={<Watchlist />} />
       </Routes>
     </>
   )
