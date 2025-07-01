@@ -5,24 +5,24 @@ import Footer from '../components/Footer'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const [items, setItems] = useState([])
-const userId = 'user123'
-
-useEffect(() => {
-  const fetchWatchlist = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3000/api/watchlist?userId=${userId}`
-      )
-      setItems(response.data)
-    } catch (error) {
-      console.error('Error fetching watchlist:', error)
-    }
-  }
-  fetchWatchlist()
-}, [])
-
 function Watchlist() {
+  const [items, setItems] = useState([])
+  const userId = 'user123'
+
+  useEffect(() => {
+    const fetchWatchlist = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/api/watchlist?userId=${userId}`
+        )
+        setItems(response.data)
+      } catch (error) {
+        console.error('Error fetching watchlist:', error)
+      }
+    }
+    fetchWatchlist()
+  }, [])
+
   return (
     <div className={styles.pageWrapper}>
       <Header />
@@ -48,17 +48,19 @@ function Watchlist() {
         <section className={styles.watchlistSection}>
           <h1 className={styles.title}>Watchlist</h1>
 
-          {dummyItems.map((item) => (
-            <div key={item.id} className={styles.watchlistItem}>
+          {items.map((item) => (
+            <div key={item._id} className={styles.watchlistItem}>
               <div className={styles.itemImagePlaceholder}></div>
               <div className={styles.itemInfo}>
                 <div className={styles.itemHeader}>
-                  <span>{item.location}</span>
-                  <span>Closes: {item.closingTime}</span>
+                  <span>{item.itemDetails.location || 'Location'}</span>
+                  <span>Closes: {item.itemDetails.closingTime || 'TBD'}</span>
                 </div>
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
-                <div className={styles.buyNow}>Buy Now {item.price}</div>
+                <h2>{item.itemDetails.title}</h2>
+                <p>{item.itemDetails.description}</p>
+                <div className={styles.buyNow}>
+                  Buy Now {item.itemDetails.price}
+                </div>
                 <button className={styles.compareButton}>
                   Compare with similar Items
                 </button>
