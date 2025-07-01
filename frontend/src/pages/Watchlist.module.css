@@ -1,0 +1,137 @@
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: sans-serif;
+  background-color: #f9f9f9;
+}
+
+.mainContent {
+  display: flex;
+  flex: 1;
+  padding: 20px 40px;
+  gap: 20px;
+  background-color: #fff;
+}
+
+.sidebar {
+  width: 220px;
+  border-right: 1px solid #ccc;
+}
+
+.sidebarList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebarList li {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  color: #333;
+}
+
+.sidebarList li:hover {
+  background-color: #f5f5f5;
+}
+
+.active {
+  font-weight: bold;
+  border-left: 4px solid #000;
+  padding-left: 6px;
+  background-color: #f0f0f0;
+}
+
+.watchlistSection {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.watchlistItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  position: relative;
+}
+
+.itemImagePlaceholder {
+  width: 120px;
+  height: 120px;
+  background-color: #e0e0e0;
+  margin-right: 20px;
+}
+
+.itemInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+  font-size: 14px;
+}
+
+.itemInfo h2 {
+  margin: 10px 0 6px;
+  font-size: 20px;
+  color: #222;
+}
+
+.itemInfo p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.buyNow {
+  margin-top: auto;
+  font-weight: bold;
+  text-align: right;
+  font-size: 16px;
+  color: #000;
+}
+
+.compareButton {
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.checkmark {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #555;
+  color: white;
+  padding: 4px 6px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.backButton {
+  display: inline-block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}

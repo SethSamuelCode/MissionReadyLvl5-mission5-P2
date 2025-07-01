@@ -38,6 +38,7 @@ function Watchlist() {
 
       <main className={styles.mainContent}>
         <aside className={styles.sidebar}>
+          <h2 className={styles.sidebarTitle}>My Trade Me</h2>
           <ul className={styles.sidebarList}>
             <li>Account Details</li>
             <li>Notifications</li>
