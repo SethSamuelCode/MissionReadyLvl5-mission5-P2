@@ -2,21 +2,36 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
   font-family: sans-serif;
-  background-color: #f9f9f9;
+  background-color: #f2f2f2;
 }
 
 .mainContent {
   display: flex;
-  flex: 1;
-  padding: 20px 40px;
-  gap: 20px;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 2rem;
   background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
 }
 
 .sidebar {
+  flex: 0 0 250px;
   width: 220px;
   border-right: 1px solid #ccc;
+}
+
+.sidebarTitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #878585;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
 }
 
 .sidebarList {
