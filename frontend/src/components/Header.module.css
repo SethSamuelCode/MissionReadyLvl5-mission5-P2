@@ -1,22 +1,27 @@
+/* ======== Full-Header Container ======== */
 .fullHeader {
-    display: flex;
-    flex-direction: column;
-    background-color: #F7F7F7;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  background-color: #F7F7F7;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  width: 100%;
 }
 
+/* ======== Top-Header ======== */
 .topHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
 }
 
+/* Trademe-Logo */
 .logo {
-    width: 300px;
+  width: 300px;
 }
 
+/* Search Bar */
 .searchBar {
   display: flex;
   align-items: center;
@@ -31,9 +36,11 @@
 .searchIcon {
   flex-shrink: 0;
   margin-right: 8px;
+  width: 18px;
+  height: 18px;
 }
 
-.input {
+.searchBarInput {
   border: none;
   background: transparent;
   outline: none;
@@ -42,31 +49,39 @@
   color: #4b4b4b;
 }
 
-
-.userNavigationList {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    gap: 50px;
-    padding: 20px;
-    font-size: 20px;
-    width: 100%;
-}
-.userNavigationList > li {
-    display: flex;
-    flex-direction: column;
-}
-
-
-.listIconContainer,
-.starIconContainer,
-.watchlistContainer,
-.favouritesContainer,
-.compareContainer,
-.userContainer {
+/* Action Bar */
+.actionBar {
   display: flex;
   justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 10px;
+  padding: 0px;
+  font-size: 16px;
+  width: 100%;
+}
+
+.actionBar > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.catergoryContainer,
+.watchlistContainer,
+.favouritesContainer,
+.compareContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.userContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  width: 120px;
 }
 
 .catergory,
@@ -74,31 +89,57 @@
 .favourites,
 .compare,
 .user {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
+/* SVG-Iconpaths */
+.searchIcon path {
+  fill: none;
+  stroke: #6e6e6e;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
+.catergory path,
+.watchlist path,
+.compare path {
+  fill: #2F2C28;
+}
 
+.favourites path {
+  fill: none;
+  stroke: #2F2C28;
+  stroke-width: 2;
+}
+
+.user rect {
+  fill: #DDF6C9;
+}
+
+.user path {
+  fill: #A0D875;
+}
+
+/* ======== Bottom-Header ======== */
 .bottomHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: solid #D2D1D1 1px;
-    font-weight: 500;
-    font-size: 26px;
-    
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #D2D1D1;
+  font-weight: 500;
+  font-size: 22px;
 }
 
-.navigationList {
-    display: flex;
-    list-style: none;
-    
-    padding: 20px;
-    gap: 50px;
+.navCatergoryTabs {
+  display: flex;
+  list-style: none;
+  padding: 20px;
+  gap: 50px;
 }
 
 .listItem {
-    display: flex;
-    padding: 20px;
+  display: flex;
+  padding: 20px;
 }

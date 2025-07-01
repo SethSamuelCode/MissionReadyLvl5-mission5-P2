@@ -1,0 +1,121 @@
+.body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #f7f7f7;
+  overflow-x: hidden;
+}
+
+.pageContainer {
+  width: 100%;
+  max-width: 1200px;
+  background-color: white;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.searchFilterContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+.resultsWrapper {
+  width: 100%;
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.resultsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  max-width: 1200px;
+  padding: 10px;
+}
+
+
+
+.noResults {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  width: 100%;
+} 
+
+
+.resultCard {
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+}
+
+.resultImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featuredTag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #f9aa33;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #555;
+}
+
+.title {
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 4px 0;
+}
+
+.priceBlock {
+  padding: 0 12px 12px;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  color: #444;
+}
+
+.priceBlock strong {
+  font-size: 16px;
+  color: #000;
+}
