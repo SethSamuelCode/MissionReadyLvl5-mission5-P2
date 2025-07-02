@@ -2,14 +2,14 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: front.Dockerfile
+      dockerfile: front.dockerfile
     ports:
       - 8080:80
 
   backend:
     build:
       context: backend
-      dockerfile: back.Dockerfile
+      dockerfile: back.dockerfile
     depends_on:
       - mongo
     env_file:
@@ -68,7 +68,7 @@ services:
   seed_db:
     build:
       context: autoDbSeeder
-      dockerfile: seeder.Dockerfile
+      dockerfile: seeder.dockerfile
     depends_on:
       - mongo
     volumes:
