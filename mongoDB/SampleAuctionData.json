@@ -69,8 +69,7 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=3",
-      "https://picsum.photos/800/600?random=4"
+      "http://localhost:9000/mission5/MacBook.jpg"
     ],
     "Condition": "Like New",
     "dimensions": "14.01\" x 9.77\" x 0.66\"",
@@ -119,8 +118,7 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=5",
-      "https://picsum.photos/800/600?random=6"
+      "http://localhost:9000/mission5/Dining Table.jpg"
     ],
     "Condition": "Excellent - Restored",
     "dimensions": "240cm x 110cm x 75cm (extended)",
@@ -169,8 +167,7 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=7",
-      "https://picsum.photos/800/600?random=8"
+      "http://localhost:9000/mission5/Tesla.jpg"
     ],
     "Condition": "Excellent",
     "dimensions": "497cm x 196cm x 145cm",
@@ -219,8 +216,7 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=9",
-      "https://picsum.photos/800/600?random=10"
+      "http://localhost:9000/mission5/Rolex.jpg"
     ],
     "Condition": "New",
     "dimensions": "40mm diameter",
@@ -269,8 +265,7 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=11",
-      "https://picsum.photos/800/600?random=12"
+      "http://localhost:9000/mission5/BanksyGirlBalloon.jpg"
     ],
     "Condition": "Excellent",
     "dimensions": "101cm x 78cm (framed)",
@@ -319,8 +314,7 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=13",
-      "https://picsum.photos/800/600?random=14"
+      "http://localhost:9000/mission5/FirstEditionHarryPotter.jpg"
     ],
     "Condition": "Very Good",
     "dimensions": "20.8cm x 13.8cm",
@@ -369,8 +363,7 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=15",
-      "https://picsum.photos/800/600?random=16"
+      "http://localhost:9000/mission5/Drone.jpg"
     ],
     "Condition": "Excellent",
     "dimensions": "810mm x 670mm x 430mm",
@@ -419,8 +412,7 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=17",
-      "https://picsum.photos/800/600?random=18"
+      "http://localhost:9000/mission5/SignedAllBlacks.jpg"
     ],
     "Condition": "New",
     "dimensions": "80cm x 60cm (framed)",
@@ -465,8 +457,7 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=19",
-      "https://picsum.photos/800/600?random=20"
+      "http://localhost:9000/mission5/DiamondRing.jpg"
     ],
     "Condition": "New",
     "dimensions": "Ring Size 6 (resizable)",

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styles from "./Marketplace.module.css";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
@@ -8,10 +9,11 @@ import Footer from "../components/Footer";
 const Marketplace = () => {
   const [results, setResults] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
+  const location = useLocation();
 
   const handleSearch = async (query) => {
     try {
-      const res = await fetch("http://localhost:4000/api/items");
+      const res = await fetch("http://localhost:4000/api/results");
       const json = await res.json();
 
       if (json.status === "success") {
@@ -28,15 +30,12 @@ const Marketplace = () => {
               item.category?.toLowerCase() === query.category?.toLowerCase();
 
             const matchesSearch =
-              !query.searchBy ||
+              (!query.searchBy &&
+                item.title?.toLowerCase().includes(query.keyword?.toLowerCase())) ||
               (query.searchBy === "title" &&
-                item.title
-                  ?.toLowerCase()
-                  .includes(query.keyword?.toLowerCase())) ||
+                item.title?.toLowerCase().includes(query.keyword?.toLowerCase())) ||
               (query.searchBy === "description" &&
-                item.description
-                  ?.toLowerCase()
-                  .includes(query.keyword?.toLowerCase()));
+                item.description?.toLowerCase().includes(query.keyword?.toLowerCase()));
 
             const matchesCondition =
               !query.condition ||
@@ -44,20 +43,15 @@ const Marketplace = () => {
 
             const matchesLocation =
               !query.location ||
-              item.pickup_location?.toLowerCase() ===
-                query.location?.toLowerCase();
+              item.pickuplocation?.toLowerCase() === query.location?.toLowerCase();
 
             const matchesPayment =
               !query.payment ||
-              item.payment_options
-                ?.toLowerCase()
-                .includes(query.payment?.toLowerCase());
+              item.paymentoptions?.toLowerCase().includes(query.payment?.toLowerCase());
 
             const matchesShipping =
               !query.shipping ||
-              item.shipping_type
-                ?.toLowerCase()
-                .includes(query.shipping?.toLowerCase());
+              item.shippingtype?.toLowerCase().includes(query.shipping?.toLowerCase());
 
             const matchesClearance =
               !query.clearance ||
@@ -66,11 +60,11 @@ const Marketplace = () => {
 
             const matchesMinPrice =
               query.minPrice === undefined ||
-              parseFloat(item.reserve_price || 0) >= query.minPrice;
+              parseFloat(item.reserveprice || 0) >= query.minPrice;
 
             const matchesMaxPrice =
               query.maxPrice === undefined ||
-              parseFloat(item.reserve_price || 0) <= query.maxPrice;
+              parseFloat(item.reserveprice || 0) <= query.maxPrice;
 
             return (
               matchesCategory &&
@@ -95,6 +89,14 @@ const Marketplace = () => {
     }
   };
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const keyword = params.get("search");
+    if (keyword) {
+      handleSearch(keyword);
+    }
+  }, [location.search]);
+
   return (
     <div className={styles.body}>
       <div className={styles.pageContainer}>
@@ -109,46 +111,48 @@ const Marketplace = () => {
             {hasSearched && (
               <div className={styles.resultsContainer}>
                 {results.length > 0 ? (
-                  results.map((item) => (
-                    <div key={item._id} className={styles.resultCard}>
-                      <div className={styles.imageWrapper}>
-                        <img
-                          src={
-                            item.images_links ||
-                            "https://www.dealking.co.nz/cdn/shop/files/Bella3SeaterBeige_720x.jpg?v=1694566264"
-                          }
-                          alt={item.title}
-                          className={styles.resultImage}
-                        />
-                        <div className={styles.starCorner}>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            fill="#fff"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                          </svg>
+                  results.map((item) => {
+                    return (
+                      <div key={item._id} className={styles.resultCard}>
+                        <div className={styles.imageWrapper}>
+                          <img
+                            src={
+                              item.imageslinks?.[0] ||
+                              "https://www.dealking.co.nz/cdn/shop/files/Bella3SeaterBeige_720x.jpg?v=1694566264"
+                            }
+                            alt={item.title}
+                            className={styles.resultImage}
+                          />
+                          <div className={styles.starCorner}>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              fill="#fff"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className={styles.meta}>
+                          <span>{item.pickuplocation || "Unknown"}</span>
+                          <span>{`Closes ${new Date(
+                            item.closingdate
+                          ).toLocaleDateString("en-NZ", {
+                            weekday: "short",
+                            day: "numeric",
+                            month: "long",
+                          })}`}</span>
+                        </div>
+                        <h3 className={styles.title}>{item.title}</h3>
+                        <div className={styles.priceBlock}>
+                          <span>Buy Now</span>
+                          <strong>${item.buynowprice || "N/A"}</strong>
                         </div>
                       </div>
-                      <div className={styles.meta}>
-                        <span>{item.pickup_location || "Unknown"}</span>
-                        <span>{`Closes ${new Date(
-                          item.closing_date
-                        ).toLocaleDateString("en-NZ", {
-                          weekday: "short",
-                          day: "numeric",
-                          month: "long",
-                        })}`}</span>
-                      </div>
-                      <h3 className={styles.title}>{item.title}</h3>
-                      <div className={styles.priceBlock}>
-                        <span>Buy Now</span>
-                        <strong>${item.reserve_price || "N/A"}</strong>
-                      </div>
-                    </div>
-                  ))
+                    );
+                  })
                 ) : (
                   <p className={styles.noResults}>No results.</p>
                 )}

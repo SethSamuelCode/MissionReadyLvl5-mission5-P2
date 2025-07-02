@@ -51,7 +51,7 @@ const CatergoryFilter = ({ onFilterSearch }) => {
     }
 
     const hasFilter = Object.values(query).some(v => v !== undefined && v !== '');
-    onFilterSearch(hasFilter ? query : {}); // Send empty object to request all items
+    onFilterSearch(hasFilter ? query : {});
   };
 
   return (
