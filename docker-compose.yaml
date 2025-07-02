@@ -11,7 +11,8 @@ services:
       context: backend
       dockerfile: back.dockerfile
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     env_file:
       - ./backend/.env
     ports:
@@ -19,6 +20,12 @@ services:
   mongo:
     image: mongo
     restart: always
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
     env_file:
       - ./mongoDB/.env
     # volumes:
@@ -35,6 +42,12 @@ services:
       - ./mongoDB/.env
   minio:
     image: minio/minio:RELEASE.2025-06-13T11-33-47Z-cpuv1
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
     ports:
       - 9000:9000
       - 9001:9001
@@ -50,7 +63,8 @@ services:
       context: minio
       dockerfile: minioFromScratch.dockerfile
     depends_on:
-      - minio
+      minio:
+        condition: service_healthy
     # restart: on-failure
     env_file:
       - path: minio/.env
@@ -70,7 +84,8 @@ services:
       context: autoDbSeeder
       dockerfile: seeder.dockerfile
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     volumes:
       - ./mongoDB/SampleAuctionData.json:/SampleAuctionData.json:ro
       - ./mongoDB/mockUserData.json:/mockUserData.json:ro
