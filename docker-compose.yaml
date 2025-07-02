@@ -21,8 +21,8 @@ services:
     restart: always
     env_file:
       - ./mongoDB/.env
-    volumes:
-      - mongo_storage:/data/db
+    # volumes:
+    #   - mongo_storage:/data/db
     ports:
       - 27017:27017
 
@@ -62,8 +62,26 @@ services:
         /bin/sh /entrypoint.sh;
         exit 0;
       "
-
-
-volumes:
-  mongo_storage:
-  minio:
+  
+  seed_db:
+    build:
+      context: autoDbSeeder
+      dockerfile: seeder.Dockerfile
+    depends_on:
+      - mongo
+    volumes:
+      - ./mongoDB/SampleAuctionData.json:/SampleAuctionData.json:ro
+      - ./mongoDB/mockUserData.json:/mockUserData.json:ro
+      # - ./backend/autoSeed.js:/autoSeed.js:ro
+      # - ./autoDbSeeder:/app/
+    env_file:
+      - path: ./backend/.env
+        required: true
+    # entrypoint: 
+    #   /bin/sh -c "
+    #   echo 'about to run entrypoint';
+    #   chmod +x /app/entrypoint.sh;
+    #   /bin/sh /app/entrypoint.sh;
+    #   echo 'ran entrypoint';
+    #   exit 0;
+    #   "
