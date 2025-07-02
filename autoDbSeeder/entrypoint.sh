@@ -2,15 +2,17 @@
 
 sleep 10
 
-# mkfifo /tmp/mypipe
+mkfifo /tmp/mypipe
 cd /app
 npm ci
 node autoSeed.js
 
 
-# while read SIGNAL; do
-#     case "$SIGNAL" in
-#         *EXIT*)break;;
-#         *)echo "signal  $SIGNAL  is unsupported" >/dev/stderr;;
-#     esac
-# done < /tmp/mypipe
+while read SIGNAL; do
+    case "$SIGNAL" in
+        *EXIT*)break;;
+        *)echo "signal  $SIGNAL  is unsupported" >/dev/stderr;;
+    esac
+done < /tmp/mypipe
+
+exit 0

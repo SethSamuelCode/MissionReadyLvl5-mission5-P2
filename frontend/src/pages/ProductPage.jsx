@@ -199,25 +199,25 @@ export default function ProductPage() {
       if (!tempFromDB) {
         navigate("/404"); // Navigate to 404 page if item not found
       }
-      setImageUrl(tempFromDB.images_links[0]);
-      setItemImages(tempFromDB.images_links);
-      setTitle(tempFromDB.Title);
-      setCurrentBid(tempFromDB.Current_Bid_price);
-      setActionClosingTime(new Date(tempFromDB.closing_date));
-      setBidHistory(tempFromDB.Bid_history);
-      setShippingOptions(tempFromDB.Shipping_type);
-      setPaymentOptions(tempFromDB.payment_options);
-      setItemDescription(tempFromDB.Description);
-      setCondition(tempFromDB.Condition);
+      setImageUrl(tempFromDB.imagesLinks[0]);
+      setItemImages(tempFromDB.imagesLinks);
+      setTitle(tempFromDB.title);
+      setCurrentBid(tempFromDB.currentBidPrice);
+      setActionClosingTime(new Date(tempFromDB.closingDate));
+      setBidHistory(tempFromDB.bidHistory);
+      setShippingOptions(tempFromDB.shippingType);
+      setPaymentOptions(tempFromDB.paymentOptions);
+      setItemDescription(tempFromDB.description);
+      setCondition(tempFromDB.condition);
       setDimensions(tempFromDB.dimensions);
       setWeight(tempFromDB.weight);
-      setColor(tempFromDB.Color);
-      setMaterial(tempFromDB.Material);
-      setManufacturer(tempFromDB.Manufacturer);
+      setColor(tempFromDB.color);
+      setMaterial(tempFromDB.material);
+      setManufacturer(tempFromDB.manufacturer);
       setSellerUsername(tempFromDB.owner);
       setQuestionsAndAnswers(tempFromDB.questionsAndAnswers || []); // Set questions and answers if available
       setItemCategory(tempFromDB.category); // Set item category if available
-      setBuyNowPrice(tempFromDB.buy_now_price || 0); // Set buy now price if available
+      setBuyNowPrice(tempFromDB.buyNowPrice || 0); // Set buy now price if available
 
       // console.log(new Date(tempFromDB.closing_date))
       // console.log(auctionClosingTime)
