@@ -7,7 +7,7 @@ import axios from 'axios'
 
 function Watchlist() {
   const [items, setItems] = useState([])
-  const userId = 'user123'
+  const userId = 'demoUser'
 
   useEffect(() => {
     const fetchWatchlist = async () => {
