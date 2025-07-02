@@ -28,7 +28,7 @@ async function seedDB(){
         const db = client.db(DATABASE_NAME);
         const collection = db.collection(ITEM_COLLECTION_NAME);
 
-        const rawData = fs.readFileSync("../mongodb/SampleAuctionData.json", "utf-8");
+        const rawData = fs.readFileSync("../mongoDB/SampleAuctionData.json", "utf-8");
         const products = JSON.parse(rawData).map(toCamelCase);
         console.log("🔍 Sample cleaned product:", products[0]);
 

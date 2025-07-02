@@ -125,8 +125,8 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=5",
-      "https://picsum.photos/800/600?random=6"
+      "http://localhost:9000/product-images/victorian-dining-table.jpg",
+      "http://localhost:9000/product-images/victorian-dining-table.jpg"
     ],
     "Condition": "Excellent - Restored",
     "dimensions": "240cm x 110cm x 75cm (extended)",
@@ -175,8 +175,8 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=7",
-      "https://picsum.photos/800/600?random=8"
+      "http://localhost:9000/product-images/tesla-model-s-plaid.jpg",
+      "http://localhost:9000/product-images/tesla-model-s-plaid.jpg"
     ],
     "Condition": "Excellent",
     "dimensions": "497cm x 196cm x 145cm",
@@ -225,8 +225,8 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=9",
-      "https://picsum.photos/800/600?random=10"
+      "http://localhost:9000/product-images/rolex-daytona.jpg",
+      "http://localhost:9000/product-images/rolex-daytona.jpg"  
     ],
     "Condition": "New",
     "dimensions": "40mm diameter",
@@ -325,8 +325,8 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=13",
-      "https://picsum.photos/800/600?random=14"
+      "http://localhost:9000/product-images/harry-potter-first-edition.jpg",
+      "http://localhost:9000/product-images/harry-potter-first-edition.jpg"
     ],
     "Condition": "Very Good",
     "dimensions": "20.8cm x 13.8cm",

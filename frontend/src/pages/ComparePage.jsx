@@ -16,7 +16,7 @@ const Compare = () => {
       .then(res => setAllItems(res.data))
       .catch(err => console.error('Error loading all items:', err));
   }, []);
-
+    
   useEffect(() => {
     if (selectedIds.length === 0) {
       setItems([]);
@@ -113,6 +113,35 @@ const Compare = () => {
           You can only compare 2 items at a time.
         </p>
       )}
+      
+{/* Selected Items Preview Row */}
+{items.length > 0 && (
+  <div className={styles.selectedPreviewRow}>
+    {items.map(item => (
+      <div key={item._id} className={styles.previewCard}>
+        <img
+          src={item.imagesLinks?.[0] || 'https://via.placeholder.com/80'}
+          alt={item.title}
+        />
+        <div className={styles.previewInfo}>
+          <p className={styles.previewTitle}>{item.title}</p>
+          <p className={styles.previewLocation}>{item.pickupLocation}</p>
+          <p className={styles.previewClose}>
+            Closes {new Date(item.closingDate).toLocaleDateString()}
+          </p>
+        </div>
+        <button
+          className={styles.previewRemove}
+          onClick={() =>
+            setSelectedIds(prev => prev.filter(id => id !== item._id))
+          }
+        >
+          ✖
+        </button>
+      </div>
+    ))}
+  </div>
+)}
 
       {/* Comparison Grid */}
       {items.length === 2 && (

@@ -11,7 +11,7 @@ const Marketplace = () => {
 
   const handleSearch = async (query) => {
     try {
-      const res = await fetch("http://localhost:4000/api/items");
+      const res = await fetch("http://localhost:4000/api/results");
       const json = await res.json();
 
       if (json.status === "success") {

@@ -38,24 +38,27 @@ services:
     ports:
       - 9000:9000
       - 9001:9001
-    # volumes:
-    #   # - ./images:/data
-    #   - ./minio/setBucketOpen.sh:/docker-entrypoint-initbucket.d/policy.sh
+    volumes:
+      - minio_data:/data
     env_file:
-      - path: minio/.env
-        required: true
+      - ./minio/.env
     command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
   createbuckets:
-    image: minio/minio:RELEASE.2025-06-13T11-33-47Z-cpuv1
+    image: minio/mc
     depends_on:
-      - minio
-    # restart: on-failure
+      minio:
+        condition: service_healthy
     env_file:
-      - path: minio/.env
-        required: true
+      - ./minio/.env
     volumes:
       - ./images:/images
-      - ./minio/entrypoint.sh:/entrypoint.sh 
+      - ./minio/entrypoint.sh:/entrypoint.sh
     entrypoint: >
       /bin/sh -c "
         chmod +x /entrypoint.sh;
@@ -63,7 +66,6 @@ services:
         exit 0;
       "
 
-
 volumes:
   mongo_storage:
-  minio:
+  minio_data:
