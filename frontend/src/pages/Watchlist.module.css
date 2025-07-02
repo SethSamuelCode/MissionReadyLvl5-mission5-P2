@@ -164,3 +164,10 @@
 .removeButton:hover {
   background-color: #ddd;
 }
+
+.emptyMessage {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: center;
+  margin-top: 2rem;
+}
