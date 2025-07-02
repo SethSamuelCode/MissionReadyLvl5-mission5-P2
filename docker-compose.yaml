@@ -46,7 +46,9 @@ services:
         required: true
     command: server /data --console-address ":9001"
   createbuckets:
-    image: minio/minio:RELEASE.2025-06-13T11-33-47Z-cpuv1
+    build:
+      context: minio
+      dockerfile: minioLoad.Dockerfile
     depends_on:
       - minio
     # restart: on-failure
@@ -55,13 +57,13 @@ services:
         required: true
     volumes:
       - ./images:/images
-      - ./minio/entrypoint.sh:/entrypoint.sh 
-    entrypoint: >
-      /bin/sh -c "
-        chmod +x /entrypoint.sh;
-        /bin/sh /entrypoint.sh;
-        exit 0;
-      "
+    #   - ./minio/entrypoint.sh:/entrypoint.sh 
+    # entrypoint: >
+    #   /bin/sh -c "
+    #     chmod +x /entrypoint.sh;
+    #     /bin/sh /entrypoint.sh;
+    #     exit 0;
+    #   "
   
   seed_db:
     build:
