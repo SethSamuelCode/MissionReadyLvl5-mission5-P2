@@ -48,7 +48,7 @@ services:
   createbuckets:
     build:
       context: minio
-      dockerfile: minioLoad.Dockerfile
+      dockerfile: minioFromScratch.dockerfile
     depends_on:
       - minio
     # restart: on-failure
