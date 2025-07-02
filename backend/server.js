@@ -313,6 +313,25 @@ app.get('/api/watchlist', async (req, res) => {
     res.status(500).json({ error: 'Server error' })
   }
 })
+
+// WatchList: DELETE - remove item from watchlist
+app.delete('/api/watchlist', async (req, res) => {
+  const { userId, itemId } = req.body
+  if (!userId || !itemId) {
+    return res.status(400).json({ error: 'userId and itemId are required' })
+  }
+  try {
+    await dbObject.db.collection('watchlist').deleteOne({
+      userId,
+      itemId: new ObjectId(itemId),
+    })
+    res.json({ message: 'Item removed from watchlist' })
+  } catch (error) {
+    console.error('Error removing from watchlist:', error)
+    res.status(500).json({ error: 'Server error' })
+  }
+})
+
 // ----------------------- ROUTES ----------------------- //
 
 // Health check/test GET endpoint
