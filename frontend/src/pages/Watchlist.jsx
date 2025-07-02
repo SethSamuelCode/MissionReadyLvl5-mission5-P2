@@ -23,6 +23,19 @@ function Watchlist() {
     fetchWatchlist()
   }, [])
 
+  const handleRemove = async (itemId) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/watchlist`, {
+        data: { userId, itemId },
+      })
+      setItems((prevItems) =>
+        prevItems.filter((item) => item.itemId !== itemId)
+      )
+    } catch (error) {
+      console.error('Error removing item from watchlist:', error)
+    }
+  }
+
   return (
     <div className={styles.pageWrapper}>
       <Header />
@@ -63,6 +76,12 @@ function Watchlist() {
                 </div>
                 <button className={styles.compareButton}>
                   Compare with similar Items
+                </button>
+                <button
+                  className={styles.removeButton}
+                  onClick={() => handleRemove(item.itemid)}
+                >
+                  Remove
                 </button>
               </div>
               <div className={styles.checkmark}>
