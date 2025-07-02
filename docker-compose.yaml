@@ -21,8 +21,8 @@ services:
     restart: always
     env_file:
       - ./mongoDB/.env
-    volumes:
-      - mongo_storage:/data/db
+    # volumes:
+    #   - mongo_storage:/data/db
     ports:
       - 27017:27017
 
@@ -62,8 +62,23 @@ services:
         /bin/sh /entrypoint.sh;
         exit 0;
       "
-
-
-volumes:
-  mongo_storage:
-  minio:
+  
+  seed_db:
+    image: node:lts-alpine
+    depends_on:
+      - mongo
+    volumes:
+      - ./mongoDB/SampleAuctionData.json:/SampleAuctionData.json:ro
+      - ./mongoDB/mockUserData.json:/mockUserData.json:ro
+      - ./backend/autoSeed.js:/autoSeed.js:ro
+      - ./autoDbSeeder:/app/
+    env_file:
+      - path: ./backend/.env
+        required: true
+    entrypoint: 
+      /bin/sh -c "
+      sleep 10;
+      cd /app;
+      npm ci;
+      node autoSeed.js
+      "
