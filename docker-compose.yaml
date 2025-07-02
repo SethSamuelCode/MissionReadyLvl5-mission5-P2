@@ -77,8 +77,9 @@ services:
         required: true
     entrypoint: 
       /bin/sh -c "
-      sleep 10;
-      cd /app;
-      npm ci;
-      node autoSeed.js
+      echo 'about to run entrypoint';
+      chmod +x /app/entrypoint.sh;
+      /bin/sh /app/entrypoint.sh;
+      echo 'ran entrypoint';
+      exit 0;
       "
