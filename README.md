@@ -47,17 +47,23 @@ This is a full-stack auction platform application that mimics TradeMe's function
   - Secure endpoints for all operations
   - JSON response format
   - Error handling and validation
+  - Advanced endpoints for item comparison
+  - Random item selection by field
+
 
 - **Database Integration**
   - MongoDB integration
   - Efficient data querying
   - Data persistence
   - Collection management for items and users
+  - Automated data seeding for development
+  - User and item collections management
 
 - **Search Functionality**
   - Advanced query processing
   - Multiple search criteria support
   - Efficient search algorithms
+  - Field-specific random item selection
 
 ### Technical Features
 - **Docker Integration**
@@ -68,6 +74,14 @@ This is a full-stack auction platform application that mimics TradeMe's function
     - Backend (Port 4000)
     - MongoDB (Port 27017)
     - Mongo Express (Port 8081)
+    - MinIO (Port 9000)
+    - Auto Database Seeder
+
+- **File Storage**
+  - MinIO integration for object storage
+  - Automated image upload system
+  - Public bucket configuration
+  - Efficient image serving
 
 - **Environment Configuration**
   - Separate environment files for each service
@@ -122,19 +136,26 @@ This is a full-stack auction platform application that mimics TradeMe's function
 
 ## 📁 Project Structure
 ```
-├── frontend/                # React frontend application
-│   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/         # Page components
-│   │   └── assets/        # Static assets
-│   └── Dockerfile         # Frontend container configuration
-├── backend/               # Node.js backend application
-│   ├── controllers/      # Request handlers
-│   ├── models/          # Database models
-│   ├── routes/         # API routes
-│   └── Dockerfile      # Backend container configuration
-├── mongoDB/            # Database configuration and seeding
-└── docker-compose.yaml # Container orchestration
+├── frontend/                       # React frontend application
+│   ├── src/                        # Source code directory
+│   │   ├── components/             # Reusable UI components
+│   │   ├── pages/                  # Page components
+│   │   └── assets/                 # Static assets
+│   └── Dockerfile                  # Frontend container configuration
+├── backend/                        # Node.js backend application
+│   ├── controllers/                # Request handlers
+│   ├── models/                     # Database models
+│   ├── routes/                     # API routes
+│   └── Dockerfile                  # Backend container configuration
+├── mongoDB/                        # Database configuration and seeding
+├── minio/                          # MinIO object storage configuration
+│   ├── entrypoint.sh               # MinIO initialization script
+│   └── Dockerfile                  # MinIO container configuration
+├── autoDbSeeder/                   # Automated database seeding
+│   ├── autoSeed.js                 # Seeding script
+│   └── Dockerfile                  # Seeder container configuration
+├── images/                         # Sample images for seeding
+└── docker-compose.yaml             # Container orchestration
 ```
 
 ## 🔐 Security Features
