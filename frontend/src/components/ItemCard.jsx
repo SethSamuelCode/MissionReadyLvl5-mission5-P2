@@ -18,7 +18,7 @@ export default function ItemCard({ item }) {
         <p>{item.title}</p>
 
         <p className={styles.buyNowTitle}>Buy Now</p>
-        <p>${item.currentBidPrice}</p>
+        <p>${item.current_BidPrice}</p>
 
       </div>
     </div>
