@@ -168,6 +168,8 @@ const Compare = () => {
         )}
       </main>
       <Footer />
+      </div>
+      </div>
     </div>
   );
 };
