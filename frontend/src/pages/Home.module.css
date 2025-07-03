@@ -41,7 +41,6 @@
   margin: 0 auto;
 }
 
-
 .catergoryListContainer ul {
   display: flex;
   flex-direction: column;
@@ -86,7 +85,7 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 50%;
-  width: 32px;
+  width: 100px;
   height: 32px;
   cursor: pointer;
   font-size: 18px;
@@ -159,3 +158,23 @@
   color: black;
   font-weight: bold;
 }
+
+.auctionCards {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  
+}
+
+.card {
+  min-width: 250px;
+  flex-shrink: 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  text-decoration: none;
+  color: inherit;
+}
+
