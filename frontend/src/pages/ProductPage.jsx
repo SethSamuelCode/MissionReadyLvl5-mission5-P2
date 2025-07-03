@@ -623,7 +623,7 @@ export default function ProductPage() {
         <div className={styles.questionsList}>
           {questionsAndAnswers.length !== 0 ? (
             questionsAndAnswers.map((qa, index) => (
-              <div key={index}>
+              <div className={styles.qaHolder} key={index}>
                 <p className={styles.question}>
                   {qa.question} <span>:Q</span>
                 </p>
