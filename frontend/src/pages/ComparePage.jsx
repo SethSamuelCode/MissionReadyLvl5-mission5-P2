@@ -99,8 +99,6 @@ const Compare = () => {
       const checked = selectedIds.includes(item._id);
       return (
         <div className={comparePageStyles.card} key={item._id}>
-          {/* 🧨 Delete or comment this img element */}
-          {/* <img src={item.imagesLinks?.[0] || 'https://via.placeholder.com/200x150'} alt={item.title} /> */}
 
           <p><strong>{item.title}</strong></p>
           <p className={comparePageStyles.cardDescription}>
@@ -168,8 +166,6 @@ const Compare = () => {
         )}
       </main>
       <Footer />
-      </div>
-      </div>
     </div>
   );
 };
