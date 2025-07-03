@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import CatergoryFilter from "../components/CatergoryFilter";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const Marketplace = () => {
   const [results, setResults] = useState([]);
@@ -31,11 +32,17 @@ const Marketplace = () => {
 
             const matchesSearch =
               (!query.searchBy &&
-                item.title?.toLowerCase().includes(query.keyword?.toLowerCase())) ||
+                item.title
+                  ?.toLowerCase()
+                  .includes(query.keyword?.toLowerCase())) ||
               (query.searchBy === "title" &&
-                item.title?.toLowerCase().includes(query.keyword?.toLowerCase())) ||
+                item.title
+                  ?.toLowerCase()
+                  .includes(query.keyword?.toLowerCase())) ||
               (query.searchBy === "description" &&
-                item.description?.toLowerCase().includes(query.keyword?.toLowerCase()));
+                item.description
+                  ?.toLowerCase()
+                  .includes(query.keyword?.toLowerCase()));
 
             const matchesCondition =
               !query.condition ||
@@ -43,15 +50,20 @@ const Marketplace = () => {
 
             const matchesLocation =
               !query.location ||
-              item.pickuplocation?.toLowerCase() === query.location?.toLowerCase();
+              item.pickuplocation?.toLowerCase() ===
+                query.location?.toLowerCase();
 
             const matchesPayment =
               !query.payment ||
-              item.paymentoptions?.toLowerCase().includes(query.payment?.toLowerCase());
+              item.paymentoptions
+                ?.toLowerCase()
+                .includes(query.payment?.toLowerCase());
 
             const matchesShipping =
               !query.shipping ||
-              item.shippingtype?.toLowerCase().includes(query.shipping?.toLowerCase());
+              item.shippingtype
+                ?.toLowerCase()
+                .includes(query.shipping?.toLowerCase());
 
             const matchesClearance =
               !query.clearance ||
@@ -108,12 +120,20 @@ const Marketplace = () => {
           </div>
 
           <div className={styles.resultsWrapper}>
+            
             {hasSearched && (
               <div className={styles.resultsContainer}>
+                <h1 className={styles.resultsTitle}>Results</h1>
+                <div className={styles.resultsSeparator}>
                 {results.length > 0 ? (
                   results.map((item) => {
                     return (
-                      <div key={item._id} className={styles.resultCard}>
+                      
+                      <Link
+                        to={`/item/${item._id}`}
+                        key={item._id}
+                        className={styles.resultCard}
+                      >
                         <div className={styles.imageWrapper}>
                           <img
                             src={
@@ -150,12 +170,15 @@ const Marketplace = () => {
                           <span>Buy Now</span>
                           <strong>${item.buynowprice || "N/A"}</strong>
                         </div>
-                      </div>
+                      </Link>
+                      
                     );
                   })
                 ) : (
                   <p className={styles.noResults}>No results.</p>
+                  
                 )}
+              </div>
               </div>
             )}
           </div>
