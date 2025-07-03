@@ -7,10 +7,18 @@
   width: 100%;
   background-color: #f7f7f7;
   border-top: 1px solid lightgray;
+  color: #2F2C28;
+  text-decoration: none;
+  transition: color 0.25s ease-in-out;
   
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
 }
+
+.footerContainer a:hover {
+  color: #007BFF;
+}
+
 
 .topFooter {
   display: flex;

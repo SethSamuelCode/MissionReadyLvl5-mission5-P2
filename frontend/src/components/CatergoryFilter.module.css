@@ -7,7 +7,6 @@
   border-radius: 6px;
   margin-top: 50px;
   width: 100%;
-
 }
 
 .tabs {
@@ -70,14 +69,11 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  
-  
 }
 
 .input {
   width: 30%;
   padding: 20px;
-
 }
 
 .searchBtn {
