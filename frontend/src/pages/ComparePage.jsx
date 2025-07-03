@@ -49,7 +49,10 @@ const Compare = () => {
 
   return (
         <div className={styles.compareWrapper}> 
-      <Header />    
+        <div className={styles.body}>
+                <div className={styles.pageContainer}>
+      <Header /> 
+      <div className={styles.padding}>
       <h1 className={styles.heading}>Compare Items</h1>
 
       {/* Search */}    
@@ -77,7 +80,7 @@ const Compare = () => {
 {searchResults.length > 0 && (
   <div className={styles.selectionGrid}>
     {searchResults.map(item => {
-      const image = item.images_links?.[0];
+      const image = item.imagesLinks?.[0];
       const isChecked = selectedIds.includes(item._id);
       return (
         <div key={item._id} className={styles.card}>
@@ -128,7 +131,7 @@ const Compare = () => {
             <div key={item._id} className={styles.itemColumn}>
               <div className={styles.imageContainer}>
                 <img
-                  src={item.images_links?.[0] || 'https://via.placeholder.com/200x150'}
+                  src={item.imagesLinks?.[0] || 'https://via.placeholder.com/200x150'}
                   alt={item.title}
                 />
               </div>
@@ -141,7 +144,10 @@ const Compare = () => {
           ))}
         </div>
       )}
+      </div>   
       <Footer />
+      </div>
+      </div>
     </div>
   );
 };
