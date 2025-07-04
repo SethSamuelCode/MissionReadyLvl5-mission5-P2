@@ -85,7 +85,7 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 50%;
-  width: 100px;
+  width: 80px;
   height: 32px;
   cursor: pointer;
   font-size: 18px;
@@ -178,3 +178,8 @@
   color: inherit;
 }
 
+.catergoryListContainer > ul > li > span {
+  color: #a7a7a7;
+  position: relative;
+  left: 50px;
+}
