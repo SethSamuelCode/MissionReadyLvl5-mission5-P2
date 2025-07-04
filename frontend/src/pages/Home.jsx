@@ -1,51 +1,31 @@
+import { useState, useEffect, useRef } from "react";
 import styles from "./Home.module.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import SearchBar from '../components/SearchBar';
+import SearchBar from "../components/SearchBar";
 import CatergoryFilter from "../components/CatergoryFilter";
-import { useRef } from "react";
-
-const dummyAuctions = [
-  {
-    id: 1,
-    image: "/images/outdoor1.jpg",
-    title: "Outdoor Sofa (Nova)",
-    price: 749,
-    reserve: true,
-    location: "Auckland",
-    closing: "Wed, 25 July",
-  },
-  {
-    id: 2,
-    image: "/images/outdoor2.jpg",
-    title: "Outdoor Day Bed (Wicker)",
-    price: 800,
-    reserve: false,
-    location: "Auckland",
-    closing: "Wed, 25 July",
-  },
-  {
-    id: 3,
-    image: "/images/outdoor3.jpg",
-    title: "Outdoor Dining Suite",
-    price: 1199,
-    reserve: false,
-    location: "Auckland",
-    closing: "Sat, 28 July",
-  },
-  {
-    id: 4,
-    image: "/images/outdoor4.jpg",
-    title: "Outdoor Sofa Set",
-    price: 584,
-    reserve: false,
-    location: "Auckland",
-    closing: "Fri, 27 June",
-  },
-];
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const carouselRef = useRef(null);
+  const [auctions, setAuctions] = useState([]);
+
+  useEffect(() => {
+    const fetchAuctions = async () => {
+      try {
+        const res = await fetch("http://localhost:4000/api/results");
+        const json = await res.json();
+        if (json.status === "success") {
+          setAuctions(json.data);
+          console.log("Auction categories:", json.data.map(a => a.category));
+        }
+      } catch (err) {
+        console.error("Error loading auctions:", err);
+      }
+    };
+
+    fetchAuctions();
+  }, []);
 
   const scrollLeft = () => {
     if (carouselRef.current) {
@@ -60,94 +40,111 @@ const Home = () => {
   };
 
   return (
-    <>
-      <div className={styles.body}>
-        <div className={styles.pageContainer}>
-          <Header />
-          <main className={styles.page}>
-            <div className={styles.searchFilterContainer}>
-              
-              <SearchBar></SearchBar>
+    <div className={styles.body}>
+      <div className={styles.pageContainer}>
+        <Header />
+        <main className={styles.page}>
+          <div className={styles.searchFilterContainer}>
+            <SearchBar />
+            <div className={styles.catergoryFilter}>
+              <CatergoryFilter />
+            </div>
 
+            <div className={styles.catergoryListContainer}>
+              <ul>
+                <li>Bathroom <span>(401)</span></li>
+                <li>Cleaning Bin <span>(801)</span></li>
+                <li>Curtains <span>(531)</span></li>
+                <li>Bedframe <span>(211)</span></li>
+                <li>Lamp <span>(324)</span></li>
+              </ul>
+              <ul>
+                <li>Laundry <span>(978)</span></li>
+                <li>Storage <span>(643)</span></li>
+                <li>Travel <span>(532)</span></li>
+                <li>Table <span>(578)</span></li>
+                <li>Kitchen <span>(487)</span></li>
+              </ul>
+              <ul>
+                <li>Heating & Cooling <span>(331)</span></li>
+                <li>Home Decor <span>(561)</span></li>
+                <li>Art Posters <span>(751)</span></li>
+                <li>Cleaning <span>(976)</span></li>
+                <li>Mats & Rugs <span>(235)</span></li>
+              </ul>
+              <ul>
+                <li>Outdoor <span>(121)</span></li>
+                <li>Clock <span>(234)</span></li>
+                <li>Utensils <span>(433)</span></li>
+                <li>Office <span>(856)</span></li>
+                <li>Blanket <span>(348)</span></li>
+              </ul>
+            </div>
 
-              <div className={styles.catergoryFilter}>
-                <CatergoryFilter />
-              </div>
+            <section className={styles.coolAuctionsSection}>
+              <h2>
+                Recommended in{" "}
+                <span className={styles.highlight}>
+                  Expensive Items
+                </span>
+              </h2>
 
-              <div className={styles.catergoryListContainer}>
-                <ul>
-                  <li>Bathroom</li>
-                  <li>Cleaning Bin</li>
-                  <li>Curtains</li>
-                  <li>Bedframe</li>
-                  <li>Lamp</li>
-                </ul>
-                <ul>
-                  <li>Laundry</li>
-                  <li>Storage</li>
-                  <li>Travel</li>
-                  <li>Table</li>
-                  <li>Kitchen</li>
-                </ul>
-                <ul>
-                  <li>Heating & Cooling</li>
-                  <li>Home Decor</li>
-                  <li>Art Posters</li>
-                  <li>Cleaning</li>
-                  <li>Mats & Rugs</li>
-                </ul>
-                <ul>
-                  <li>Outdoor</li>
-                  <li>Clock</li>
-                  <li>Utensils</li>
-                  <li>Office</li>
-                  <li>Blanket</li>
-                </ul>
-              </div>
+              <div className={styles.carouselWrapper}>
+                <button className={styles.carouselButton} onClick={scrollLeft}>
+                  &#10094;
+                </button>
 
-              <section className={styles.coolAuctionsSection}>
-                <h2>
-                  Recommended in{" "}
-                  <span className={styles.highlight}>
-                    Outdoor, garden & conservatory
-                  </span>
-                </h2>
-
-                <div className={styles.carouselWrapper}>
-                  <button className={styles.carouselButton} onClick={scrollLeft}>
-                    &#10094;
-                  </button>
-
-                  <div className={styles.auctionCards} ref={carouselRef}>
-                    {dummyAuctions.map((item) => (
-                      <div key={item.id} className={styles.card}>
-                        <img src={item.image} alt={item.title} />
+                <div className={styles.auctionCards} ref={carouselRef}>
+                  {auctions
+                    .slice(0, 10) // TEMP: to ensure items render
+                    .map((item) => (
+                      <Link
+                        to={`/item/${item._id}`}
+                        key={item._id}
+                        className={styles.card}
+                      >
+                        <img
+                          src={
+                            item.imageslinks?.[0] ||
+                            "https://www.dealking.co.nz/cdn/shop/files/Bella3SeaterBeige_720x.jpg?v=1694566264"
+                          }
+                          alt={item.title}
+                        />
                         <div className={styles.cardDetails}>
-                          <span>{item.location}</span>
-                          <span>Closes {item.closing}</span>
+                          <span>{item.pickuplocation || "Unknown"}</span>
+                          <span>
+                            Closes{" "}
+                            {new Date(item.closingdate).toLocaleDateString(
+                              "en-NZ",
+                              {
+                                weekday: "short",
+                                day: "numeric",
+                                month: "long",
+                              }
+                            )}
+                          </span>
                           <h4>{item.title}</h4>
                           <div className={styles.priceRow}>
-                            {item.reserve && <span>No reserve</span>}
+                            {item.reserveprice === 0 && <span>No reserve</span>}
                             <span className={styles.buyNow}>
-                              Buy Now <br />${item.price}
+                              Buy Now <br />${item.buynowprice || "N/A"}
                             </span>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     ))}
-                  </div>
-
-                  <button className={styles.carouselButton} onClick={scrollRight}>
-                    &#10095;
-                  </button>
                 </div>
-              </section>
-            </div>
-          </main>
-          <Footer />
-        </div>
+
+                <button className={styles.carouselButton} onClick={scrollRight}>
+                  &#10095;
+                </button>
+              </div>
+            </section>
+          </div>
+        </main>
+        <Footer />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -7,6 +7,16 @@
   width: 100%;
 }
 
+.fullHeader a {
+  color: #2F2C28;
+  text-decoration: none;
+  transition: color 0.25s ease-in-out;
+}
+
+.fullHeader a:hover {
+  color: #007BFF;
+}
+
 /* ======== Top-Header ======== */
 .topHeader {
   display: flex;
@@ -72,7 +82,12 @@
 .favouritesContainer,
 .compareContainer {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  
 }
 
 .userContainer {
@@ -81,6 +96,8 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  text-decoration: none;
+  color: inherit;
   width: 120px;
 }
 
@@ -134,9 +151,16 @@
 
 .navCatergoryTabs {
   display: flex;
+  
   list-style: none;
   padding: 20px;
   gap: 50px;
+}
+.navCatergoryTabs > li a {
+  display: flex;
+  text-decoration: none;
+  flex-direction: row;
+  color: inherit;
 }
 
 .listItem {

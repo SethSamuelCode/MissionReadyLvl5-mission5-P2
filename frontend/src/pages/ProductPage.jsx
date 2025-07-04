@@ -202,7 +202,7 @@ export default function ProductPage() {
       setImageUrl(tempFromDB.imagesLinks[0]);
       setItemImages(tempFromDB.imagesLinks);
       setTitle(tempFromDB.title);
-      setCurrentBid(tempFromDB.currentBidPrice);
+      setCurrentBid(tempFromDB.current_BidPrice);
       setActionClosingTime(new Date(tempFromDB.closingDate));
       setBidHistory(tempFromDB.bidHistory);
       setShippingOptions(tempFromDB.shippingType);
@@ -430,7 +430,7 @@ export default function ProductPage() {
             <ul>
               {/* {console.log(bidHistory)} */}
               {bidHistory
-                .sort((a, b) => b.Bid - a.Bid)
+                .sort((a, b) => b.bid - a.bid)
                 .map((bid, index) => {
                   if (index >= 3) {
                     return null;
@@ -441,7 +441,7 @@ export default function ProductPage() {
                     if (index === 2) return "3rd";
                   };
                   return (
-                    <li key={bid.userName + bid.Bid}>
+                    <li key={bid.userName + bid.bid}>
                       <p className={styles.bidHistoryLine}>
                         <span className={styles.bidPrefix}>{prefix()} </span>
                         <span
@@ -450,7 +450,7 @@ export default function ProductPage() {
                           {bid.userName[0]}
                         </span>
                         <span>{bid.userName}:</span>
-                        <span>${bid.Bid}</span>
+                        <span>${bid.bid}</span>
                       </p>
                     </li>
                   );
@@ -623,7 +623,7 @@ export default function ProductPage() {
         <div className={styles.questionsList}>
           {questionsAndAnswers.length !== 0 ? (
             questionsAndAnswers.map((qa, index) => (
-              <div key={index}>
+              <div className={styles.qaHolder} key={index}>
                 <p className={styles.question}>
                   {qa.question} <span>:Q</span>
                 </p>

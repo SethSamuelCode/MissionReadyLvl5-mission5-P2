@@ -75,8 +75,9 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=3",
-      "https://picsum.photos/800/600?random=4"
+      "http://localhost:9000/mission5/MacBook.jpg",
+      "http://localhost:9000/mission5/2186988072.jpg",
+      "http://localhost:9000/mission5/2186988073.jpg"
     ],
     "Condition": "Like New",
     "dimensions": "14.01\" x 9.77\" x 0.66\"",
@@ -125,8 +126,9 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=5",
-      "https://picsum.photos/800/600?random=6"
+      "http://localhost:9000/mission5/DiningTable.jpg",
+      "http://localhost:9000/mission5/2223126112.jpg",
+      "http://localhost:9000/mission5/2223126121.jpg"
     ],
     "Condition": "Excellent - Restored",
     "dimensions": "240cm x 110cm x 75cm (extended)",
@@ -175,8 +177,9 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=7",
-      "https://picsum.photos/800/600?random=8"
+      "http://localhost:9000/mission5/Tesla.jpg",
+      "http://localhost:9000/mission5/2227293702.jpg",
+      "http://localhost:9000/mission5/2227293775.jpg"
     ],
     "Condition": "Excellent",
     "dimensions": "497cm x 196cm x 145cm",
@@ -224,10 +227,7 @@
         "Bid": 48000
       }
     ],
-    "images_links": [
-      "https://picsum.photos/800/600?random=9",
-      "https://picsum.photos/800/600?random=10"
-    ],
+    "images_links": ["http://localhost:9000/mission5/Rolex.jpg", "http://localhost:9000/mission5/2186767313.jpg"],
     "Condition": "New",
     "dimensions": "40mm diameter",
     "weight": "156g",
@@ -275,8 +275,8 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=11",
-      "https://picsum.photos/800/600?random=12"
+      "http://localhost:9000/mission5/BanksyGirlBalloon.jpg",
+      "http://localhost:9000/mission5/GWB-UNSIGNED-BONHAMS-DECEMBER-2022.jpg"
     ],
     "Condition": "Excellent",
     "dimensions": "101cm x 78cm (framed)",
@@ -325,8 +325,8 @@
       }
     ],
     "images_links": [
-      "https://picsum.photos/800/600?random=13",
-      "https://picsum.photos/800/600?random=14"
+      "http://localhost:9000/mission5/FirstEditionHarryPotter.jpg",
+      "http://localhost:9000/mission5/2195648324.jpg"
     ],
     "Condition": "Very Good",
     "dimensions": "20.8cm x 13.8cm",
@@ -374,10 +374,7 @@
         "Bid": 16500
       }
     ],
-    "images_links": [
-      "https://picsum.photos/800/600?random=15",
-      "https://picsum.photos/800/600?random=16"
-    ],
+    "images_links": ["http://localhost:9000/mission5/Drone.jpg", "http://localhost:9000/mission5/M300RTK_COMBO.webp"],
     "Condition": "Excellent",
     "dimensions": "810mm x 670mm x 430mm",
     "weight": "6.3 kg",
@@ -424,10 +421,7 @@
         "Bid": 3200
       }
     ],
-    "images_links": [
-      "https://picsum.photos/800/600?random=17",
-      "https://picsum.photos/800/600?random=18"
-    ],
+    "images_links": ["http://localhost:9000/mission5/SignedAllBlacks.jpg", "http://localhost:9000/mission5/s-l400.jpg"],
     "Condition": "New",
     "dimensions": "80cm x 60cm (framed)",
     "weight": "4 kg",
@@ -470,10 +464,7 @@
         "Bid": 38500
       }
     ],
-    "images_links": [
-      "https://picsum.photos/800/600?random=19",
-      "https://picsum.photos/800/600?random=20"
-    ],
+    "images_links": ["http://localhost:9000/mission5/DiamondRing.jpg", "http://localhost:9000/mission5/2154250718.jpg"],
     "Condition": "New",
     "dimensions": "Ring Size 6 (resizable)",
     "weight": "5.2g",

@@ -19,7 +19,9 @@ const shippingOptions = [
 ];
 
 const priceOptions = [
-  '$0 - $50', '$50 - $100', '$100 - $250', '$250 - $500', '$500 - $1000', '$1000+'
+  '$0 - $50', '$50 - $100', '$100 - $250', '$250 - $500', '$500 - $1000',
+  '$1000 - $5000', '$5000 - $10000', '$10000 - $25000', '$25000 - $50000',
+  '$50000 - $100000', '$100000 - $250000', '$250000 - $500000', '$500000+'
 ];
 
 const clearanceOptions = ['true', 'false'];
@@ -46,12 +48,24 @@ const CatergoryFilter = ({ onFilterSearch }) => {
     if (query.price) {
       const [min, max] = query.price.replace(/[$,]/g, '').split(' - ');
       if (min) query.minPrice = parseInt(min);
-      if (max) query.maxPrice = parseInt(max);
+      if (max && !isNaN(max)) query.maxPrice = parseInt(max);
       delete query.price;
     }
 
+    if (query.keyword) {
+      if (!query.searchBy) {
+        query.searchBy = ['title', 'description'];
+      }
+    }
+
     const hasFilter = Object.values(query).some(v => v !== undefined && v !== '');
-    onFilterSearch(hasFilter ? query : {}); // Send empty object to request all items
+    onFilterSearch(hasFilter ? query : {});
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   return (
@@ -129,6 +143,7 @@ const CatergoryFilter = ({ onFilterSearch }) => {
             placeholder="Search Keywords....."
             value={filters.keyword}
             onChange={handleChange}
+            onKeyDown={handleKeyDown}
           />
           <button className={styles.searchBtn} onClick={handleSearch}>Search</button>
         </div>

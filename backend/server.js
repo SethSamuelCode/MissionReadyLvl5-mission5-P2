@@ -123,8 +123,8 @@ app.get('/api/items', async (req, res) => {
 })
 
 // ------------------------ KERRY ----------------------- //
+app.get("/api/results", async (req, res) => {
 
-app.get('/api/items', async (req, res) => {
   try {
     const allItems = await dbObject.itemCollection.find({}).toArray()
 

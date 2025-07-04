@@ -5,12 +5,16 @@ import Footer from "../components/Footer";
 export default function Page404() {
   return (
     <div className={styles.container}>
+      <div className={styles.body}>
+              <div className={styles.pageContainer}>
       <Header />
       <div className={styles.content}>
         <h1 className={styles.title}>404 - Page Not Found</h1>
         <p className={styles.message}>Sorry, the page you are looking for does not exist.</p>
       </div>
       <Footer />
+      </div>
+    </div>
     </div>
   );
 }

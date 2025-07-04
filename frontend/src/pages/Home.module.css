@@ -1,18 +1,15 @@
 .body {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
+  overflow-x: hidden;
 }
 
 .pageContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  max-width: 1300px;
   background-color: white;
-  width: 60%;
 }
 
 .page {
@@ -43,7 +40,6 @@
   width: 1300px;
   margin: 0 auto;
 }
-
 
 .catergoryListContainer ul {
   display: flex;
@@ -89,7 +85,7 @@
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 50%;
-  width: 32px;
+  width: 80px;
   height: 32px;
   cursor: pointer;
   font-size: 18px;
@@ -161,4 +157,29 @@
 .buyNow {
   color: black;
   font-weight: bold;
+}
+
+.auctionCards {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  
+}
+
+.card {
+  min-width: 250px;
+  flex-shrink: 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  text-decoration: none;
+  color: inherit;
+}
+
+.catergoryListContainer > ul > li > span {
+  color: #a7a7a7;
+  position: relative;
+  left: 50px;
 }
