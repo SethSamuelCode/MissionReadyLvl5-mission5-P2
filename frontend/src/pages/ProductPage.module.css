@@ -33,7 +33,7 @@
   margin: 0 auto;
   /* background-color: #f0e6ff; */
 
-  button{
+  button {
     border-style: none;
   }
 }
@@ -332,6 +332,9 @@
 
 /* this is for the active product or description tab */
 .activeTab {
+  border-radius: 10px 10px 0px 0px;
+  background: #007acd;
+  color: #fff;
   border-radius: 10px 10px 0px 0px;
   background: #007acd;
   color: #fff;
