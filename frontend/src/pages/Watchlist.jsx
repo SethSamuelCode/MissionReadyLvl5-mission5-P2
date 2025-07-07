@@ -1,49 +1,47 @@
-import React, { useEffect, useState } from "react";
-import styles from "./Watchlist.module.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import styles from './Watchlist.module.css'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import axios from 'axios'
 
 const Watchlist = () => {
-  const [allItems, setAllItems] = useState([]);
-  const [watchlist, setWatchlist] = useState([]);
-  const [showAllItems, setShowAllItems] = useState(false);
-  const userId = "demouser";
+  const [allItems, setAllItems] = useState([])
+  const [watchlist, setWatchlist] = useState([])
+  const [showAllItems, setShowAllItems] = useState(false)
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/results");
-        if (res.data.status === "success") {
-          setAllItems(res.data.data);
+        const res = await axios.get('http://localhost:4000/api/results')
+        if (res.data.status === 'success') {
+          setAllItems(res.data.data)
         }
       } catch (err) {
-        console.error("Error fetching items:", err);
+        console.error('Error fetching items:', err)
       }
-    };
-    fetchItems();
-  }, []);
-
-  useEffect(() => {
-    const savedWatchlist = localStorage.getItem("watchlist");
-    if (savedWatchlist) {
-      setWatchlist(JSON.parse(savedWatchlist));
     }
-  }, []);
+    fetchItems()
+  }, [])
+  useEffect(() => {
+    const savedWatchlist = localStorage.getItem('watchlist')
+    if (savedWatchlist) {
+      setWatchlist(JSON.parse(savedWatchlist))
+    }
+  }, [])
 
   useEffect(() => {
-    localStorage.setItem("watchlist", JSON.stringify(watchlist));
-  }, [watchlist]);
+    localStorage.setItem('watchlist', JSON.stringify(watchlist))
+  }, [watchlist])
 
   const handleAddToWatchlist = (item) => {
     if (!watchlist.find((w) => w.title === item.title)) {
-      setWatchlist([...watchlist, item]);
+      setWatchlist([...watchlist, item])
     }
-  };
+  }
 
   const handleRemove = (title) => {
-    setWatchlist(watchlist.filter((i) => i.title !== title));
-  };
+    setWatchlist(watchlist.filter((i) => i.title !== title))
+  }
 
   return (
     <div className={styles.body}>
@@ -76,7 +74,7 @@ const Watchlist = () => {
                   className={styles.hideButton}
                   onClick={() => setShowAllItems(!showAllItems)}
                 >
-                  {showAllItems ? "Hide" : "Show"}
+                  {showAllItems ? 'Hide' : 'Show'}
                 </button>
               </div>
 
@@ -90,8 +88,8 @@ const Watchlist = () => {
                     />
                     <div className={styles.itemInfo}>
                       <div className={styles.itemHeader}>
-                        <span>{item.pickuplocation || "Unknown Location"}</span>
-                        <span>Closes: {item.closingdate || "TBD"}</span>
+                        <span>{item.pickuplocation || 'Unknown Location'}</span>
+                        <span>Closes: {item.closingdate || 'TBD'}</span>
                       </div>
                       <h2>{item.title}</h2>
                       <p>{item.description}</p>
@@ -121,8 +119,8 @@ const Watchlist = () => {
                     />
                     <div className={styles.itemInfo}>
                       <div className={styles.itemHeader}>
-                        <span>{item.pickuplocation || "Unknown Location"}</span>
-                        <span>Closes: {item.closingdate || "TBD"}</span>
+                        <span>{item.pickuplocation || 'Unknown Location'}</span>
+                        <span>Closes: {item.closingdate || 'TBD'}</span>
                       </div>
                       <h2>{item.title}</h2>
                       <p>{item.description}</p>
@@ -146,7 +144,7 @@ const Watchlist = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Watchlist;
+export default Watchlist
