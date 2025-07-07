@@ -2,18 +2,21 @@ import { useState, useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import styles from "./Marketplace.module.css";
 
+// Component imports
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import CatergoryFilter from "../components/CatergoryFilter";
 import Footer from "../components/Footer";
 
 const Marketplace = () => {
+  // Page state for listings and watchlist
   const [results, setResults] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
   const [watchlist, setWatchlist] = useState([]);
 
   const location = useLocation();
 
+  // Run keyword search if URL contains ?search=
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const keyword = params.get("search");
@@ -22,11 +25,13 @@ const Marketplace = () => {
     }
   }, [location.search]);
 
+  // Load watchlist from localStorage on first render
   useEffect(() => {
     const saved = localStorage.getItem("watchlist");
     if (saved) setWatchlist(JSON.parse(saved));
   }, []);
 
+  // Handle search and filter logic for items
   const handleSearch = async (query) => {
     try {
       const res = await fetch("http://localhost:4000/api/results");
@@ -42,9 +47,7 @@ const Marketplace = () => {
         if (Object.keys(query).length > 0) {
           filtered = filtered.filter((item) => {
             const matchesCategory =
-              !query.category ||
-              item.category?.toLowerCase() === query.category?.toLowerCase();
-
+              !query.category || item.category?.toLowerCase() === query.category?.toLowerCase();
             const matchesSearch =
               (!query.searchBy &&
                 item.title?.toLowerCase().includes(query.keyword?.toLowerCase())) ||
@@ -52,35 +55,20 @@ const Marketplace = () => {
                 item.title?.toLowerCase().includes(query.keyword?.toLowerCase())) ||
               (query.searchBy === "description" &&
                 item.description?.toLowerCase().includes(query.keyword?.toLowerCase()));
-
             const matchesCondition =
-              !query.condition ||
-              item.condition?.toLowerCase() === query.condition?.toLowerCase();
-
+              !query.condition || item.condition?.toLowerCase() === query.condition?.toLowerCase();
             const matchesLocation =
-              !query.location ||
-              item.pickuplocation?.toLowerCase() === query.location?.toLowerCase();
-
+              !query.location || item.pickuplocation?.toLowerCase() === query.location?.toLowerCase();
             const matchesPayment =
-              !query.payment ||
-              item.paymentoptions?.toLowerCase().includes(query.payment?.toLowerCase());
-
+              !query.payment || item.paymentoptions?.toLowerCase().includes(query.payment?.toLowerCase());
             const matchesShipping =
-              !query.shipping ||
-              item.shippingtype?.toLowerCase().includes(query.shipping?.toLowerCase());
-
+              !query.shipping || item.shippingtype?.toLowerCase().includes(query.shipping?.toLowerCase());
             const matchesClearance =
-              !query.clearance ||
-              item.clearance?.toString().toLowerCase() ===
-                query.clearance?.toString().toLowerCase();
-
+              !query.clearance || item.clearance?.toString().toLowerCase() === query.clearance?.toString().toLowerCase();
             const matchesMinPrice =
-              query.minPrice === undefined ||
-              parseFloat(item.reserveprice || 0) >= query.minPrice;
-
+              query.minPrice === undefined || parseFloat(item.reserveprice || 0) >= query.minPrice;
             const matchesMaxPrice =
-              query.maxPrice === undefined ||
-              parseFloat(item.reserveprice || 0) <= query.maxPrice;
+              query.maxPrice === undefined || parseFloat(item.reserveprice || 0) <= query.maxPrice;
 
             return (
               matchesCategory &&
@@ -105,6 +93,7 @@ const Marketplace = () => {
     }
   };
 
+  // Toggle watchlist add/remove and persist to localStorage
   const toggleWatchlist = (e, item) => {
     e.preventDefault();
     e.stopPropagation();
@@ -116,7 +105,6 @@ const Marketplace = () => {
     if (exists) {
       updated = saved.filter((w) => w.title !== item.title);
     } else {
-      // Ensures consistent structure expected by Watchlist page
       const cleanedItem = {
         title: item.title,
         description: item.description,
@@ -133,15 +121,19 @@ const Marketplace = () => {
   };
 
   return (
+    // Main page layout
     <div className={styles.body}>
       <div className={styles.pageContainer}>
         <Header />
+
         <main className={styles.page}>
+          {/* Search bar and filter area */}
           <div className={styles.searchFilterContainer}>
             <SearchBar onSearch={handleSearch} />
             <CatergoryFilter onFilterSearch={handleSearch} />
           </div>
 
+          {/* Auction results grid */}
           <div className={styles.resultsWrapper}>
             {hasSearched && (
               <div className={styles.resultsContainer}>
@@ -164,6 +156,7 @@ const Marketplace = () => {
                             className={styles.resultImage}
                           />
 
+                          {/* Top-right corner star button */}
                           <div
                             className={`${styles.starCorner} ${
                               watchlist.find((w) => w.title === item.title)
@@ -190,6 +183,7 @@ const Marketplace = () => {
                           </div>
                         </div>
 
+                        {/* Meta details */}
                         <div className={styles.meta}>
                           <span>{item.pickuplocation || "Unknown"}</span>
                           <span>{`Closes ${new Date(
@@ -201,6 +195,7 @@ const Marketplace = () => {
                           })}`}</span>
                         </div>
 
+                        {/* Title and price block */}
                         <h3 className={styles.title}>{item.title}</h3>
                         <div className={styles.priceBlock}>
                           <span>Buy Now</span>
@@ -216,6 +211,7 @@ const Marketplace = () => {
             )}
           </div>
         </main>
+
         <Footer />
       </div>
     </div>
