@@ -9,8 +9,11 @@ import { Link } from "react-router-dom";
 
 // Main Home component for displaying homepage layout and content
 const Home = () => {
-  const carouselRef = useRef(null); // Ref to control the horizontal scroll
-  const [auctions, setAuctions] = useState([]); // List of fetched auction items
+
+  // Ref to control the horizontal scroll
+  const carouselRef = useRef(null); 
+  // List of fetched auction items
+  const [auctions, setAuctions] = useState([]);
 
   // Fetch auctions when page loads
   useEffect(() => {
