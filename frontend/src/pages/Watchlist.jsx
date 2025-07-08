@@ -9,6 +9,8 @@ const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([])
   const [showAllItems, setShowAllItems] = useState(false)
 
+  const userId = 'demoUser'
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
@@ -22,16 +24,31 @@ const Watchlist = () => {
     }
     fetchItems()
   }, [])
-  useEffect(() => {
-    const savedWatchlist = localStorage.getItem('watchlist')
-    if (savedWatchlist) {
-      setWatchlist(JSON.parse(savedWatchlist))
-    }
-  }, [])
+  // useEffect(() => {
+  //   const savedWatchlist = localStorage.getItem('watchlist')
+  //   if (savedWatchlist) {
+  //     setWatchlist(JSON.parse(savedWatchlist))
+  //   }
+  // }, [])
 
+  // useEffect(() => {
+  //   localStorage.setItem('watchlist', JSON.stringify(watchlist))
+  // }, [watchlist])
+
+  //Fetch watchlist from backend based on userId
   useEffect(() => {
-    localStorage.setItem('watchlist', JSON.stringify(watchlist))
-  }, [watchlist])
+    const fetchWatchlist = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:4000/api/watchlist?userId=${userId}`
+        )
+        setWatchlist(res.data)
+      } catch (err) {
+        console.error('Error fetching watchlist:', err)
+      }
+    }
+    fetchWatchlist()
+  }, [])
 
   const handleAddToWatchlist = (item) => {
     if (!watchlist.find((w) => w.title === item.title)) {
