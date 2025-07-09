@@ -2,15 +2,19 @@ import { useState } from 'react';
 import styles from './SearchBar.module.css';
 
 const SearchBar = ({ onSearch }) => {
+  // Stores the user's search input
   const [query, setQuery] = useState('');
 
+  // Handles form submission when user presses Enter or clicks search
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(query.trim());
+    onSearch(query.trim()); // Calls the search function with trimmed input
   };
 
   return (
+    // The search bar form
     <form className={styles.searchBar} onSubmit={handleSubmit}>
+      {/* Input field where user types search keywords */}
       <input
         className={styles.searchInput}
         type="text"
@@ -18,6 +22,8 @@ const SearchBar = ({ onSearch }) => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
+
+      {/* Search icon (magnifying glass) */}
       <svg
         className={styles.searchIcon}
         xmlns="http://www.w3.org/2000/svg"

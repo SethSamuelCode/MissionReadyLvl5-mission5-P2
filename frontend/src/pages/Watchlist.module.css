@@ -1,0 +1,187 @@
+.body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #f7f7f7;
+  overflow-x: hidden;
+}
+
+.pageContainer {
+  width: 100%;
+  max-width: 1300px;
+  background-color: white;
+}
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  font-family: sans-serif;
+  background-color: #f2f2f2;
+}
+
+.mainContent {
+  display: flex;
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 2rem;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.sidebar {
+  flex: 0 0 250px;
+  width: 220px;
+  border-right: 1px solid #ccc;
+}
+
+.sidebarTitle {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #878585;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+.sidebarList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebarList li {
+  padding: 12px 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  color: #333;
+}
+
+.sidebarList li:hover {
+  background-color: #f5f5f5;
+}
+
+.active {
+  font-weight: bold;
+  border-left: 4px solid #000;
+  padding-left: 6px;
+  background-color: #f0f0f0;
+}
+
+.watchlistSection {
+  flex: 1;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.watchlistItem {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 16px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  position: relative;
+}
+
+.itemImagePlaceholder {
+  width: 120px;
+  height: 120px;
+  background-color: #e0e0e0;
+  margin-right: 20px;
+}
+
+.itemInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  color: #555;
+  font-size: 14px;
+}
+
+.itemInfo h2 {
+  margin: 10px 0 6px;
+  font-size: 20px;
+  color: #222;
+}
+
+.itemInfo p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.buyNow {
+  margin-top: auto;
+  font-weight: bold;
+  text-align: right;
+  font-size: 16px;
+  color: #000;
+}
+
+.compareButton {
+  align-self: flex-start;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.checkmark {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #555;
+  color: white;
+  padding: 4px 6px;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.backButton {
+  display: inline-block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.removeButton {
+  margin-top: 8px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.removeButton:hover {
+  background-color: #ddd;
+}
+
+.emptyMessage {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: center;
+  margin-top: 2rem;
+}

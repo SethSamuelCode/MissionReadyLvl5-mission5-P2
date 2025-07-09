@@ -1,3 +1,4 @@
+// React and necessary imports
 import { useState, useEffect, useRef } from "react";
 import styles from "./Home.module.css";
 import Header from "../components/Header";
@@ -6,10 +7,15 @@ import SearchBar from "../components/SearchBar";
 import CatergoryFilter from "../components/CatergoryFilter";
 import { Link } from "react-router-dom";
 
+// Main Home component for displaying homepage layout and content
 const Home = () => {
-  const carouselRef = useRef(null);
+
+  // Ref to control the horizontal scroll
+  const carouselRef = useRef(null); 
+  // List of fetched auction items
   const [auctions, setAuctions] = useState([]);
 
+  // Fetch auctions when page loads
   useEffect(() => {
     const fetchAuctions = async () => {
       try {
@@ -27,12 +33,14 @@ const Home = () => {
     fetchAuctions();
   }, []);
 
+  // Scroll the carousel left
   const scrollLeft = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
     }
   };
 
+  // Scroll the carousel right
   const scrollRight = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
@@ -40,52 +48,59 @@ const Home = () => {
   };
 
   return (
+    // Main layout container
     <div className={styles.body}>
       <div className={styles.pageContainer}>
         <Header />
+
+        {/* Main section of the homepage */}
         <main className={styles.page}>
           <div className={styles.searchFilterContainer}>
+            
+            {/* Top search bar and filters */}
             <SearchBar />
             <div className={styles.catergoryFilter}>
               <CatergoryFilter />
             </div>
 
+            {/* Hard-coded category list display */}
             <div className={styles.catergoryListContainer}>
               <ul>
-                <li>Bathroom</li>
-                <li>Cleaning Bin</li>
-                <li>Curtains</li>
-                <li>Bedframe</li>
-                <li>Lamp</li>
+                <li>Bathroom <span>(401)</span></li>
+                <li>Cleaning Bin <span>(801)</span></li>
+                <li>Curtains <span>(531)</span></li>
+                <li>Bedframe <span>(211)</span></li>
+                <li>Lamp <span>(324)</span></li>
               </ul>
               <ul>
-                <li>Laundry</li>
-                <li>Storage</li>
-                <li>Travel</li>
-                <li>Table</li>
-                <li>Kitchen</li>
+                <li>Laundry <span>(978)</span></li>
+                <li>Storage <span>(643)</span></li>
+                <li>Travel <span>(532)</span></li>
+                <li>Table <span>(578)</span></li>
+                <li>Kitchen <span>(487)</span></li>
               </ul>
               <ul>
-                <li>Heating & Cooling</li>
-                <li>Home Decor</li>
-                <li>Art Posters</li>
-                <li>Cleaning</li>
-                <li>Mats & Rugs</li>
+                <li>Heating & Cooling <span>(331)</span></li>
+                <li>Home Decor <span>(561)</span></li>
+                <li>Art Posters <span>(751)</span></li>
+                <li>Cleaning <span>(976)</span></li>
+                <li>Mats & Rugs <span>(235)</span></li>
               </ul>
               <ul>
-                <li>Outdoor</li>
-                <li>Clock</li>
-                <li>Utensils</li>
-                <li>Office</li>
-                <li>Blanket</li>
+                <li>Outdoor <span>(121)</span></li>
+                <li>Clock <span>(234)</span></li>
+                <li>Utensils <span>(433)</span></li>
+                <li>Office <span>(856)</span></li>
+                <li>Blanket <span>(348)</span></li>
               </ul>
             </div>
 
+            {/* Carousel for displaying featured or recommended auctions */}
             <section className={styles.coolAuctionsSection}>
               <h2>
                 Recommended in{" "}
                 <span className={styles.highlight}>
-                  Outdoor, garden & conservatory
+                  Expensive Items
                 </span>
               </h2>
 
@@ -94,9 +109,10 @@ const Home = () => {
                   &#10094;
                 </button>
 
+                {/* Horizontally scrollable auction cards */}
                 <div className={styles.auctionCards} ref={carouselRef}>
                   {auctions
-                    .slice(0, 10) // TEMP: to ensure items render
+                    .slice(0, 10)
                     .map((item) => (
                       <Link
                         to={`/item/${item._id}`}
@@ -142,6 +158,8 @@ const Home = () => {
             </section>
           </div>
         </main>
+
+        {/* Footer with site links */}
         <Footer />
       </div>
     </div>
