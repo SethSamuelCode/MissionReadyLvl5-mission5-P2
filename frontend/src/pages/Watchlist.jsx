@@ -14,7 +14,7 @@ const Watchlist = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/results')
+        const res = await axios.get('http://localhost:4000/api/watchlist')
         if (res.data.status === 'success') {
           setAllItems(res.data.data)
         }
@@ -50,118 +50,158 @@ const Watchlist = () => {
     fetchWatchlist()
   }, [])
 
-  const handleAddToWatchlist = (item) => {
-    if (!watchlist.find((w) => w.title === item.title)) {
-      setWatchlist([...watchlist, item])
+  // const handleAddToWatchlist = (item) => {
+  //   if (!watchlist.find((w) => w.title === item.title)) {
+  //     setWatchlist([...watchlist, item])
+  //   }
+  // }
+  const handleAddToWatchlist = async (item) => {
+    try {
+      const res = await axios.post('http://localhost:4000/api/watchlist', {
+        userId: 'demoUser',
+        itemId: item._id,
+      })
+
+      // Only updates the UI if backend confirms success
+      if (res.status === 201) {
+        setWatchlist((prev) => [...prev, item])
+      }
+    } catch (err) {
+      if (err.response?.status === 409) {
+        console.warn('Item already in watchlist')
+      } else {
+        console.error('Error adding item to watchlist:', err)
+      }
     }
-  }
 
-  const handleRemove = (title) => {
-    setWatchlist(watchlist.filter((i) => i.title !== title))
-  }
+    // const handleRemove = (title) => {
+    //   setWatchlist(watchlist.filter((i) => i.title !== title))
+    // }
 
-  return (
-    <div className={styles.body}>
-      <div className={styles.pageContainer}>
-        <div className={styles.pageWrapper}>
-          <Header />
+    const handleRemove = async (item) => {
+      try {
+        const res = await axios.delete('http://localhost:4000/api/watchlist', {
+          data: {
+            userId: 'demoUser',
+            itemId: item._id,
+          },
+        })
 
-          <main className={styles.mainContent}>
-            <aside className={styles.sidebar}>
-              <h2 className={styles.sidebarTitle}>My Trade Me</h2>
-              <ul className={styles.sidebarList}>
-                <li>Account Details</li>
-                <li>Notifications</li>
-                <li className={styles.active}>Watchlist</li>
-                <li>Favorites</li>
-                <li>Fixed Price offer</li>
-                <li>Start Listing</li>
-                <li>Items I'm Listing</li>
-                <li>Sold</li>
-                <li>Unsold</li>
-                <li>Sales Summary</li>
-                <li>My Products</li>
-              </ul>
-            </aside>
+        if (res.status === 200) {
+          setWatchlist((prev) => prev.filter((i) => i._id !== item._id))
+        }
+      } catch (err) {
+        console.error('Error removing item from watchlist:', err)
+      }
+    }
 
-            <section className={styles.watchlistSection}>
-              <div className={styles.headerRow}>
-                <h1 className={styles.title}>All Auction Items</h1>
-                <button
-                  className={styles.hideButton}
-                  onClick={() => setShowAllItems(!showAllItems)}
-                >
-                  {showAllItems ? 'Hide' : 'Show'}
-                </button>
-              </div>
+    return (
+      <div className={styles.body}>
+        <div className={styles.pageContainer}>
+          <div className={styles.pageWrapper}>
+            <Header />
 
-              {showAllItems &&
-                allItems.map((item, index) => (
-                  <div key={index} className={styles.watchlistItem}>
-                    <img
-                      src={item.imageslinks?.[0]}
-                      alt={item.title}
-                      className={styles.itemImagePlaceholder}
-                    />
-                    <div className={styles.itemInfo}>
-                      <div className={styles.itemHeader}>
-                        <span>{item.pickuplocation || 'Unknown Location'}</span>
-                        <span>Closes: {item.closingdate || 'TBD'}</span>
+            <main className={styles.mainContent}>
+              <aside className={styles.sidebar}>
+                <h2 className={styles.sidebarTitle}>My Trade Me</h2>
+                <ul className={styles.sidebarList}>
+                  <li>Account Details</li>
+                  <li>Notifications</li>
+                  <li className={styles.active}>Watchlist</li>
+                  <li>Favorites</li>
+                  <li>Fixed Price offer</li>
+                  <li>Start Listing</li>
+                  <li>Items I'm Listing</li>
+                  <li>Sold</li>
+                  <li>Unsold</li>
+                  <li>Sales Summary</li>
+                  <li>My Products</li>
+                </ul>
+              </aside>
+
+              <section className={styles.watchlistSection}>
+                <div className={styles.headerRow}>
+                  <h1 className={styles.title}>All Auction Items</h1>
+                  <button
+                    className={styles.hideButton}
+                    onClick={() => setShowAllItems(!showAllItems)}
+                  >
+                    {showAllItems ? 'Hide' : 'Show'}
+                  </button>
+                </div>
+
+                {showAllItems &&
+                  allItems.map((item, index) => (
+                    <div key={index} className={styles.watchlistItem}>
+                      <img
+                        src={item.imageslinks?.[0]}
+                        alt={item.title}
+                        className={styles.itemImagePlaceholder}
+                      />
+                      <div className={styles.itemInfo}>
+                        <div className={styles.itemHeader}>
+                          <span>
+                            {item.pickuplocation || 'Unknown Location'}
+                          </span>
+                          <span>Closes: {item.closingdate || 'TBD'}</span>
+                        </div>
+                        <h2>{item.title}</h2>
+                        <p>{item.description}</p>
+                        <div className={styles.buyNow}>
+                          Buy Now: ${item.buynowprice}
+                        </div>
+                        <button
+                          className={styles.compareButton}
+                          onClick={() => handleAddToWatchlist(item)}
+                        >
+                          Add to Watchlist
+                        </button>
                       </div>
-                      <h2>{item.title}</h2>
-                      <p>{item.description}</p>
-                      <div className={styles.buyNow}>
-                        Buy Now: ${item.buynowprice}
-                      </div>
-                      <button
-                        className={styles.compareButton}
-                        onClick={() => handleAddToWatchlist(item)}
-                      >
-                        Add to Watchlist
-                      </button>
                     </div>
-                  </div>
-                ))}
+                  ))}
 
-              <h1 className={styles.title}>My Watchlist</h1>
-              {watchlist.length === 0 ? (
-                <p className={styles.emptyMessage}>No items added yet.</p>
-              ) : (
-                watchlist.map((item, index) => (
-                  <div key={index} className={styles.watchlistItem}>
-                    <img
-                      src={item.imageslinks?.[0]}
-                      alt={item.title}
-                      className={styles.itemImagePlaceholder}
-                    />
-                    <div className={styles.itemInfo}>
-                      <div className={styles.itemHeader}>
-                        <span>{item.pickuplocation || 'Unknown Location'}</span>
-                        <span>Closes: {item.closingdate || 'TBD'}</span>
+                <h1 className={styles.title}>My Watchlist</h1>
+                {watchlist.length === 0 ? (
+                  <p className={styles.emptyMessage}>No items added yet.</p>
+                ) : (
+                  watchlist.map((item, index) => (
+                    <div key={index} className={styles.watchlistItem}>
+                      <img
+                        src={item.imageslinks?.[0]}
+                        alt={item.title}
+                        className={styles.itemImagePlaceholder}
+                      />
+                      <div className={styles.itemInfo}>
+                        <div className={styles.itemHeader}>
+                          <span>
+                            {item.pickuplocation || 'Unknown Location'}
+                          </span>
+                          <span>Closes: {item.closingdate || 'TBD'}</span>
+                        </div>
+                        <h2>{item.title}</h2>
+                        <p>{item.description}</p>
+                        <div className={styles.buyNow}>
+                          Buy Now: ${item.buynowprice}
+                        </div>
+                        <button
+                          className={styles.removeButton}
+                          onClick={() => handleRemove(item)}
+                        >
+                          Remove
+                        </button>
                       </div>
-                      <h2>{item.title}</h2>
-                      <p>{item.description}</p>
-                      <div className={styles.buyNow}>
-                        Buy Now: ${item.buynowprice}
-                      </div>
-                      <button
-                        className={styles.removeButton}
-                        onClick={() => handleRemove(item.title)}
-                      >
-                        Remove
-                      </button>
                     </div>
-                  </div>
-                ))
-              )}
-            </section>
-          </main>
+                  ))
+                )}
+              </section>
+            </main>
 
-          <Footer />
+            <Footer />
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Watchlist
