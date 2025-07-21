@@ -15,23 +15,13 @@ const Watchlist = () => {
     const fetchItems = async () => {
       try {
         const res = await axios.get('http://localhost:4000/api/items')
-        setAllItems(res.data.data)
+        setAllItems(res.data)
       } catch (err) {
         console.error('Error fetching items:', err)
       }
     }
     fetchItems()
   }, [])
-  // useEffect(() => {
-  //   const savedWatchlist = localStorage.getItem('watchlist')
-  //   if (savedWatchlist) {
-  //     setWatchlist(JSON.parse(savedWatchlist))
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   localStorage.setItem('watchlist', JSON.stringify(watchlist))
-  // }, [watchlist])
 
   //Fetch watchlist from backend based on userId
   useEffect(() => {
@@ -48,11 +38,6 @@ const Watchlist = () => {
     fetchWatchlist()
   }, [])
 
-  // const handleAddToWatchlist = (item) => {
-  //   if (!watchlist.find((w) => w.title === item.title)) {
-  //     setWatchlist([...watchlist, item])
-  //   }
-  // }
   const handleAddToWatchlist = async (item) => {
     try {
       const res = await axios.post('http://localhost:4000/api/watchlist', {
@@ -81,9 +66,6 @@ const Watchlist = () => {
       }
     }
   }
-  // const handleRemove = (title) => {
-  //   setWatchlist(watchlist.filter((i) => i.title !== title))
-  // }
 
   const handleRemove = async (item) => {
     try {
@@ -141,21 +123,19 @@ const Watchlist = () => {
                 allItems.map((item, index) => (
                   <div key={index} className={styles.watchlistItem}>
                     <img
-                      src={item.images_links?.[0]}
-                      alt={item.Title}
+                      src={item.imagesLinks?.[0]}
+                      alt={item.title}
                       className={styles.itemImagePlaceholder}
                     />
                     <div className={styles.itemInfo}>
                       <div className={styles.itemHeader}>
-                        <span>
-                          {item.pickup_location || 'Unknown Location'}
-                        </span>
-                        <span>Closes: {item.closing_date || 'TBD'}</span>
+                        <span>{item.pickupLocation || 'Unknown Location'}</span>
+                        <span>Closes: {item.closingDate || 'TBD'}</span>
                       </div>
-                      <h2>{item.Title}</h2>
-                      <p>{item.Description}</p>
+                      <h2>{item.title}</h2>
+                      <p>{item.description}</p>
                       <div className={styles.buyNow}>
-                        Buy Now: ${item.buy_now_price}
+                        Buy Now: ${item.buyNowPrice}
                       </div>
                       <button
                         className={styles.compareButton}
@@ -174,19 +154,24 @@ const Watchlist = () => {
                 watchlist.map((item, index) => (
                   <div key={index} className={styles.watchlistItem}>
                     <img
-                      src={item.imageslinks?.[0]}
-                      alt={item.title}
+                      src={item.itemDetails.imagesLinks?.[0]}
+                      alt={item.itemDetails.title}
                       className={styles.itemImagePlaceholder}
                     />
                     <div className={styles.itemInfo}>
                       <div className={styles.itemHeader}>
-                        <span>{item.pickuplocation || 'Unknown Location'}</span>
-                        <span>Closes: {item.closingdate || 'TBD'}</span>
+                        <span>
+                          {item.itemDetails.pickupLocation ||
+                            'Unknown Location'}
+                        </span>
+                        <span>
+                          Closes: {item.itemDetails.closingDate || 'TBD'}
+                        </span>
                       </div>
-                      <h2>{item.title}</h2>
-                      <p>{item.description}</p>
+                      <h2>{item.itemDetails.title}</h2>
+                      <p>{item.itemDetails.description}</p>
                       <div className={styles.buyNow}>
-                        Buy Now: ${item.buynowprice}
+                        Buy Now: ${item.itemDetails.buyNowPrice}
                       </div>
                       <button
                         className={styles.removeButton}
