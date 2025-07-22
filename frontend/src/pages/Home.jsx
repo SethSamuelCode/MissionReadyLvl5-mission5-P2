@@ -1,3 +1,4 @@
+// React and necessary imports
 import { useState, useEffect, useRef } from "react";
 import styles from "./Home.module.css";
 import Header from "../components/Header";
@@ -6,10 +7,15 @@ import SearchBar from "../components/SearchBar";
 import CatergoryFilter from "../components/CatergoryFilter";
 import { Link } from "react-router-dom";
 
+// Main Home component for displaying homepage layout and content
 const Home = () => {
-  const carouselRef = useRef(null);
+
+  // Ref to control the horizontal scroll
+  const carouselRef = useRef(null); 
+  // List of fetched auction items
   const [auctions, setAuctions] = useState([]);
 
+  // Fetch auctions when page loads
   useEffect(() => {
     const fetchAuctions = async () => {
       try {
@@ -27,12 +33,14 @@ const Home = () => {
     fetchAuctions();
   }, []);
 
+  // Scroll the carousel left
   const scrollLeft = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
     }
   };
 
+  // Scroll the carousel right
   const scrollRight = () => {
     if (carouselRef.current) {
       carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
@@ -40,16 +48,22 @@ const Home = () => {
   };
 
   return (
+    // Main layout container
     <div className={styles.body}>
       <div className={styles.pageContainer}>
         <Header />
+
+        {/* Main section of the homepage */}
         <main className={styles.page}>
           <div className={styles.searchFilterContainer}>
+            
+            {/* Top search bar and filters */}
             <SearchBar />
             <div className={styles.catergoryFilter}>
               <CatergoryFilter />
             </div>
 
+            {/* Hard-coded category list display */}
             <div className={styles.catergoryListContainer}>
               <ul>
                 <li>Bathroom <span>(401)</span></li>
@@ -81,6 +95,7 @@ const Home = () => {
               </ul>
             </div>
 
+            {/* Carousel for displaying featured or recommended auctions */}
             <section className={styles.coolAuctionsSection}>
               <h2>
                 Recommended in{" "}
@@ -94,9 +109,10 @@ const Home = () => {
                   &#10094;
                 </button>
 
+                {/* Horizontally scrollable auction cards */}
                 <div className={styles.auctionCards} ref={carouselRef}>
                   {auctions
-                    .slice(0, 10) // TEMP: to ensure items render
+                    .slice(0, 10)
                     .map((item) => (
                       <Link
                         to={`/item/${item._id}`}
@@ -142,6 +158,8 @@ const Home = () => {
             </section>
           </div>
         </main>
+
+        {/* Footer with site links */}
         <Footer />
       </div>
     </div>

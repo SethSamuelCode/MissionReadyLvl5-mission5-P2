@@ -5,7 +5,7 @@ services:
       dockerfile: front.dockerfile
     ports:
       - 8080:80
-
+ 
   backend:
     build:
       context: backend
@@ -32,7 +32,7 @@ services:
     #   - mongo_storage:/data/db
     ports:
       - 27017:27017
-
+ 
   mongo-express:
     image: mongo-express
     restart: always
@@ -71,14 +71,14 @@ services:
         required: true
     volumes:
       - ./images:/images
-    #   - ./minio/entrypoint.sh:/entrypoint.sh 
+    #   - ./minio/entrypoint.sh:/entrypoint.sh
     # entrypoint: >
     #   /bin/sh -c "
     #     chmod +x /entrypoint.sh;
     #     /bin/sh /entrypoint.sh;
     #     exit 0;
     #   "
-  
+ 
   seed_db:
     build:
       context: autoDbSeeder
@@ -94,7 +94,7 @@ services:
     env_file:
       - path: ./backend/.env
         required: true
-    # entrypoint: 
+    # entrypoint:
     #   /bin/sh -c "
     #   echo 'about to run entrypoint';
     #   chmod +x /app/entrypoint.sh;
@@ -102,3 +102,4 @@ services:
     #   echo 'ran entrypoint';
     #   exit 0;
     #   "
+ 
