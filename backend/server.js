@@ -123,8 +123,7 @@ app.get('/api/items', async (req, res) => {
 })
 
 // ------------------------ KERRY ----------------------- //
-app.get("/api/results", async (req, res) => {
-
+app.get('/api/results', async (req, res) => {
   try {
     const allItems = await dbObject.itemCollection.find({}).toArray()
 
@@ -292,12 +291,12 @@ app.get('/api/watchlist', async (req, res) => {
   try {
     const items = await dbObject.db
       .collection('watchlist')
-      // Use aggregation to join with auctionItems
+      // Use aggregation to join with items
       .aggregate([
         { $match: { userId } },
         {
           $lookup: {
-            from: 'auctions',
+            from: 'items',
             localField: 'itemId',
             foreignField: '_id',
             as: 'itemDetails',

@@ -9,38 +9,79 @@ const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([])
   const [showAllItems, setShowAllItems] = useState(false)
 
+  const userId = 'demoUser'
+
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/results')
-        if (res.data.status === 'success') {
-          setAllItems(res.data.data)
-        }
+        const res = await axios.get('http://localhost:4000/api/items')
+        setAllItems(res.data)
       } catch (err) {
         console.error('Error fetching items:', err)
       }
     }
     fetchItems()
   }, [])
+
+  //Fetch watchlist from backend based on userId
   useEffect(() => {
-    const savedWatchlist = localStorage.getItem('watchlist')
-    if (savedWatchlist) {
-      setWatchlist(JSON.parse(savedWatchlist))
+    const fetchWatchlist = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:4000/api/watchlist?userId=${userId}`
+        )
+        setWatchlist(res.data)
+      } catch (err) {
+        console.error('Error fetching watchlist:', err)
+      }
     }
+    fetchWatchlist()
   }, [])
 
-  useEffect(() => {
-    localStorage.setItem('watchlist', JSON.stringify(watchlist))
-  }, [watchlist])
+  const handleAddToWatchlist = async (item) => {
+    try {
+      const res = await axios.post('http://localhost:4000/api/watchlist', {
+        userId: userId,
+        itemId: item._id,
+      })
 
-  const handleAddToWatchlist = (item) => {
-    if (!watchlist.find((w) => w.title === item.title)) {
-      setWatchlist([...watchlist, item])
+      // Only updates the UI if backend confirms success
+      if (res.status === 201) {
+        setWatchlist((prev) => [
+          ...prev,
+          {
+            _id: res.data.id,
+            userId,
+            itemId: item._id,
+            addedAt: new Date(),
+            itemDetails: item,
+          },
+        ])
+      }
+    } catch (err) {
+      if (err.response?.status === 409) {
+        console.warn('Item already in watchlist')
+      } else {
+        console.error('Error adding item to watchlist:', err)
+      }
     }
   }
 
-  const handleRemove = (title) => {
-    setWatchlist(watchlist.filter((i) => i.title !== title))
+  const handleRemove = async (item) => {
+    try {
+      const res = await axios.delete('http://localhost:4000/api/watchlist', {
+        data: {
+          userId,
+          itemId: item.itemId,
+        },
+      })
+
+      if (res.status === 200) {
+        setWatchlist((prev) => prev.filter((i) => i._id !== item._id))
+      }
+    } catch (err) {
+      console.error('Error removing item from watchlist:', err)
+    }
   }
 
   return (
@@ -82,19 +123,19 @@ const Watchlist = () => {
                 allItems.map((item, index) => (
                   <div key={index} className={styles.watchlistItem}>
                     <img
-                      src={item.imageslinks?.[0]}
+                      src={item.imagesLinks?.[0]}
                       alt={item.title}
                       className={styles.itemImagePlaceholder}
                     />
                     <div className={styles.itemInfo}>
                       <div className={styles.itemHeader}>
-                        <span>{item.pickuplocation || 'Unknown Location'}</span>
-                        <span>Closes: {item.closingdate || 'TBD'}</span>
+                        <span>{item.pickupLocation || 'Unknown Location'}</span>
+                        <span>Closes: {item.closingDate || 'TBD'}</span>
                       </div>
                       <h2>{item.title}</h2>
                       <p>{item.description}</p>
                       <div className={styles.buyNow}>
-                        Buy Now: ${item.buynowprice}
+                        Buy Now: ${item.buyNowPrice}
                       </div>
                       <button
                         className={styles.compareButton}
@@ -113,23 +154,28 @@ const Watchlist = () => {
                 watchlist.map((item, index) => (
                   <div key={index} className={styles.watchlistItem}>
                     <img
-                      src={item.imageslinks?.[0]}
-                      alt={item.title}
+                      src={item.itemDetails.imagesLinks?.[0]}
+                      alt={item.itemDetails.title}
                       className={styles.itemImagePlaceholder}
                     />
                     <div className={styles.itemInfo}>
                       <div className={styles.itemHeader}>
-                        <span>{item.pickuplocation || 'Unknown Location'}</span>
-                        <span>Closes: {item.closingdate || 'TBD'}</span>
+                        <span>
+                          {item.itemDetails.pickupLocation ||
+                            'Unknown Location'}
+                        </span>
+                        <span>
+                          Closes: {item.itemDetails.closingDate || 'TBD'}
+                        </span>
                       </div>
-                      <h2>{item.title}</h2>
-                      <p>{item.description}</p>
+                      <h2>{item.itemDetails.title}</h2>
+                      <p>{item.itemDetails.description}</p>
                       <div className={styles.buyNow}>
-                        Buy Now: ${item.buynowprice}
+                        Buy Now: ${item.itemDetails.buyNowPrice}
                       </div>
                       <button
                         className={styles.removeButton}
-                        onClick={() => handleRemove(item.title)}
+                        onClick={() => handleRemove(item)}
                       >
                         Remove
                       </button>
