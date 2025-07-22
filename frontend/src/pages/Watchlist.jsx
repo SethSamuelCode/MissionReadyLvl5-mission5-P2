@@ -71,7 +71,7 @@ const Watchlist = () => {
     try {
       const res = await axios.delete('http://localhost:4000/api/watchlist', {
         data: {
-          userId: 'demoUser',
+          userId,
           itemId: item.itemId,
         },
       })
