@@ -41,7 +41,7 @@ const Watchlist = () => {
   const handleAddToWatchlist = async (item) => {
     try {
       const res = await axios.post('http://localhost:4000/api/watchlist', {
-        userId: 'demoUser',
+        userId: userId,
         itemId: item._id,
       })
 
